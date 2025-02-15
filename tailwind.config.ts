@@ -11,8 +11,13 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-      },
-    },
+        darkorange: "var(--darkorange)",
+        justblack: "var(--justblack)",
+        firstwhite: "var(--firstwhite)",
+        lightorange: "var(--lightorange)",
+        secondwhite: "var(--secondwhite)"
+      }
+    }
   },
   plugins: [],
 } satisfies Config;
