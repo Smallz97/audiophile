@@ -1,11 +1,24 @@
 "use client";
+
 import { usePathname } from "next/navigation";
-export default function Header() {
+import Link from "next/link";
+import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
+
+export default function NavbarWithHeader() {
     const pathname = usePathname();
+    const isHomePage = pathname === "/";
+    const isCategoryPage = pathname.startsWith("/product-categories/");
+    const categoryTitle = isCategoryPage ? pathname.split("/").pop()?.replace("-", " ") : "";
+
     return (
         <div className="bg-black">
-            {pathname === "/" ?
-                (
+            <nav className="flex justify-between items-center py-8 px-4 border-b border-white/10">
+                <div className="flex w-4 h-3.5"><HamburgerIcon /></div>
+                <Link href={"/"} className="flex w-36 h-6"><AudiophileLogo /></Link>
+                <div className="flex w-6 h-5"><ShoppingCartIcon /></div>
+            </nav>
+            {(isHomePage || isCategoryPage) && (
+                isHomePage ? (
                     <div id="homepage-header" className="bg-[url('/images/hero-images/mobile.png')] bg-bottom min-[390px]:bg-center min-[390px]:bg-cover bg-no-repeat py-28 px-6">
                         <div className="flex flex-col gap-4 items-center">
                             <div className="text-sm font-normal tracking-widest text-white opacity-50 text-center uppercase">
@@ -24,15 +37,12 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                )
-                :
-                (
+                ) : (
                     <div id="categorypages-header" className="py-8 text-2xl font-bold tracking-widest text-white text-center uppercase">
-                        headphones
+                        {categoryTitle}
                     </div>
                 )
-            }
-
+            )}
         </div>
-    )
+    );
 }

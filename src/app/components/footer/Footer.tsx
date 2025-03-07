@@ -1,7 +1,7 @@
-import { AudiophileLogo, SocialLinks } from "@/app/utilities/library/icons"
+import { AudiophileLogo, SocialLinks } from "@/app/utilities/ui/icons"
 export default function Footer() {
     return (
-        <div className="flex flex-col gap-12 items-center bg-justblack pb-9 px-6">
+        <footer className="flex flex-col gap-12 items-center bg-justblack pb-9 px-6">
             <div className="w-24 h-1 bg-orange-400" />
             <div id="brand-logo" className="flex w-36 h-6 justify-center items-center"><AudiophileLogo /></div>
             <div id="footer-links" className="flex flex-col gap-4 text-sm font-bold leading-normal tracking-widest text-white text-center uppercase">
@@ -19,6 +19,6 @@ export default function Footer() {
                 </div>
                 <div id="social-icons" className="flex justify-center items-center w-24 h-6"><SocialLinks /></div>
             </div>
-        </div>
+        </footer>
     )
 }

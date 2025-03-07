@@ -1,7 +1,7 @@
 import Image from "next/image"
-import Pics from "../../../../public/images/banner-images/ZX7/mobile-zx7.png"
+import Pics from "../../../../public/images/featured-products-images/ZX7/mobile-zx7.png"
 
-export default function ZX7banner() {
+export default function ZX7() {
     return (
         <div className="relative">
             <div className="flex flex-col gap-8 absolute top-1/2 left-6 -translate-y-1/2">
