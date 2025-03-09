@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function ProductsList({ products }: ProductsListProps) {
     return (
-        <section id="production-overview-section" className="flex flex-col gap-28 px-6 mt-16 mb-28 bg-blue-300">
+        <section id="production-overview-section" className="flex flex-col gap-[7.5rem]">
             {products.map((product, index) => (
                 <div key={index} className="flex flex-col gap-8">
                     <div className="px-12 pt-10 pb-16 rounded-lg bg-zinc-100">

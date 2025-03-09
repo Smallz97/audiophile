@@ -5,7 +5,7 @@ import { Arrow } from "@/app/utilities/ui/icons"
 
 export default function ProductCategories({ categories }: CategoriesListProps) {
     return (
-        <section id="production-category-section" className="flex flex-col gap-16 bg-blue-300">
+        <section id="production-category-section" className="flex flex-col gap-16">
             {categories.map((product, index) => (
                 <div className="relative" key={index}>
                     <Image src={product.categoryImage} alt="" className="drop-shadow-2xl absolute -top-1/4 left-1/2 -translate-x-1/2" />
