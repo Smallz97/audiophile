@@ -1,14 +1,16 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { categories } from "@/app/utilities/library/functions";
 import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
 
 export default function NavbarWithHeader() {
     const pathname = usePathname();
     const isHomePage = pathname === "/";
-    const isCategoryPage = pathname.startsWith("/product-categories/");
-    const categoryTitle = isCategoryPage ? pathname.split("/").pop()?.replace("-", " ") : "";
+    const category = categories.find(cat => `/${cat.slug}` === pathname);
+    const isCategoryPage = Boolean(category);
+    const categoryTitle = category?.name ?? "";
 
     return (
         <div className="bg-black">
