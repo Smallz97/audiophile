@@ -1,6 +1,6 @@
 import ProductOverview from "@/app/components/product-details/ProductDetails";
 
-export default function ProductOverviewPage({ params, }: { params: Promise<{ slug: string, product: string }> }) {
+export default function ProductOverviewPage() {
     return (
         <div className="flex flex-col px-6">
             <section id="navigation-button" className="">
