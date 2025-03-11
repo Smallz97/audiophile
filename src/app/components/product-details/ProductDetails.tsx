@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Pics from "../../../../public/images/product-overview-images/ZX9-mobile.png"
 
-export default function () {
+export default function ProductDetails() {
     return (
         <div className="flex flex-col gap-20">
             <div id="image-description-container" className="flex flex-col gap-8">

@@ -1,10 +1,57 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { products } from "@/app/utilities/library/data"
-import { findMatchingCategory } from "@/app/utilities/library/functions"
+import { findMatchingCategory, categories } from "@/app/utilities/library/functions"
 import PromotionCard from "@/app/components/copyright/PromotionCard"
 import ProductsList from "@/app/components/products-list/ProductsList"
 import ProductCategories from "@/app/components/product-categories/ProductCategories"
+
+export async function generateStaticParams() {
+    return categories.map((category) => ({
+        slug: category.slug,
+    }));
+}
+
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+    const { slug } = await params;
+    const category = categories.find((cat) => cat.slug === slug);
+
+    if (!category) {
+        return {
+            title: 'Category Not Found',
+            description: 'The requested category does not exist',
+        };
+    }
+
+    return {
+        title: `${category.name} | Audiophile`,
+        description: category.metaDescription,
+        keywords: category.keywords,
+        openGraph: {
+            title: `${category.name} | Your Store Name`,
+            description: category.metaDescription,
+            type: 'website',
+            url: `https://yourwebsite.com/${slug}`,
+            images: [
+                {
+                    url: `/images/product-category-images/${slug}-og.jpg`,
+                    width: 1200,
+                    height: 630,
+                    alt: category.name,
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${category.name} | Your Store Name`,
+            description: category.metaDescription,
+        },
+    };
+}
 
 export default async function CategoryPage({ params, }: { params: Promise<{ slug: string }> }) {
     const slug = (await params).slug

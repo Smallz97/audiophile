@@ -3,7 +3,6 @@ import { CategoryOfProducts } from "./definitions"
 import { getProductsOfCategory, getCategoryImages } from "./functions";
 
 const categoryMap = Object.fromEntries(categories.map((category) => [category.slug, category]));
-console.log(categoryMap)
 
 export const products: CategoryOfProducts[] = Object.values(categoryMap).map((category) => ({
     category: category.slug,

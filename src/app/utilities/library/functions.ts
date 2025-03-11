@@ -2,16 +2,16 @@ import { Product } from "./definitions"
 import { StaticImageData } from "next/image"
 import { CategoryOfProductsPageProps } from "./definitions"
 
-import YX1 from  "../../../../public/images/product-images/earphones/YX1-mobile.png"
-import XX59 from "../../../../public/images/product-images/headphones/XX59-mobile.png"
-import XX991 from "../../../../public/images/product-images/headphones/XX99-M1-mobile.png"
-import XX992 from "../../../../public/images/product-images/headphones/XX99-M2-mobile.png"
-import ZX7 from "../../../../public/images/product-images/speakers/ZX7-mobile.png"
-import ZX9 from "../../../../public/images/product-images/speakers/ZX9-mobile.png"
+import YX1 from  "../../../../public/images/product-images/earphones/YX1/product-images/YX1-mobile.png"
+import XX59 from "../../../../public/images/product-images/headphones/XX59/product-images/XX59-mobile.png"
+import XX991 from "../../../../public/images/product-images/headphones/XX99M1/product-images/XX99-M1-mobile.png"
+import XX992 from "../../../../public/images/product-images/headphones/XX99M2/product-images/XX99-M2-mobile.png"
+import ZX7 from "../../../../public/images/product-images/speakers/ZX7/product-images/ZX7-mobile.png"
+import ZX9 from "../../../../public/images/product-images/speakers/ZX9/product-images/ZX9-mobile.png"
 
-import Earphones from "../../../../public/images/product-category-images/earphones-mobile.png"
-import Headphones from "../../../../public/images/product-category-images/headphones-mobile.png"
-import Speakers from "../../../../public/images/product-category-images/speakers-mobile.png"
+import Earphones from "../../../../public/images/category-link-images/earphones-mobile.png"
+import Headphones from "../../../../public/images/category-link-images/headphones-mobile.png"
+import Speakers from "../../../../public/images/category-link-images/speakers-mobile.png"
 
 export const categories: CategoryOfProductsPageProps[] = [
     {

@@ -1,4 +1,5 @@
 import { CategoriesListProps } from "@/app/utilities/library/definitions";
+import Link from "next/link";
 import Image from "next/image"
 import { Arrow } from "@/app/utilities/ui/icons"
 
@@ -12,10 +13,10 @@ export default function ProductCategories({ categories }: CategoriesListProps) {
                     <div className="w-full bg-zinc-100 rounded-lg flex flex-col items-center pt-24 pb-5">
                         <div className="flex flex-col gap-4 items-center">
                             <div id="category-name" className="text-black text-base font-bold tracking-wide uppercase">{product.category}</div>
-                            <div id="category-link" className="flex justify-center items-center gap-2">
+                            <Link href={`/${product.category}`} id="category-link" className="flex justify-center items-center gap-2">
                                 <div className="text-xs font-bold tracking-wide text-black opacity-50 uppercase">shop</div>
                                 <div className="flex justify-center items-center w-1.5 h-2.5"><Arrow /></div>
-                            </div>
+                            </Link>
                         </div>
                     </div>
                 </div>
