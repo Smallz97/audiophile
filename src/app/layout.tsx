@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
-import Footer from "@/app/components/footer/Footer";
-import NavbarWithHeader from "./components/navbar/NavbarWithHeader";
+import Footer from "@/app/utilities/ui/components/footer/Footer";
+import NavbarWithHeader from "./utilities/ui/components/navbar/NavbarWithHeader";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: "Next Generation Audio Devices",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

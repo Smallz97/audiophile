@@ -1,8 +1,8 @@
 import Image from "next/image"
-import Pics from "../../../../public/images/copyright-images/copyright-mobile.png"
+import Pics from "../../../../../../public/images/promotion-card-images/copyright-mobile.png"
 export default function PromotionCard() {
     return (
-        <section id="copyright-section" className="flex flex-col gap-8">
+        <section id="promotion-section" className="flex flex-col gap-8">
             <Image alt="" src={Pics} className="rounded-lg w-full" />
             <div className="text-center text-black">
                 <span className="text-2xl font-bold tracking-wide uppercase">Bringing you the </span>

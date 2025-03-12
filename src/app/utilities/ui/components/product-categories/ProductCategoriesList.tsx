@@ -1,10 +1,14 @@
-import { CategoriesListProps } from "@/app/utilities/library/definitions";
+'use client'
+
 import Link from "next/link";
 import Image from "next/image"
+import { useParams } from 'next/navigation'
 import { Arrow } from "@/app/utilities/ui/icons"
+import { products } from '@/app/utilities/library/data'
+import { CategoriesListProps } from "@/app/utilities/library/definitions";
 
 
-export default function ProductCategories({ categories }: CategoriesListProps) {
+function ProductsCategoryCard({ categories }: CategoriesListProps) {
     return (
         <section id="production-category-section" className="flex flex-col gap-16">
             {categories.map((product, index) => (
@@ -23,4 +27,13 @@ export default function ProductCategories({ categories }: CategoriesListProps) {
             ))}
         </section>
     )
+}
+
+export default function ProductCategoriesList() {
+    const params = useParams();
+    const slug = params.slug as string;
+
+    const otherCategories = products.filter(p => p.category !== slug);
+
+    return <ProductsCategoryCard categories={otherCategories} />;
 }

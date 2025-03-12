@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Pics from "../../../../public/images/featured-products-images/YX1/mobile-yx1.png"
+import Pics from "../../../../../../public/images/featured-products-images/YX1/mobile-yx1.png"
 export default function YX1() {
     return (
         <div className="flex flex-col gap-6">

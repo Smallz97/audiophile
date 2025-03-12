@@ -1,6 +1,6 @@
 
 import Image from "next/image"
-import Pics from "../../../../public/images/featured-products-images/ZX9/mobile-zx9.png"
+import Pics from "../../../../../../public/images/featured-products-images/ZX9/mobile-zx9.png"
 export default function ZX9() {
     return (
         <div className="flex flex-col items-center gap-8 py-14 px-6 bg-darkorange rounded-lg relative overflow-hidden">

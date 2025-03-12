@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Pics from "../../../../public/images/product-images/headphones/XX99M2/overview-images/XX99-M2-mobile.png"
+import Pics from "../../../../../../public/images/product-images/headphones/XX99M2/overview-images/XX99-M2-mobile.png"
 
 export default function ProductDetails() {
     return (

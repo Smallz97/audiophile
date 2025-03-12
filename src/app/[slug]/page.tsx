@@ -1,10 +1,8 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { products } from "@/app/utilities/library/data"
+import ProductsList from "@/app/utilities/ui/components/products-list/ProductsList"
 import { findMatchingCategory, categories } from "@/app/utilities/library/functions"
-import PromotionCard from "@/app/components/copyright/PromotionCard"
-import ProductsList from "@/app/components/products-list/ProductsList"
-import ProductCategories from "@/app/components/product-categories/ProductCategories"
 
 export async function generateStaticParams() {
     return categories.map((category) => ({
@@ -32,7 +30,7 @@ export async function generateMetadata({
         description: category.metaDescription,
         keywords: category.keywords,
         openGraph: {
-            title: `${category.name} | Your Store Name`,
+            title: `${category.name} | Audiophile`,
             description: category.metaDescription,
             type: 'website',
             url: `https://yourwebsite.com/${slug}`,
@@ -47,7 +45,7 @@ export async function generateMetadata({
         },
         twitter: {
             card: 'summary_large_image',
-            title: `${category.name} | Your Store Name`,
+            title: `${category.name} | Audiophile`,
             description: category.metaDescription,
         },
     };
@@ -61,13 +59,8 @@ export default async function CategoryPage({ params, }: { params: Promise<{ slug
     }
 
     const productsList = products.find(p => p.category === slug)!.products;
-    const otherCategories = products.filter(p => p.category !== slug);
 
     return (
-        <div className="flex flex-col px-6 pt-16 pb-[7.5rem] gap-[7.5rem]">
-            <ProductsList products={productsList} />
-            <ProductCategories categories={otherCategories} />
-            <PromotionCard />
-        </div>
+        <ProductsList products={productsList} />
     );
 }

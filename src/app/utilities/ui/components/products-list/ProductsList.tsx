@@ -1,5 +1,5 @@
-import { ProductsListProps } from "@/app/utilities/library/definitions";
 import Image from "next/image";
+import { ProductsListProps } from "@/app/utilities/library/definitions";
 
 export default function ProductsList({ products }: ProductsListProps) {
     return (
