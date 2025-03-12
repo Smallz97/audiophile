@@ -5,8 +5,8 @@ export type HeaderProps = {
     title?: string;
 };
 
-// Defining the props type for the category of products page
-export type CategoryOfProductsPageProps = {
+// Defining the props type for a products category page
+export type ProductsCategroyPageProps = {
     slug: string;
     name: string;
     description: string;
@@ -21,10 +21,11 @@ export type Product = {
     description: string;
     image: StaticImageData;
     newProduct?: boolean;
+    features: string[];
 }
 
-// Defining a category of products object type
-export type CategoryOfProducts = {
+// Defining a products category object type
+export type ProductsCategory = {
     category: string;
     products: Product[];
     categoryImage: StaticImageData;
@@ -32,10 +33,23 @@ export type CategoryOfProducts = {
 
 // Defining the props type for the product-list component
 export type ProductsListProps = {
-    products: Product[];
+    productsList: Product[];
+}
+
+// Defining the props type for the product-details component
+export type ProductDetailsProps = {
+    product: Product;
 }
 
 // Defining the props type for the categories-list component
 export type CategoriesListProps = {
-    categories: CategoryOfProducts[];
+    categories: ProductsCategory[];
 }
+
+// Defining the props type for the counter button component
+export type CounterProps = {
+    initialValue?: number;
+    min?: number;
+    max?: number;
+};
+  

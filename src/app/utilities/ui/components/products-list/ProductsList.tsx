@@ -1,10 +1,11 @@
+import Link from "next/link";
 import Image from "next/image";
 import { ProductsListProps } from "@/app/utilities/library/definitions";
 
-export default function ProductsList({ products }: ProductsListProps) {
+export default function ProductsList({ productsList }: ProductsListProps) {
     return (
         <section id="production-overview-section" className="flex flex-col gap-[7.5rem]">
-            {products.map((product, index) => (
+            {productsList.map((product, index) => (
                 <div key={index} className="flex flex-col gap-8">
                     <div className="px-12 pt-10 pb-16 rounded-lg bg-zinc-100">
                         <Image src={product.image} alt="" className="w-full" />
@@ -22,7 +23,9 @@ export default function ProductsList({ products }: ProductsListProps) {
                             {product.description}
                         </div>
                         <div className="flex justify-center items-center w-40 h-12 bg-darkorange">
-                            <div className="text-xs font-bold tracking-wide text-white uppercase">See Product</div>
+                            <Link href={`/${product.productType}/${product.name}`}>
+                                <div className="text-xs font-bold tracking-wide text-white uppercase">See Product</div>
+                            </Link>
                         </div>
                     </div>
                 </div>

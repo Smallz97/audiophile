@@ -1,10 +1,7 @@
-'use client'
-
 import Link from "next/link";
 import Image from "next/image"
-import { useParams } from 'next/navigation'
 import { Arrow } from "@/app/utilities/ui/icons"
-import { products } from '@/app/utilities/library/data'
+import { productCategories } from '@/app/utilities/library/data'
 import { CategoriesListProps } from "@/app/utilities/library/definitions";
 
 
@@ -29,11 +26,8 @@ function ProductsCategoryCard({ categories }: CategoriesListProps) {
     )
 }
 
-export default function ProductCategoriesList() {
-    const params = useParams();
-    const slug = params.slug as string;
+export default function ProductCategoriesList({ path }: { path: string }) {
+    const displayedCategories = productCategories.filter(p => p.category !== path);
 
-    const otherCategories = products.filter(p => p.category !== slug);
-
-    return <ProductsCategoryCard categories={otherCategories} />;
+    return <ProductsCategoryCard categories={displayedCategories} />;
 }
