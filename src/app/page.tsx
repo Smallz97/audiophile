@@ -2,12 +2,11 @@ import ProductCategoriesList from "@/app/utilities/ui/components/product-categor
 import FeaturedProducts from "@/app/utilities/ui/components/featured-products/FeaturedProducts";
 import PromotionCard from "@/app/utilities/ui/components/promotion-card/PromotionCard";
 
-export default async function Home({ params }: { params: Promise<{ slug: string }> }) {
-  const slug = (await params).slug
-  console.log(slug)
+export default function Home() {
+  const filterValue: undefined = undefined;
   return (
     <div className="flex flex-col px-6 pt-12 pb-[7.5rem] gap-[7.5rem]">
-      <ProductCategoriesList path={slug} />
+      <ProductCategoriesList path={filterValue} />
       <FeaturedProducts />
       <PromotionCard />
     </div >

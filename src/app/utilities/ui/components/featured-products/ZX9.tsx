@@ -1,5 +1,6 @@
 
 import Image from "next/image"
+import Button from "@/app/utilities/ui/components/buttons/Button";
 import Pics from "../../../../../../public/images/featured-products-images/ZX9/mobile-zx9.png"
 export default function ZX9() {
     return (
@@ -15,9 +16,9 @@ export default function ZX9() {
                 <div className="text-base font-normal leading-normal text-white opacity-75 text-center">
                     Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.
                 </div>
-                <div className="flex justify-center items-center w-40 h-12 border border-black bg-black">
-                    <div className="text-xs font-bold tracking-wide text-white uppercase">See Product</div>
-                </div>
+                <Button href={`/speakers/ZX9`} className={`text-xs font-bold tracking-wide text-white bg-black border border-black`}>
+                    see product
+                </Button>
             </div>
         </div>
     )

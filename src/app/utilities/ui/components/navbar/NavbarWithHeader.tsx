@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Button from "@/app/utilities/ui/components/buttons/Button";
 import { pageCategories } from "@/app/utilities/library/functions";
 import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
 
@@ -33,9 +34,9 @@ export default function NavbarWithHeader() {
                                 <div className="text-base font-normal leading-normal text-white opacity-75 text-center">
                                     Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
                                 </div>
-                                <div className="flex justify-center items-center w-40 h-12 border border-black bg-darkorange">
-                                    <div className="text-xs font-bold tracking-wide text-white uppercase">See Product</div>
-                                </div>
+                                <Button href={`/headphones/XX99 Mark II`} className={`text-xs font-bold tracking-wide bg-darkorange text-white`}>
+                                    see product
+                                </Button>
                             </div>
                         </div>
                     </div>

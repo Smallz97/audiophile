@@ -15,8 +15,10 @@ function ProductsCategoryCard({ categories }: CategoriesListProps) {
                         <div className="flex flex-col gap-4 items-center">
                             <div id="category-name" className="text-black text-base font-bold tracking-wide uppercase">{product.category}</div>
                             <Link href={`/${product.category}`} id="category-link" className="flex justify-center items-center gap-2">
-                                <div className="text-xs font-bold tracking-wide text-black opacity-50 uppercase">shop</div>
-                                <div className="flex justify-center items-center w-1.5 h-2.5"><Arrow /></div>
+                                <div className="text-xs font-bold tracking-wide text-black opacity-50 uppercase">
+                                    shop
+                                </div>
+                                <div className="flex justify-center items-center w-[0.3rem] h-[0.62rem]"><Arrow /></div>
                             </Link>
                         </div>
                     </div>
@@ -26,7 +28,7 @@ function ProductsCategoryCard({ categories }: CategoriesListProps) {
     )
 }
 
-export default function ProductCategoriesList({ path }: { path: string }) {
+export default function ProductCategoriesList({ path }: { path: string | undefined}) {
     const displayedCategories = productCategories.filter(p => p.category !== path);
 
     return <ProductsCategoryCard categories={displayedCategories} />;

@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Button from "@/app/utilities/ui/components/buttons/Button";
 import { ProductsListProps } from "@/app/utilities/library/definitions";
 
 export default function ProductsList({ productsList }: ProductsListProps) {
@@ -22,11 +22,9 @@ export default function ProductsList({ productsList }: ProductsListProps) {
                         <div className="text-base font-normal leading-normal text-black opacity-50 text-center">
                             {product.description}
                         </div>
-                        <div className="flex justify-center items-center w-40 h-12 bg-darkorange">
-                            <Link href={`/${product.productType}/${product.name}`}>
-                                <div className="text-xs font-bold tracking-wide text-white uppercase">See Product</div>
-                            </Link>
-                        </div>
+                        <Button href={`/${product.productType}/${product.name}`} className={`text-xs font-bold tracking-wide text-white bg-darkorange`}>
+                            see product
+                        </Button>
                     </div>
                 </div>
             ))}

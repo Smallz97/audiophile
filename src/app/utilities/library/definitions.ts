@@ -5,6 +5,11 @@ export type HeaderProps = {
     title?: string;
 };
 
+// Defining the props type for a button component
+export type ButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string;
+};
+
 // Defining the props type for a products category page
 export type ProductsCategroyPageProps = {
     slug: string;
@@ -19,9 +24,10 @@ export type Product = {
     name: string;
     productType: string;
     description: string;
-    image: StaticImageData;
     newProduct?: boolean;
+    image: StaticImageData;
     features: string[];
+    boxContent: BoxContents[];
 }
 
 // Defining a products category object type
@@ -52,4 +58,9 @@ export type CounterProps = {
     min?: number;
     max?: number;
 };
-  
+
+// Defining the props type for the in the box component
+export type BoxContents = {
+    quantity: number;
+    item: string;
+}

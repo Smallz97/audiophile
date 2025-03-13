@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { ProductDetailsProps } from "@/app/utilities/library/definitions"
 import CounterButton from "@/app/utilities/ui/components/buttons/CounterButton"
+import BoxContent from "@/app/utilities/ui/components/product-details/BoxContents"
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
     return (
@@ -13,9 +14,9 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     <div className="text-3xl font-bold tracking-wider text-black uppercase">
                         {product.name}<br />{product.productType}
                     </div>
-                    <div className="text-base font-normal leading-normal text-black opacity-50">
+                    <p className="text-base font-normal leading-normal text-black opacity-50">
                         {product.description}
-                    </div>
+                    </p>
                     <div className="text-lg font-bold tracking-wider text-black uppercase">$ 899</div>
                     <div className="flex gap-4">
                         <CounterButton />
@@ -36,27 +37,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     ))}
                 </div>
             </div>
-            <div id="in-the-box-container" className="flex flex-col gap-6">
-                <div id="container-title" className="text-2xl font-bold leading-9 tracking-wide text-black uppercase">in the box</div>
-                <div id="box-contents-container" className="flex flex-col gap-2">
-                    <div id="box-content" className="flex gap-6">
-                        <div className="text-base font-bold leading-normal text-darkorange">1x</div>
-                        <div className="text-base font-normal leading-normal text-black opacity-50 capitalize">headphone unit</div>
-                    </div>
-                    <div id="box-content" className="flex gap-6">
-                        <div className="text-base font-bold leading-normal text-darkorange">2x</div>
-                        <div className="text-base font-normal leading-normal text-black opacity-50 capitalize">replacement earcups</div>
-                    </div>
-                    <div id="box-content" className="flex gap-6">
-                        <div className="text-base font-bold leading-normal text-darkorange">1x</div>
-                        <div className="text-base font-normal leading-normal text-black opacity-50 capitalize">user manual</div>
-                    </div>
-                    <div id="box-content" className="flex gap-6">
-                        <div className="text-base font-bold leading-normal text-darkorange">1x</div>
-                        <div className="text-base font-normal leading-normal text-black opacity-50 capitalize">3.5mm 5m Audio Cable</div>
-                    </div>
-                </div>
-            </div>
+            <BoxContent items={product.boxContent} />
             <div id="product-images-container" className=""></div>
         </div>
     )
