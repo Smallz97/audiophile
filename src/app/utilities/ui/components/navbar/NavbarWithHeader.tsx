@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Button from "@/app/utilities/ui/components/buttons/Button";
-import { pageCategories } from "@/app/utilities/library/functions";
+import { categoryPages } from "@/app/utilities/library/functions";
 import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
 
 export default function NavbarWithHeader() {
     const pathname = usePathname();
     const isHomePage = pathname === "/";
-    const category = pageCategories.find(cat => `/${cat.slug}` === pathname);
+    const category = categoryPages.find(cat => `/${cat.slug}` === pathname);
     const isCategoryPage = Boolean(category);
     const categoryTitle = category?.name ?? "";
 

@@ -8,7 +8,7 @@ export default function ProductsList({ productsList }: ProductsListProps) {
             {productsList.map((product, index) => (
                 <div key={index} className="flex flex-col gap-8">
                     <div className="px-12 pt-10 pb-16 rounded-lg bg-zinc-100">
-                        <Image src={product.image} alt="" className="w-full" />
+                        <Image src={product.overviewImage} alt="" className="w-full" />
                     </div>
                     <div className="flex flex-col justify-center items-center gap-6">
                         {product.newProduct && (

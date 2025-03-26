@@ -2,10 +2,10 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { productCategories } from "@/app/utilities/library/data"
 import ProductsList from "@/app/utilities/ui/components/products-list/ProductsList"
-import { findMatchingCategory, pageCategories } from "@/app/utilities/library/functions"
+import { findMatchingCategory, categoryPages } from "@/app/utilities/library/functions"
 
 export async function generateStaticParams() {
-    return pageCategories.map((category) => ({
+    return categoryPages.map((category) => ({
         slug: category.slug,
     }));
 }
@@ -16,7 +16,7 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>
 }): Promise<Metadata> {
     const { slug } = await params;
-    const category = pageCategories.find((cat) => cat.slug === slug);
+    const category = categoryPages.find((cat) => cat.slug === slug);
 
     if (!category) {
         return {
