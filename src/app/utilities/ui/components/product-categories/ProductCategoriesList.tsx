@@ -18,7 +18,7 @@ function ProductsCategoryCard({ categories }: CategoriesListProps) {
                                 <div className="text-xs font-bold tracking-wide text-black opacity-50 uppercase">
                                     shop
                                 </div>
-                                <div className=""><HamburgerIcon /></div>
+                                <HamburgerIcon />
                             </Link>
                         </div>
                     </div>
