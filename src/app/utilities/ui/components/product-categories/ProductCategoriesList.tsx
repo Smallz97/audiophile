@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image"
-import { Arrow } from "@/app/utilities/ui/icons"
+import { Arrow, HamburgerIcon } from "@/app/utilities/ui/icons"
 import { productCategories } from '@/app/utilities/library/data'
 import { CategoriesListProps } from "@/app/utilities/library/definitions";
 
@@ -18,7 +18,7 @@ function ProductsCategoryCard({ categories }: CategoriesListProps) {
                                 <div className="text-xs font-bold tracking-wide text-black opacity-50 uppercase">
                                     shop
                                 </div>
-                                <div className="flex justify-center items-center w-2 h-2"><Arrow /></div>
+                                <div className="flex justify-center items-center w-2 h-2"><HamburgerIcon /></div>
                             </Link>
                         </div>
                     </div>
