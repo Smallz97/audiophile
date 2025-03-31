@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Button from "@/app/utilities/ui/components/buttons/Button"
 import type { ProductDetailsProps } from "@/app/utilities/library/definitions"
 import { BreakpointProvider } from "@/app/utilities/library/BreakpointContext"
 
@@ -24,14 +25,14 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                         <div className="text-lg font-bold tracking-wider text-black uppercase">$ 899</div>
                         <div className="flex gap-4">
                             <CounterButton />
-                            <div className="flex justify-center items-center w-40 h-12 bg-darkorange">
-                                <div className="text-xs font-bold tracking-wide text-white uppercase">add to cart</div>
-                            </div>
+                            <Button href={`/`} className={`text-xs font-bold tracking-wide text-white bg-darkorange`}>
+                                add to cart
+                            </Button>
                         </div>
                     </div>
                 </div>
                 <div id="product-features-container" className="flex flex-col gap-6">
-                    <div id="container-title" className="text-2xl font-bold leading-9 tracking-wider text-black uppercase">
+                    <div id="title" className="text-2xl font-bold leading-9 tracking-wider text-black uppercase">
                         features
                     </div>
                     <div className="text-base font-normal leading-normal text-black opacity-50">
