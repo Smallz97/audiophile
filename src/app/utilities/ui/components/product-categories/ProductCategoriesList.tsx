@@ -14,7 +14,7 @@ function ProductsCategoryCard({ categories }: CategoriesListProps) {
                     <div className="w-full bg-zinc-100 rounded-lg flex flex-col items-center pt-24 pb-5">
                         <div className="flex flex-col gap-4 items-center">
                             <div id="category-name" className="text-black text-base font-bold tracking-wide uppercase">{product.category}</div>
-                            <Link href={`/${product.category}`} id="category-link" className="flex justify-center items-center gap-2 bg-blue-200">
+                            <Link href={`/${product.category}`} id="category-link" className="flex justify-center items-center gap-2">
                                 <div className="text-xs font-bold tracking-wide text-black opacity-50 uppercase">
                                     shop
                                 </div>
