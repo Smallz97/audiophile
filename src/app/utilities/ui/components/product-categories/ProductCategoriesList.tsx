@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image"
-import { Arrow, HamburgerIcon } from "@/app/utilities/ui/icons"
+import { HamburgerIcon } from "@/app/utilities/ui/icons"
 import { productCategories } from '@/app/utilities/library/data'
 import { CategoriesListProps } from "@/app/utilities/library/definitions";
 
