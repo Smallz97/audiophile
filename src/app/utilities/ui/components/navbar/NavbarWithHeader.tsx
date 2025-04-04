@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { categoryPages } from "@/app/utilities/library/data";
 import Button from "@/app/utilities/ui/components/buttons/Button";
-import { categoryPages } from "@/app/utilities/library/functions";
 import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
 
 export default function NavbarWithHeader() {

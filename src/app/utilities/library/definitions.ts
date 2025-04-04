@@ -41,6 +41,12 @@ export type BreakpointDetectedFeaturedImages = {
     desktops: FeaturedImages;
 }
 
+// export type SuggestedProductCardImages = {
+//     mobile: StaticImageData;
+//     tablet: StaticImageData;
+//     desktop: StaticImageData
+// }
+
 // Defining a product object type
 export type Product = {
     overviewImage: StaticImageData;
@@ -52,6 +58,7 @@ export type Product = {
     features: string[];
     boxContent: BoxContents[];
     featuredImages: BreakpointDetectedFeaturedImages;
+    suggestedProductCardImages: StaticImageData;
 }
 
 // Defining a products category object type
@@ -92,7 +99,11 @@ export type Breakpoint = "sm" | "md" | "lg" | "xl" | "2xl"
 
 // Defining the props type for the responsive image component
 export type ResponsiveFeaturedImagesProps = {
+    className?: string;
     containerClassName?: string;
     images: BreakpointDetectedFeaturedImages;
-    className?: string;
+}
+
+export type SuggestedProductCardProps = {
+    products: Product[];
 }

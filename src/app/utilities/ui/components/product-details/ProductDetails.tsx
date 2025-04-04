@@ -1,13 +1,15 @@
 import Image from "next/image"
-import Button from "@/app/utilities/ui/components/buttons/Button"
+import PriceComponent from "./PriceComponent"
 import type { ProductDetailsProps } from "@/app/utilities/library/definitions"
+import { getRandomSuggestedProducts } from "@/app/utilities/library/functions"
 import { BreakpointProvider } from "@/app/utilities/library/BreakpointContext"
-
-import CounterButton from "@/app/utilities/ui/components/buttons/CounterButton"
 import BoxContent from "@/app/utilities/ui/components/product-details/BoxContents"
 import ResponsiveProductImages from "@/app/utilities/ui/components/product-details/ResponsiveFeaturedImage"
+import SuggestedProductCard from "@/app/utilities/ui/components/product-details/SuggestedProductCard"
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
+    const suggestedProducts = getRandomSuggestedProducts(product);
+
     return (
         <BreakpointProvider>
             <div className="flex flex-col gap-20">
@@ -22,13 +24,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                             {product.productType}
                         </div>
                         <p className="text-base font-normal leading-normal text-black opacity-50">{product.description}</p>
-                        <div className="text-lg font-bold tracking-wider text-black uppercase">$ 899</div>
-                        <div className="flex gap-4">
-                            <CounterButton />
-                            <Button href={`/`} className={`text-xs font-bold tracking-wide text-white bg-darkorange`}>
-                                add to cart
-                            </Button>
-                        </div>
+                        <PriceComponent />
                     </div>
                 </div>
                 <div id="product-features-container" className="flex flex-col gap-6">
@@ -51,6 +47,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                 </div>
                 <BoxContent items={product.boxContent} />
                 <ResponsiveProductImages images={product.featuredImages} />
+                <SuggestedProductCard products={suggestedProducts} />
             </div>
         </BreakpointProvider>
     )
