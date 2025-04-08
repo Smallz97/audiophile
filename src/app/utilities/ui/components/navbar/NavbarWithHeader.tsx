@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react"
 import { usePathname } from "next/navigation";
 import { categoryPages } from "@/app/utilities/library/data";
 import Button from "@/app/utilities/ui/components/buttons/Button";
+import CartModal from "@/app/utilities/ui/components/cart-modal/CartModal";
 import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
 
 export default function NavbarWithHeader() {
@@ -13,12 +15,29 @@ export default function NavbarWithHeader() {
     const isCategoryPage = Boolean(category);
     const categoryTitle = category?.name ?? "";
 
+    const sampleItems = [
+        { id: "1", name: "Product 1", price: 19.99, quantity: 1 },
+        { id: "2", name: "Product 2", price: 29.99, quantity: 2 },
+        { id: "3", name: "Product 3", price: 9.99, quantity: 3 },
+    ]
+
+    const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+
     return (
         <div className="bg-black">
             <nav className="flex justify-between items-center py-8 px-4 border-b border-white/10">
                 <div className="flex w-4 h-3.5"><HamburgerIcon /></div>
                 <Link href={"/"} className="flex w-36 h-6"><AudiophileLogo /></Link>
-                <div className="flex w-6 h-5"><ShoppingCartIcon /></div>
+                <button
+                    onClick={() => setIsCheckoutOpen(true)}
+                    aria-label="Open checkout modal"
+                >
+                    <div
+                        className="flex w-6 h-5"
+                    >
+                        <ShoppingCartIcon />
+                    </div>
+                </button>
             </nav>
             {(isHomePage || isCategoryPage) && (
                 isHomePage ? (
@@ -46,6 +65,12 @@ export default function NavbarWithHeader() {
                     </div>
                 )
             )}
+
+            <CartModal
+                items={sampleItems}
+                isOpen={isCheckoutOpen}
+                onClose={() => setIsCheckoutOpen(false)}
+            />
         </div>
     );
 }

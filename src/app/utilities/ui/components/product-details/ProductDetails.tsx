@@ -5,7 +5,7 @@ import { getRandomSuggestedProducts } from "@/app/utilities/library/functions"
 import { BreakpointProvider } from "@/app/utilities/library/BreakpointContext"
 import BoxContent from "@/app/utilities/ui/components/product-details/BoxContents"
 import ResponsiveProductImages from "@/app/utilities/ui/components/product-details/ResponsiveFeaturedImage"
-import SuggestedProductCard from "@/app/utilities/ui/components/product-details/SuggestedProductCard"
+import SuggestedProductCard from "@/app/utilities/ui/components/suggested-products/SuggestedProductCard"
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
     const suggestedProducts = getRandomSuggestedProducts(product);

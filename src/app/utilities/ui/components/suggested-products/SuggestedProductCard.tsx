@@ -19,7 +19,7 @@ export default function SuggestedProductCard({ products }: SuggestedProductCardP
                                 {product.name}
                             </div>
                             <Button
-                                href={`/${product.productType}/${product.name.toLowerCase().replace(/\s+/g, '-')}`}
+                                href={`/${product.productType}/${product.name}`}
                                 className={`text-xs font-bold tracking-wide text-white bg-darkorange`}
                             >
                                 see product

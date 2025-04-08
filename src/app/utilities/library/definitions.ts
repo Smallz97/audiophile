@@ -107,3 +107,16 @@ export type ResponsiveFeaturedImagesProps = {
 export type SuggestedProductCardProps = {
     products: Product[];
 }
+
+export type CheckoutItem = {
+    id: string
+    name: string
+    price: number
+    quantity: number
+}
+
+export type CheckoutModalProps = {
+    isOpen: boolean
+    onClose: () => void
+    items: CheckoutItem[]
+}
