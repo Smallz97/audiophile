@@ -5,7 +5,7 @@ import { useState } from "react"
 import { usePathname } from "next/navigation";
 import { categoryPages } from "@/app/utilities/library/data";
 import Button from "@/app/utilities/ui/components/buttons/Button";
-import CartModal from "@/app/utilities/ui/components/cart-modal/CartModal";
+// import CartModal from "@/app/utilities/ui/components/cart-modal/CartModal";
 import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
 
 export default function NavbarWithHeader() {
@@ -14,12 +14,6 @@ export default function NavbarWithHeader() {
     const category = categoryPages.find(cat => `/${cat.slug}` === pathname);
     const isCategoryPage = Boolean(category);
     const categoryTitle = category?.name ?? "";
-
-    const sampleItems = [
-        { id: "1", name: "Product 1", price: 19.99, quantity: 1 },
-        { id: "2", name: "Product 2", price: 29.99, quantity: 2 },
-        { id: "3", name: "Product 3", price: 9.99, quantity: 3 },
-    ]
 
     const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
@@ -66,11 +60,11 @@ export default function NavbarWithHeader() {
                 )
             )}
 
-            <CartModal
+            {/* <CartModal
                 items={sampleItems}
                 isOpen={isCheckoutOpen}
                 onClose={() => setIsCheckoutOpen(false)}
-            />
+            /> */}
         </div>
     );
 }

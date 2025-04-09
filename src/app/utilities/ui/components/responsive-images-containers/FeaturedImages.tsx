@@ -1,10 +1,10 @@
 "use client"
 
 import Image from "next/image"
-import { useBreakpoint } from "@/app/utilities/library/BreakpointContext"
+import { useBreakpoint } from "@/app/utilities/contexts/BreakpointContext"
 import type { ResponsiveFeaturedImagesProps } from "@/app/utilities/library/definitions"
 
-export default function ResponsiveFeaturedImages({
+export default function ResponsiveFeaturedImagesContainer({
     images,
     containerClassName = "flex flex-col gap-5",
     className = "w-full rounded-lg",

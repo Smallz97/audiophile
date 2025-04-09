@@ -6,7 +6,6 @@ import type { Breakpoint, BreakpointProviderProps } from "@/app/utilities/librar
 const BreakpointContext = createContext<Breakpoint>("sm")
 
 export function BreakpointProvider({ children }: BreakpointProviderProps) {
-    // Defaulting to 'sm' for server-side rendering
     const [breakpoint, setBreakpoint] = useState<Breakpoint>("sm")
 
     useEffect(() => {

@@ -1,11 +1,13 @@
 import Image from "next/image"
-import PriceComponent from "./PriceComponent"
 import type { ProductDetailsProps } from "@/app/utilities/library/definitions"
 import { getRandomSuggestedProducts } from "@/app/utilities/library/functions"
-import { BreakpointProvider } from "@/app/utilities/library/BreakpointContext"
-import BoxContent from "@/app/utilities/ui/components/product-details/BoxContents"
-import ResponsiveProductImages from "@/app/utilities/ui/components/product-details/ResponsiveFeaturedImage"
+import { BreakpointProvider } from "@/app/utilities/contexts/BreakpointContext"
+import BoxContent from "@/app/utilities/ui/components/box-contents/BoxContents"
+import PriceComponent from "@/app/utilities/ui/components/price-component/PriceComponent"
+import ProductFeatures from "@/app/utilities/ui/components/product-features/ProductFeatures"
+import FeaturedImages from "@/app/utilities/ui/components/responsive-images-containers/FeaturedImages"
 import SuggestedProductCard from "@/app/utilities/ui/components/suggested-products/SuggestedProductCard"
+import ProductDescription from "@/app/utilities/ui/components/product-description-container/ProductDescription"
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
     const suggestedProducts = getRandomSuggestedProducts(product);
@@ -18,35 +20,13 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                         <Image src={product.productDetailImage} alt="product image" className="w-full" />
                     </div>
                     <div id="product-description-container" className="flex flex-col gap-6">
-                        <div className="text-3xl font-bold tracking-wider text-black uppercase">
-                            {product.name}
-                            <br />
-                            {product.productType}
-                        </div>
-                        <p className="text-base font-normal leading-normal text-black opacity-50">{product.description}</p>
-                        <PriceComponent />
+                        <ProductDescription name={product.name} productType={product.productType} description={product.description} />
+                        <PriceComponent price={product.price} />
                     </div>
                 </div>
-                <div id="product-features-container" className="flex flex-col gap-6">
-                    <div id="title" className="text-2xl font-bold leading-9 tracking-wider text-black uppercase">
-                        features
-                    </div>
-                    <div className="text-base font-normal leading-normal text-black opacity-50">
-                        {product.features.map((paragraph, index) => (
-                            <span key={index}>
-                                {paragraph}
-                                {index !== product.features.length - 1 && (
-                                    <>
-                                        <br />
-                                        <br />
-                                    </>
-                                )}
-                            </span>
-                        ))}
-                    </div>
-                </div>
+                <ProductFeatures features={product.features} />
                 <BoxContent items={product.boxContent} />
-                <ResponsiveProductImages images={product.featuredImages} />
+                <FeaturedImages images={product.featuredImages} />
                 <SuggestedProductCard products={suggestedProducts} />
             </div>
         </BreakpointProvider>

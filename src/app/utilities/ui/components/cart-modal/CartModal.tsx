@@ -1,8 +1,8 @@
 'use client'
 import { useEffect } from "react"
-import type { CheckoutModalProps } from "@/app/utilities/library/definitions"
+import type { CartModalProps } from "@/app/utilities/library/definitions"
 
-export default function CartModal({ isOpen, onClose, items }: CheckoutModalProps) {
+export default function CartModal({ isOpen, onClose, items }: CartModalProps) {
     useEffect(() => {
         const handleEscapeKey = (event: KeyboardEvent) => {
             if (event.key === "Escape") {
@@ -23,7 +23,6 @@ export default function CartModal({ isOpen, onClose, items }: CheckoutModalProps
 
     if (!isOpen) return null
 
-    const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
     return (
         <div className="fixed inset-0 z-50 flex items-start justify-center">
@@ -41,13 +40,12 @@ export default function CartModal({ isOpen, onClose, items }: CheckoutModalProps
                         <>
                             <ul className="divide-y">
                                 {items.map((item) => (
-                                    <li key={item.id} className="py-3">
+                                    <li key={item.productId} className="py-3">
                                         <div className="flex justify-between">
                                             <div>
                                                 <p className="font-medium">{item.name}</p>
                                                 <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
                                             </div>
-                                            <p className="font-medium">${(item.price * item.quantity).toFixed(2)}</p>
                                         </div>
                                     </li>
                                 ))}
@@ -56,7 +54,7 @@ export default function CartModal({ isOpen, onClose, items }: CheckoutModalProps
                             <div className="flex flex-col gap-6">
                                 <div className="flex justify-between font-bold mb-4">
                                     <span>Total</span>
-                                    <span>${total.toFixed(2)}</span>
+                                    {/* <span>${total.toFixed(2)}</span> */}
                                 </div>
                                 <button className={`text-xs font-bold tracking-wide text-white uppercase bg-darkorange w-full h-12`}>checkout</button>
                             </div>
