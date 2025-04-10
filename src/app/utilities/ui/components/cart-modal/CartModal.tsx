@@ -12,23 +12,24 @@ export default function CartModal({ isOpen, onClose, items }: CartModalProps) {
 
         if (isOpen) {
             document.addEventListener("keydown", handleEscapeKey)
-            document.body.style.overflow = 'hidden'
+            document.body.style.overflow = "hidden"
         }
 
         return () => {
             document.removeEventListener("keydown", handleEscapeKey)
-            document.body.style.overflow = 'auto'
+            document.body.style.overflow = "auto"
         }
     }, [isOpen, onClose])
 
     if (!isOpen) return null
 
+    const total = items.reduce((sum, item) => sum + (item.product?.price || 0) * item.quantity, 0)
 
     return (
         <div className="fixed inset-0 z-50 flex items-start justify-center">
             <div className="absolute inset-0 bg-black/50 px-6 pt-28 pb-6 overflow-y-auto" onClick={onClose} aria-hidden="true">
 
-                <div className="relative z-10 max-w-md rounded-lg bg-white p-6 py-8 shadow-lg flex flex-col gap-8">
+                <div className="relative z-10 max-w-md rounded-lg bg-white p-6 py-8 shadow-lg flex flex-col gap-8 onClick={(e) => e.stopPropagation()}">
                     <div className="flex items-center justify-between">
                         <div className="text-lg font-bold tracking-wider uppercase text-black">cart (3)</div>
                         <div className="text-base font-normal leading-normal opacity-50 text-black underline ">Remove all</div>
@@ -43,7 +44,6 @@ export default function CartModal({ isOpen, onClose, items }: CartModalProps) {
                                     <li key={item.productId} className="py-3">
                                         <div className="flex justify-between">
                                             <div>
-                                                <p className="font-medium">{item.name}</p>
                                                 <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
                                             </div>
                                         </div>
@@ -54,7 +54,6 @@ export default function CartModal({ isOpen, onClose, items }: CartModalProps) {
                             <div className="flex flex-col gap-6">
                                 <div className="flex justify-between font-bold mb-4">
                                     <span>Total</span>
-                                    {/* <span>${total.toFixed(2)}</span> */}
                                 </div>
                                 <button className={`text-xs font-bold tracking-wide text-white uppercase bg-darkorange w-full h-12`}>checkout</button>
                             </div>

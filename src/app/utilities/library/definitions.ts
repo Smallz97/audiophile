@@ -128,19 +128,37 @@ export type CategoriesListProps = {
     categories: ProductsCategory[];
 }
 
-// Defining a cart item object
+// Defining a lightweight cart item object with only productId and quantity for cookie storage
 export type CartItem = {
     productId: string;
     quantity: number;
 };
 
-// Defining a cart object
+// Defining the full cart item object with product details for displaying in the cart modal
+export type CartItemWithProduct = {
+    productId: string
+    quantity: number
+    product: {
+      name: string
+      price: number
+      image?: StaticImageData
+    }
+}
+
+// Defining a lightweight cart object containing cart items for cookie storage and retrieval
 export type Cart = {
     items: CartItem[];
 };
 
-export type CartModalProps = {
+// Defining a full cart object with product details for displaying in the cart modal
+export type CartWithProducts = {
+    items: CartItemWithProduct[]
+    totalItems: number
+}
+
+// Defining the props for the cart-modal component
+export interface CartModalProps {
     isOpen: boolean
     onClose: () => void
-    items: CartItem[]
+    items: CartItemWithProduct[]
 }

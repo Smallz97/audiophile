@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { getAllProducts } from "@/app/utilities/library/data";
-import { CartItem, Cart, Price } from "@/app/utilities/library/definitions"
+import { CartItem, Cart, CartWithProducts } from "@/app/utilities/library/definitions"
 
 const CART_COOKIE_NAME = 'audiophile_cart';
 
@@ -16,6 +16,13 @@ export async function saveCart(cart: Cart): Promise<void> {
   });
 }
 
+export async function clearCart(): Promise<Cart> {
+  const emptyCart = { items: [] };
+  saveCart(emptyCart);
+
+  return emptyCart;
+}
+
 export async function getCart(): Promise<Cart> {
   const cookieStore = await cookies();
   const cartCookie = cookieStore.get(CART_COOKIE_NAME);
@@ -27,27 +34,24 @@ export async function getCart(): Promise<Cart> {
   try {
     return JSON.parse(cartCookie.value) as Cart;
   } catch (error) {
+    console.log(error)
     return { items: [] };
   }
 }
 
-
-export async function addToCart( 
-  item: CartItem
-): Promise<Cart> {
+export async function addToCart(itemToAdd: CartItem): Promise<Cart> {
   const cart = await getCart();
-  const existingItemIndex = cart.items.findIndex((cartItem) => cartItem.productId === item.productId);
+  const existingItemIndex = cart.items.findIndex((cartItem) => cartItem.productId === itemToAdd.productId);
   
   if (existingItemIndex >= 0) {
-    cart.items[existingItemIndex].quantity += item.quantity;
+    cart.items[existingItemIndex].quantity += itemToAdd.quantity;
   } else {
-    cart.items.push(item);
+    cart.items.push(itemToAdd);
   }
 
   saveCart(cart);
   return cart;
 }
-
 
 export async function removeFromCart(productId: string): Promise<Cart> {
   const cart = await getCart();
@@ -58,7 +62,6 @@ export async function removeFromCart(productId: string): Promise<Cart> {
 
   return updatedCart;
 }
-
 
 export async function updateCartItemQuantity(productId: string, quantity: number): Promise<Cart> {
   const cart = await getCart();
@@ -77,31 +80,31 @@ export async function updateCartItemQuantity(productId: string, quantity: number
 }
 
 
-export async function clearCart(): Promise<Cart> {
-  const emptyCart = { items: [] };
-  saveCart(emptyCart);
+export async function getCartWithProducts(): Promise<CartWithProducts> {
+  const cart = await getCart()
+  const allProducts = getAllProducts()
 
-  return emptyCart;
-}
+  const itemsWithDetails = cart.items
+    .map((item) => {
+      const product = allProducts.find((p) => p.name === item.productId);
 
+      if (!product) return null;
 
-export async function getCartWithProducts() {
-  const cart = await getCart();
-  const allProducts = getAllProducts();
-  
-  const itemsWithDetails = cart.items.map(item => {
-    const product = allProducts.find(p => p.name === item.productId);
-    
-    return {
-      ...item,
-      product: product || null,
-    };
-  }).filter(item => item.product !== null);
+      return {
+        productId: item.productId,
+        quantity: item.quantity,
+        product: {
+          ...product,
+          price: product.price.amount,
+        },
+      };
+    })
+    .filter((item): item is NonNullable<typeof item> => item !== null);
 
   return {
     items: itemsWithDetails,
     totalItems: itemsWithDetails.reduce((sum, item) => sum + item.quantity, 0),
-  };
+  }
 }
 
 

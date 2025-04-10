@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react"
 import { usePathname } from "next/navigation";
 import { categoryPages } from "@/app/utilities/library/data";
 import Button from "@/app/utilities/ui/components/buttons/Button";
-// import CartModal from "@/app/utilities/ui/components/cart-modal/CartModal";
-import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
+import { HamburgerIcon, AudiophileLogo } from "@/app/utilities/ui/icons";
+import CartWrapper from "@/app/utilities/ui/components/cart-wrapper/CartWrapper";
 
 export default function NavbarWithHeader() {
     const pathname = usePathname();
@@ -15,23 +14,12 @@ export default function NavbarWithHeader() {
     const isCategoryPage = Boolean(category);
     const categoryTitle = category?.name ?? "";
 
-    const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-
     return (
         <div className="bg-black">
             <nav className="flex justify-between items-center py-8 px-4 border-b border-white/10">
                 <div className="flex w-4 h-3.5"><HamburgerIcon /></div>
                 <Link href={"/"} className="flex w-36 h-6"><AudiophileLogo /></Link>
-                <button
-                    onClick={() => setIsCheckoutOpen(true)}
-                    aria-label="Open checkout modal"
-                >
-                    <div
-                        className="flex w-6 h-5"
-                    >
-                        <ShoppingCartIcon />
-                    </div>
-                </button>
+                <CartWrapper />
             </nav>
             {(isHomePage || isCategoryPage) && (
                 isHomePage ? (
@@ -59,12 +47,6 @@ export default function NavbarWithHeader() {
                     </div>
                 )
             )}
-
-            {/* <CartModal
-                items={sampleItems}
-                isOpen={isCheckoutOpen}
-                onClose={() => setIsCheckoutOpen(false)}
-            /> */}
         </div>
     );
 }
