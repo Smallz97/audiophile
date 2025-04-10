@@ -33,26 +33,18 @@ export async function getCart(): Promise<Cart> {
 
 
 export async function addToCart( 
-  productId: string,
-  quantity: number,
-  name: string,
-  price: Price
+  item: CartItem
 ): Promise<Cart> {
   const cart = await getCart();
-  const existingItemIndex = cart.items.findIndex(item => item.productId === productId);
+  const existingItemIndex = cart.items.findIndex((cartItem) => cartItem.productId === item.productId);
   
   if (existingItemIndex >= 0) {
-    cart.items[existingItemIndex].quantity += quantity;
+    cart.items[existingItemIndex].quantity += item.quantity;
   } else {
-    cart.items.push({
-      productId,
-      quantity,
-      name,
-      price,
-    });
+    cart.items.push(item);
   }
-  saveCart(cart);
 
+  saveCart(cart);
   return cart;
 }
 
@@ -128,14 +120,15 @@ export function validateCart(cart: Cart) {
     }
     
 
-    const itemPrice = product.price || 0; 
+    const itemPrice = product.price?.amount || 0;
     const itemTotal = itemPrice * item.quantity;
     
     subtotal += itemTotal;
     validatedItems.push({
       productId: item.productId,
       quantity: item.quantity,
-      price: itemPrice,
+      price: product.price,
+      priceAmount: itemPrice,
       total: itemTotal,
       product,
     });
@@ -146,5 +139,9 @@ export function validateCart(cart: Cart) {
     validatedItems,
     subtotal,
     total: subtotal,
+    totalPrice: {
+      amount: subtotal,
+      currency: validatedItems.length > 0 ? validatedItems[0].price.currency : 'USD'
+    }
   };
 }

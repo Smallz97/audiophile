@@ -131,8 +131,6 @@ export type CategoriesListProps = {
 // Defining a cart item object
 export type CartItem = {
     productId: string;
-    name: string;
-    price: Price;
     quantity: number;
 };
 
