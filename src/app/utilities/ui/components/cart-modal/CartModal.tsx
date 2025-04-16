@@ -1,64 +1,98 @@
 'use client'
 import { useEffect } from "react"
-import type { CartModalProps } from "@/app/utilities/library/definitions"
+import Image from "next/image"
+import { Minus, Plus } from "lucide-react"
+import { useCartModal } from "@/app/utilities/contexts/ModalContexts";
+import Imago from "../../../../../../public/images/product-images/cart-image.png"
 
-export default function CartModal({ isOpen, onClose, items }: CartModalProps) {
+
+export default function CartModal() {
+    // Mock data
+    const mockCartItems = [
+        { id: 1, name: "Minimalist Backpack", price: 129.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
+        { id: 2, name: "Wireless Earbuds", price: 89.99, quantity: 2, image: "/placeholder.svg?height=80&width=80" },
+        { id: 3, name: "Smart Watch", price: 199.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
+        { id: 4, name: "Smart Watch", price: 199.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
+        { id: 5, name: "Smart Watch", price: 199.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
+        { id: 6, name: "Smart Watch", price: 199.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
+    ]
+
+    const { isOpen, closeModal } = useCartModal();
+
     useEffect(() => {
         const handleEscapeKey = (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
-                onClose()
-            }
-        }
+            if (event.key === "Escape") closeModal();
+        };
 
         if (isOpen) {
-            document.addEventListener("keydown", handleEscapeKey)
-            document.body.style.overflow = "hidden"
+            document.addEventListener("keydown", handleEscapeKey);
         }
 
         return () => {
-            document.removeEventListener("keydown", handleEscapeKey)
-            document.body.style.overflow = "auto"
-        }
-    }, [isOpen, onClose])
+            document.removeEventListener("keydown", handleEscapeKey);
+        };
+    }, [isOpen, closeModal]);
 
-    if (!isOpen) return null
+    if (!isOpen) return null;
 
-    const total = items.reduce((sum, item) => sum + (item.product?.price || 0) * item.quantity, 0)
+    const total = mockCartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
     return (
         <div className="fixed inset-0 z-50 flex items-start justify-center">
-            <div className="absolute inset-0 bg-black/50 px-6 pt-28 pb-6 overflow-y-auto" onClick={onClose} aria-hidden="true">
 
-                <div className="relative z-10 max-w-md rounded-lg bg-white p-6 py-8 shadow-lg flex flex-col gap-8 onClick={(e) => e.stopPropagation()}">
+            {/* The modal wrapper */}
+            <div className="absolute inset-0 bg-black/50 px-6 pt-28 pb-6 flex md:justify-end" onClick={closeModal} aria-hidden="true">
+
+                {/* The actual modal component */}
+                <div className="relative z-10 max-w-md w-full rounded-lg bg-white p-6 py-8 shadow-lg flex flex-col gap-8" onClick={(e) => e.stopPropagation()}>
                     <div className="flex items-center justify-between">
                         <div className="text-lg font-bold tracking-wider uppercase text-black">cart (3)</div>
-                        <div className="text-base font-normal leading-normal opacity-50 text-black underline ">Remove all</div>
+                        <button className="text-base font-normal leading-normal opacity-50 text-black underline">Remove all</button>
                     </div>
 
-                    {items.length === 0 ? (
-                        <p className="py-4 text-center text-gray-500">Your cart is empty</p>
-                    ) : (
-                        <>
-                            <ul className="divide-y">
-                                {items.map((item) => (
-                                    <li key={item.productId} className="py-3">
-                                        <div className="flex justify-between">
-                                            <div>
-                                                <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <div className="flex flex-col gap-6">
-                                <div className="flex justify-between font-bold mb-4">
-                                    <span>Total</span>
+                    {/* Cart Items */}
+                    <div className="overflow-y-auto flex flex-col gap-6">
+                        {mockCartItems.map((item) => (
+                            <div key={item.id} className="flex w-full gap-4 items-center">
+                                <div className="h-16 w-16 border flex justify-center items-center rounded-lg">
+                                    <Image
+                                        src={Imago}
+                                        alt={"image"}
+                                    />
                                 </div>
-                                <button className={`text-xs font-bold tracking-wide text-white uppercase bg-darkorange w-full h-12`}>checkout</button>
+                                <div className="flex justify-between w-full">
+                                    <div className="flex flex-col">
+                                        <p className="text-base font-medium">{item.name}</p>
+                                        <p className="text-sm font-medium">
+                                            ${(item.price * item.quantity).toFixed(2)}
+                                        </p>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <div className="flex items-center border rounded-md">
+                                            <button className="p-1">
+                                                <Minus className="h-4 w-4" />
+                                            </button>
+                                            <span className="px-2">{item.quantity}</span>
+                                            <button className="p-1">
+                                                <Plus className="h-4 w-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </>
-                    )}
+                        ))}
+                    </div>
+
+                    {/* Cart Summary */}
+                    <div className="flex justify-between font-medium uppercase">
+                        <p>Total</p>
+                        <p>${total.toFixed(2)}</p>
+                    </div>
+
+                    {/* Checkout Button */}
+                    <button className="w-full rounded-md bg-black h-12 text-sm font-medium text-white hover:bg-black/90">
+                        Checkout
+                    </button>
                 </div>
             </div>
         </div >

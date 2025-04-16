@@ -4,6 +4,13 @@ import { StaticImageData } from "next/image";
 // Defining the breakpoints for media responsiveness context
 export type Breakpoint = "sm" | "md" | "lg" | "xl" | "2xl"
 
+// Defining the type for the cart modal context
+export type CartModalContextType = {
+    isOpen: boolean;
+    openModal: () => void;
+    closeModal: () => void;
+};
+
 // Defining the props for a products category page
 export type ProductsCategoryPagesProps = {
     name: string;
@@ -134,7 +141,7 @@ export type CartItem = {
     quantity: number;
 };
 
-// Defining the full cart item object with product details for displaying in the cart modal
+// Defining the full cart item object with product details for display in the cart modal
 export type CartItemWithProduct = {
     productId: string
     quantity: number
@@ -150,7 +157,7 @@ export type Cart = {
     items: CartItem[];
 };
 
-// Defining a full cart object with product details for displaying in the cart modal
+// Defining a full cart object with product details for display in the cart modal
 export type CartWithProducts = {
     items: CartItemWithProduct[]
     totalItems: number

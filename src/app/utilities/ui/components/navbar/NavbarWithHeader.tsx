@@ -5,7 +5,10 @@ import { usePathname } from "next/navigation";
 import { categoryPages } from "@/app/utilities/library/data";
 import Button from "@/app/utilities/ui/components/buttons/Button";
 import { HamburgerIcon, AudiophileLogo } from "@/app/utilities/ui/icons";
-import CartWrapper from "@/app/utilities/ui/components/cart-wrapper/CartWrapper";
+import { ShoppingBag } from "lucide-react"
+import { useCartModal } from "@/app/utilities/contexts/ModalContexts";
+
+
 
 export default function NavbarWithHeader() {
     const pathname = usePathname();
@@ -14,12 +17,29 @@ export default function NavbarWithHeader() {
     const isCategoryPage = Boolean(category);
     const categoryTitle = category?.name ?? "";
 
+    // Mock data
+    const mockCartItems = [
+        { id: 1, name: "Minimalist Backpack", price: 129.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
+        { id: 2, name: "Wireless Earbuds", price: 89.99, quantity: 2, image: "/placeholder.svg?height=80&width=80" },
+        { id: 3, name: "Smart Watch", price: 199.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
+    ]
+
+    const { openModal } = useCartModal();
+
     return (
         <div className="bg-black">
             <nav className="flex justify-between items-center py-8 px-4 border-b border-white/10">
                 <div className="flex w-4 h-3.5"><HamburgerIcon /></div>
                 <Link href={"/"} className="flex w-36 h-6"><AudiophileLogo /></Link>
-                <CartWrapper />
+                <button
+                    onClick={openModal}
+                    className="relative p-1 border rounded-md bg-gray-100"
+                >
+                    <ShoppingBag className="h-5 w-5" />
+                    <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-black text-xs text-white">
+                        {mockCartItems.reduce((sum, item) => sum + item.quantity, 0)}
+                    </span>
+                </button>
             </nav>
             {(isHomePage || isCategoryPage) && (
                 isHomePage ? (

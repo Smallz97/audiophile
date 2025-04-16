@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
+import { CartModalProvider } from "@/app/utilities/contexts/ModalContexts";
 import Footer from "@/app/utilities/ui/components/footer/Footer";
 import NavbarWithHeader from "./utilities/ui/components/navbar/NavbarWithHeader";
+import CartModal from "./utilities/ui/components/cart-modal/CartModal";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -22,7 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.variable} antialiased`}>
-        <NavbarWithHeader />
+        <CartModalProvider>
+          <NavbarWithHeader />
+          <CartModal />
+        </CartModalProvider>
         <main>{children}</main>
         <Footer />
       </body>
