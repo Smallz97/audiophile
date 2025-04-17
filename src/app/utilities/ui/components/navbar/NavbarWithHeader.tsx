@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { ShoppingBag } from "lucide-react"
 import { usePathname } from "next/navigation";
 import { categoryPages } from "@/app/utilities/library/data";
 import Button from "@/app/utilities/ui/components/buttons/Button";
-import { HamburgerIcon, AudiophileLogo } from "@/app/utilities/ui/icons";
-import { ShoppingBag } from "lucide-react"
 import { useCartModal } from "@/app/utilities/contexts/ModalContexts";
+import { HamburgerIcon, AudiophileLogo } from "@/app/utilities/ui/icons";
 
 
 
@@ -19,9 +19,12 @@ export default function NavbarWithHeader() {
 
     // Mock data
     const mockCartItems = [
-        { id: 1, name: "Minimalist Backpack", price: 129.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
-        { id: 2, name: "Wireless Earbuds", price: 89.99, quantity: 2, image: "/placeholder.svg?height=80&width=80" },
-        { id: 3, name: "Smart Watch", price: 199.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
+        { id: 1, name: "XX99 MK II", price: 129.99, quantity: 1 },
+        { id: 6, name: "XX99 MK I", price: 199.99, quantity: 1 },
+        { id: 2, name: "XX59", price: 89.99, quantity: 2 },
+        { id: 3, name: "YX1", price: 199.99, quantity: 1 },
+        { id: 4, name: "ZX9", price: 199.99, quantity: 1 },
+        { id: 5, name: "ZX7", price: 199.99, quantity: 1 },
     ]
 
     const { openModal } = useCartModal();

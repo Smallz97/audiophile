@@ -3,18 +3,18 @@ import { useEffect } from "react"
 import Image from "next/image"
 import { Minus, Plus } from "lucide-react"
 import { useCartModal } from "@/app/utilities/contexts/ModalContexts";
-import Imago from "../../../../../../public/images/product-images/cart-image.png"
+import Imago from "../../../../../../public/images/product-images/cart-image-3.png"
 
 
 export default function CartModal() {
     // Mock data
     const mockCartItems = [
-        { id: 1, name: "Minimalist Backpack", price: 129.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
-        { id: 2, name: "Wireless Earbuds", price: 89.99, quantity: 2, image: "/placeholder.svg?height=80&width=80" },
-        { id: 3, name: "Smart Watch", price: 199.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
-        { id: 4, name: "Smart Watch", price: 199.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
-        { id: 5, name: "Smart Watch", price: 199.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
-        { id: 6, name: "Smart Watch", price: 199.99, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
+        { id: 1, name: "XX99 MK II", price: 129.99, quantity: 1 },
+        { id: 2, name: "XX59", price: 89.99, quantity: 2 },
+        { id: 3, name: "YX1", price: 199.99, quantity: 1 },
+        { id: 4, name: "ZX9", price: 199.99, quantity: 1 },
+        { id: 5, name: "ZX7", price: 199.99, quantity: 1 },
+        { id: 6, name: "XX99 MK I", price: 199.99, quantity: 1 },
     ]
 
     const { isOpen, closeModal } = useCartModal();
@@ -54,7 +54,7 @@ export default function CartModal() {
                     <div className="overflow-y-auto flex flex-col gap-6">
                         {mockCartItems.map((item) => (
                             <div key={item.id} className="flex w-full gap-4 items-center">
-                                <div className="h-16 w-16 border flex justify-center items-center rounded-lg">
+                                <div className="h-16 w-16 border flex justify-center items-center bg-zinc-100 rounded-lg">
                                     <Image
                                         src={Imago}
                                         alt={"image"}
@@ -62,19 +62,19 @@ export default function CartModal() {
                                 </div>
                                 <div className="flex justify-between w-full">
                                     <div className="flex flex-col">
-                                        <p className="text-base font-medium">{item.name}</p>
-                                        <p className="text-sm font-medium">
+                                        <div className="text-black text-base font-bold leading-normal">{item.name}</div>
+                                        <div className="opacity-50 text-black text-sm font-bold leading-normal">
                                             ${(item.price * item.quantity).toFixed(2)}
-                                        </p>
+                                        </div>
                                     </div>
                                     <div className="flex items-center">
-                                        <div className="flex items-center border rounded-md">
-                                            <button className="p-1">
-                                                <Minus className="h-4 w-4" />
+                                        <div className="flex items-center border bg-zinc-100">
+                                            <button className="py-1 px-2">
+                                                <Minus className="h-8 w-4" />
                                             </button>
                                             <span className="px-2">{item.quantity}</span>
-                                            <button className="p-1">
-                                                <Plus className="h-4 w-4" />
+                                            <button className="py-1 px-2">
+                                                <Plus className="h-8 w-4" />
                                             </button>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@ export default function CartModal() {
                     </div>
 
                     {/* Checkout Button */}
-                    <button className="w-full rounded-md bg-black h-12 text-sm font-medium text-white hover:bg-black/90">
+                    <button className="w-full bg-darkorange py-3 text-sm font-medium text-white uppercase">
                         Checkout
                     </button>
                 </div>

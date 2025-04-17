@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
+import type { CartModalContextType } from "@/app/utilities/library/definitions";
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
-import { CartModalContextType } from "../library/definitions";
 
 const CartModalContext = createContext<CartModalContextType | undefined>(undefined);
 
