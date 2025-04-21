@@ -10,7 +10,7 @@ export default function AddToCartButton({ productId }: AddToCartButtonProps) {
     return (
         <button
             disabled={isPending}
-            onClick={() => handleAddToCart(productId)}
+            onClick={() => startTransition(() => handleAddToCart(productId))}
             className={`flex justify-center items-center w-40 h-12 text-xs font-bold tracking-wide text-white bg-darkorange uppercase`}
         >
             {isPending ? 'Adding...' : 'Add to Cart'}

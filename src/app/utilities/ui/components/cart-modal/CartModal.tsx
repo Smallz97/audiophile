@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useEffect } from "react"
 import { useCartModal } from "@/app/utilities/contexts/ModalContexts"
 import type { CartModalProps } from "@/app/utilities/library/definitions"
+import { formatPrice } from "@/app/utilities/library/price-utilities"
 
 export default function CartModal({ cart }: CartModalProps) {
     const { isOpen, closeModal } = useCartModal()
@@ -28,9 +29,10 @@ export default function CartModal({ cart }: CartModalProps) {
         return sum + item.product.price.amount * item.quantity;
     }, 0);
 
-    const totalPrice = items.length > 0
-        ? { amount: totalAmount, currency: items[0].product.price.currency }
-        : { amount: 0, currency: 'USD' };
+    const totalPrice = formatPrice({
+        amount: totalAmount,
+        currency: items[0]?.product.price.currency || 'USD',
+    })
 
     if (!isOpen) return null
 
@@ -63,13 +65,11 @@ export default function CartModal({ cart }: CartModalProps) {
                                 key={item.productId}
                                 className="flex w-full gap-4 items-center"
                             >
-                                <div className="h-16 w-16 border flex justify-center items-center bg-zinc-100 rounded-lg">
+                                <div className="h-16 w-16 p-2 border flex justify-center items-center bg-zinc-100 rounded-lg">
                                     {item.product.image && (
                                         <Image
                                             src={item.product.image}
                                             alt={item.product.name}
-                                            width={64}
-                                            height={64}
                                         />
                                     )}
                                 </div>
@@ -79,7 +79,10 @@ export default function CartModal({ cart }: CartModalProps) {
                                             {item.product.name}
                                         </div>
                                         <div className="opacity-50 text-black text-sm font-bold leading-normal">
-                                            {totalAmount}
+                                            {formatPrice({
+                                                amount: item.product.price.amount,
+                                                currency: item.product.price.currency,
+                                            })}
                                         </div>
                                     </div>
                                     <div className="flex items-center">
@@ -97,7 +100,7 @@ export default function CartModal({ cart }: CartModalProps) {
                     {/* Cart Summary */}
                     <div className="flex justify-between font-medium uppercase">
                         <p>Total</p>
-                        <p>{totalAmount}</p>
+                        <p>{totalPrice}</p>
                     </div>
 
                     {/* Checkout Button */}
