@@ -30,10 +30,15 @@ export type HeaderProps = {
     title?: string;
 };
 
-// Defining the props for a button component
+// Defining the props for a link button component
 export type ButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
     href: string;
 };
+
+// Defining the props for the add-to-cart button component
+export type AddToCartButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    productId: string;
+}
 
 // Defining the props type for the counter button component
 export type CounterProps = {
@@ -90,6 +95,7 @@ export type Price = {
 // Defining the props for a price component
 export type PriceComponentProps = {
     price: Price;
+    productId: string;
 }
 
 // Defining a product object
@@ -136,36 +142,33 @@ export type CategoriesListProps = {
 }
 
 // Defining a lightweight cart item object with only productId and quantity for cookie storage
-export type CartItem = {
+export type ServerCartItem = {
     productId: string;
     quantity: number;
 };
 
+// Defining a lightweight cart object containing cart items for cookie storage and retrieval
+export type ServerCart = {
+    items: ServerCartItem[];
+};
+
 // Defining the full cart item object with product details for display in the cart modal
-export type CartItemWithProduct = {
+export type ModalCartItem = {
     productId: string
     quantity: number
     product: {
       name: string
-      price: number
+      price: Price
       image?: StaticImageData
     }
 }
 
-// Defining a lightweight cart object containing cart items for cookie storage and retrieval
-export type Cart = {
-    items: CartItem[];
-};
-
-// Defining a full cart object with product details for display in the cart modal
-export type CartWithProducts = {
-    items: CartItemWithProduct[]
-    totalItems: number
+// Defining the modal cart object with product details for display in the cart modal
+export type ModalCart = {
+    items: ModalCartItem[];
 }
 
-// Defining the props for the cart-modal component
-export interface CartModalProps {
-    isOpen: boolean
-    onClose: () => void
-    items: CartItemWithProduct[]
+// Defining the props for the cart modal component
+export type CartModalProps = {
+    cart: ModalCart;
 }

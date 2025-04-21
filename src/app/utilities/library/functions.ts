@@ -49,3 +49,11 @@ export const getRandomSuggestedProducts = cache(
     return randomProducts;
   }
 );
+
+export const handleAddToCart = async (productId: string) => {
+  await fetch('/api/add-to-cart', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ productId }),
+  });
+};

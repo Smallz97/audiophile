@@ -3,14 +3,7 @@
 import type { CartModalContextType } from "@/app/utilities/library/definitions";
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
-
 const CartModalContext = createContext<CartModalContextType | undefined>(undefined);
-
-export const useCartModal = () => {
-    const context = useContext(CartModalContext);
-    if (!context) throw new Error("useCartModal must be used within a CartModalProvider");
-    return context;
-};
 
 export function CartModalProvider({ children }: { children: ReactNode }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -36,3 +29,9 @@ export function CartModalProvider({ children }: { children: ReactNode }) {
         </CartModalContext.Provider>
     );
 }
+
+export const useCartModal = () => {
+    const context = useContext(CartModalContext);
+    if (!context) throw new Error("useCartModal must be used within a CartModalProvider");
+    return context;
+};

@@ -1,14 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { ShoppingBag } from "lucide-react"
 import { usePathname } from "next/navigation";
-import { categoryPages } from "@/app/utilities/library/data";
 import Button from "@/app/utilities/ui/components/buttons/Button";
 import { useCartModal } from "@/app/utilities/contexts/ModalContexts";
-import { HamburgerIcon, AudiophileLogo } from "@/app/utilities/ui/icons";
-
-
+import { mockCartItems, categoryPages } from "@/app/utilities/library/data";
+import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
 
 export default function NavbarWithHeader() {
     const pathname = usePathname();
@@ -16,16 +13,6 @@ export default function NavbarWithHeader() {
     const category = categoryPages.find(cat => `/${cat.slug}` === pathname);
     const isCategoryPage = Boolean(category);
     const categoryTitle = category?.name ?? "";
-
-    // Mock data
-    const mockCartItems = [
-        { id: 1, name: "XX99 MK II", price: 129.99, quantity: 1 },
-        { id: 6, name: "XX99 MK I", price: 199.99, quantity: 1 },
-        { id: 2, name: "XX59", price: 89.99, quantity: 2 },
-        { id: 3, name: "YX1", price: 199.99, quantity: 1 },
-        { id: 4, name: "ZX9", price: 199.99, quantity: 1 },
-        { id: 5, name: "ZX7", price: 199.99, quantity: 1 },
-    ]
 
     const { openModal } = useCartModal();
 
@@ -36,9 +23,11 @@ export default function NavbarWithHeader() {
                 <Link href={"/"} className="flex w-36 h-6"><AudiophileLogo /></Link>
                 <button
                     onClick={openModal}
-                    className="relative p-1 border rounded-md bg-gray-100"
+                    className="relative p-1"
                 >
-                    <ShoppingBag className="h-5 w-5" />
+                    <div className="flex h-[1.25rem] w-[1.4375rem]">
+                        <ShoppingCartIcon />
+                    </div>
                     <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-black text-xs text-white">
                         {mockCartItems.reduce((sum, item) => sum + item.quantity, 0)}
                     </span>

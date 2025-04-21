@@ -412,3 +412,11 @@ export const getProductsListOfSingleCategory = cache((slug: string) => {
 export const getAllProducts = () => {
     return Object.values(productData).flat();
 }
+
+export const mockCartItems = [
+    { id: 1, name: "XX99 MK II", price: 129.99, quantity: 1 },
+    { id: 2, name: "XX59", price: 89.99, quantity: 2 },
+    { id: 3, name: "YX1", price: 199.99, quantity: 1 },
+    { id: 4, name: "ZX9", price: 199.99, quantity: 1 },
+    { id: 5, name: "ZX7", price: 199.99, quantity: 1 },
+]

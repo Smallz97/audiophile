@@ -21,7 +21,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     </div>
                     <div id="product-description-container" className="flex flex-col gap-6">
                         <ProductDescription name={product.name} productType={product.productType} description={product.description} />
-                        <PriceComponent price={product.price} />
+                        <PriceComponent price={product.price} productId={product.productId} />
                     </div>
                 </div>
                 <ProductFeatures features={product.features} />

@@ -1,9 +1,9 @@
-import Button from "@/app/utilities/ui/components/buttons/Button"
 import { formatPrice } from "@/app/utilities/library/price-utilities"
 import { PriceComponentProps } from "@/app/utilities/library/definitions"
 import CounterButton from "@/app/utilities/ui/components/buttons/CounterButton"
+import AddToCartButton from '@/app/utilities/ui/components/buttons/AddToCartButton'
 
-export default function PriceComponent({ price }: PriceComponentProps) {
+export default function PriceComponent({ price, productId }: PriceComponentProps) {
     const formattedPrice = formatPrice(price);
 
     return (
@@ -11,7 +11,7 @@ export default function PriceComponent({ price }: PriceComponentProps) {
             <div className="text-lg font-bold tracking-wider text-black uppercase">{formattedPrice}</div>
             <div className="flex gap-4">
                 <CounterButton />
-                <Button href={`/`} className={`text-xs font-bold tracking-wide text-white bg-darkorange`}>add to cart</Button>
+                <AddToCartButton productId={productId} />
             </div>
         </>
     )
