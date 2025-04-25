@@ -7,8 +7,10 @@ export type Breakpoint = "sm" | "md" | "lg" | "xl" | "2xl"
 // Defining the type for the cart modal context
 export type CartModalContextType = {
     isOpen: boolean;
+    cart: ModalCart;
     openModal: () => void;
     closeModal: () => void;
+  fetchCart: () => Promise<void>;
 };
 
 // Defining the props for a products category page
@@ -112,6 +114,7 @@ export type Product = {
     boxContent: BoxContents[];
     featuredImages: BreakpointDetectedFeaturedImages;
     suggestedProductCardImages: StaticImageData;
+    cartImage: string;
 }
 
 // Defining the props for the suggested products card component
@@ -159,13 +162,14 @@ export type ModalCartItem = {
     product: {
       name: string
       price: Price
-      image?: StaticImageData
+      image: string
     }
 }
 
 // Defining the modal cart object with product details for display in the cart modal
 export type ModalCart = {
     items: ModalCartItem[];
+    formattedTotalPrice: string
 }
 
 // Defining the props for the cart modal component

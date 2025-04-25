@@ -2,12 +2,18 @@
 
 import Image from "next/image"
 import { useEffect } from "react"
+import { ShoppingCartIcon } from "@/app/utilities/ui/icons"
 import { useCartModal } from "@/app/utilities/contexts/ModalContexts"
-import type { CartModalProps } from "@/app/utilities/library/definitions"
 import { formatPrice } from "@/app/utilities/library/price-utilities"
 
-export default function CartModal({ cart }: CartModalProps) {
-    const { isOpen, closeModal } = useCartModal()
+export default function CartModal() {
+    const { isOpen, closeModal, cart, fetchCart } = useCartModal()
+
+    useEffect(() => {
+        if (isOpen) {
+            fetchCart()
+        }
+    }, [isOpen, fetchCart])
 
     useEffect(() => {
         const handleEscapeKey = (event: KeyboardEvent) => {
@@ -23,31 +29,22 @@ export default function CartModal({ cart }: CartModalProps) {
         }
     }, [isOpen, closeModal])
 
-    const items = cart.items
-
-    const totalAmount = items.reduce((sum, item) => {
-        return sum + item.product.price.amount * item.quantity;
-    }, 0);
-
-    const totalPrice = formatPrice({
-        amount: totalAmount,
-        currency: items[0]?.product.price.currency || 'USD',
-    })
-
     if (!isOpen) return null
+    // if (loading) return null
+
+    const items = cart.items
+    const total = cart.formattedTotalPrice
 
     return (
         <div className="fixed inset-0 z-50 flex items-start justify-center">
-            {/* The modal wrapper */}
             <div
-                className="absolute inset-0 bg-black/50 px-6 pt-28 pb-6 flex md:justify-end"
-                onClick={closeModal}
                 aria-hidden="true"
+                onClick={closeModal}
+                className="absolute inset-0 bg-black/50 px-6 pt-28 pb-6 flex md:justify-end"
             >
-                {/* The actual modal component */}
                 <div
-                    className="relative z-10 max-w-md w-full rounded-lg bg-white p-6 py-8 shadow-lg flex flex-col gap-8"
                     onClick={(e) => e.stopPropagation()}
+                    className="relative z-10 max-w-md w-full rounded-lg bg-white px-6 py-8 shadow-lg flex flex-col gap-8"
                 >
                     <div className="flex items-center justify-between">
                         <div className="text-lg font-bold tracking-wider uppercase text-black">
@@ -58,52 +55,62 @@ export default function CartModal({ cart }: CartModalProps) {
                         </button>
                     </div>
 
-                    {/* Cart Items */}
-                    <div className="overflow-y-auto flex flex-col gap-6">
-                        {items.map((item) => (
-                            <div
-                                key={item.productId}
-                                className="flex w-full gap-4 items-center"
-                            >
-                                <div className="h-16 w-16 p-2 border flex justify-center items-center bg-zinc-100 rounded-lg">
-                                    {item.product.image && (
-                                        <Image
-                                            src={item.product.image}
-                                            alt={item.product.name}
-                                        />
-                                    )}
-                                </div>
-                                <div className="flex justify-between w-full">
-                                    <div className="flex flex-col">
-                                        <div className="text-black text-base font-bold leading-normal">
-                                            {item.product.name}
+                    <div
+                        className={`overflow-y-auto flex flex-1 flex-col gap-6 ${items.length === 0 ? "bg-zinc-100 justify-center items-center" : ""}`}
+                    >
+                        {items.length > 0 ? (
+                            items.map((item) => (
+                                <div
+                                    key={item.productId}
+                                    className="flex w-full gap-4 items-center"
+                                >
+                                    <div className="h-16 w-16 p-2 border flex justify-center items-center bg-zinc-100 rounded-lg">
+                                        {item.product.image && (
+                                            <Image
+                                                src={item.product.image}
+                                                alt={item.product.name}
+                                                width={36}
+                                                height={40}
+                                            />
+                                        )}
+                                    </div>
+                                    <div className="flex justify-between w-full">
+                                        <div className="flex flex-col">
+                                            <div className="text-black text-base font-bold leading-normal">
+                                                {item.product.name}
+                                            </div>
+                                            <div className="opacity-50 text-black text-sm font-bold leading-normal">
+                                                {formatPrice({
+                                                    amount: item.product.price.amount,
+                                                    currency: item.product.price.currency,
+                                                })}
+                                            </div>
                                         </div>
-                                        <div className="opacity-50 text-black text-sm font-bold leading-normal">
-                                            {formatPrice({
-                                                amount: item.product.price.amount,
-                                                currency: item.product.price.currency,
-                                            })}
+                                        <div className="flex items-center">
+                                            <div className="flex items-center border bg-zinc-100">
+                                                <button className="py-1 px-2">-</button>
+                                                <span className="px-2">{item.quantity}</span>
+                                                <button className="py-1 px-2">+</button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="flex items-center">
-                                        <div className="flex items-center border bg-zinc-100">
-                                            <button className="py-1 px-2">-</button>
-                                            <span className="px-2">{item.quantity}</span>
-                                            <button className="py-1 px-2">+</button>
-                                        </div>
-                                    </div>
                                 </div>
+                            ))
+                        ) : (
+                            <div className="flex flex-col justify-center items-center gap-2">
+                                <div className="flex w-10 h-10 flex-shrink-0">
+                                    <ShoppingCartIcon />
+                                </div>
+                                <div className="text-center opacity-50 text-lg">Your cart is empty.</div>
                             </div>
-                        ))}
+                        )}
                     </div>
 
-                    {/* Cart Summary */}
                     <div className="flex justify-between font-medium uppercase">
                         <p>Total</p>
-                        <p>{totalPrice}</p>
+                        <p>{total}</p>
                     </div>
 
-                    {/* Checkout Button */}
                     <button className="w-full bg-darkorange py-3 text-sm font-medium text-white uppercase">
                         Checkout
                     </button>

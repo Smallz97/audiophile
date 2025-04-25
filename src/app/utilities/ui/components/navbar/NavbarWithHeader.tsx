@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { categoryPages } from "@/app/utilities/library/data";
 import Button from "@/app/utilities/ui/components/buttons/Button";
 import { useCartModal } from "@/app/utilities/contexts/ModalContexts";
-import { mockCartItems, categoryPages } from "@/app/utilities/library/data";
 import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
 
 export default function NavbarWithHeader() {
@@ -14,7 +15,11 @@ export default function NavbarWithHeader() {
     const isCategoryPage = Boolean(category);
     const categoryTitle = category?.name ?? "";
 
-    const { openModal } = useCartModal();
+    const { openModal, cart, fetchCart } = useCartModal();
+
+    useEffect(() => {
+        fetchCart()
+    }, [fetchCart])
 
     return (
         <div className="bg-black">
@@ -29,7 +34,7 @@ export default function NavbarWithHeader() {
                         <ShoppingCartIcon />
                     </div>
                     <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-black text-xs text-white">
-                        {mockCartItems.reduce((sum, item) => sum + item.quantity, 0)}
+                        {cart.items.reduce((sum, item) => sum + item.quantity, 0)}
                     </span>
                 </button>
             </nav>
@@ -47,14 +52,20 @@ export default function NavbarWithHeader() {
                                 <div className="text-base font-normal leading-normal text-white opacity-75 text-center">
                                     Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
                                 </div>
-                                <Button href={`/headphones/XX99 Mark II`} className={`text-xs font-bold tracking-wide bg-darkorange text-white`}>
+                                <Button
+                                    href={`/headphones/XX99 Mark II`}
+                                    className={`text-xs font-bold tracking-wide bg-darkorange text-white`}
+                                >
                                     see product
                                 </Button>
                             </div>
                         </div>
                     </div>
                 ) : (
-                    <div id="categorypages-header" className="py-8 text-2xl font-bold tracking-widest text-white text-center uppercase">
+                    <div
+                        id="categorypages-header"
+                        className="py-8 text-2xl font-bold tracking-widest text-white text-center uppercase"
+                    >
                         {categoryTitle}
                     </div>
                 )

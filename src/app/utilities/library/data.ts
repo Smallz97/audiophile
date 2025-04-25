@@ -161,6 +161,7 @@ export const productData: Record<string, Product[]> = {
                 }
             },
             suggestedProductCardImages: Earphones,
+            cartImage: "/images/product-images/earphones/YX1/overview-images/YX1-mobile.png"
         },
     ],
     headphones: [
@@ -203,6 +204,7 @@ export const productData: Record<string, Product[]> = {
                 }
             },
             suggestedProductCardImages: XX99M2SPI,
+            cartImage: "/images/product-images/headphones/XX99M2/overview-images/XX99-M2-mobile.png",
         },
         {
             productId: generateProductId("headphones", "XX99 Mark I"),
@@ -242,6 +244,7 @@ export const productData: Record<string, Product[]> = {
                 }
             },
             suggestedProductCardImages: XX99M1SPI,
+            cartImage: "/images/product-images/headphones/XX99M1/overview-images/XX99-M1-mobile.png",
         },
         {
             productId: generateProductId("headphones", "XX59"),
@@ -281,6 +284,7 @@ export const productData: Record<string, Product[]> = {
                 }
             },
             suggestedProductCardImages: XX59SPI,
+            cartImage: "/images/product-images/headphones/XX59/overview-images/XX59-mobile.png",
         },
     ],
     speakers: [
@@ -323,6 +327,7 @@ export const productData: Record<string, Product[]> = {
                 }
             },
             suggestedProductCardImages: ZX9SPI,
+            cartImage: "/images/product-images/speakers/ZX9/overview-images/ZX9-mobile.png"
         },
         {
             productId: generateProductId("speakers", "ZX7"),
@@ -363,6 +368,7 @@ export const productData: Record<string, Product[]> = {
                 }
             },
             suggestedProductCardImages: ZX7SPI,
+            cartImage: "/images/product-images/speakers/ZX7/overview-images/ZX7-mobile.png"
         },
     ],
 };
