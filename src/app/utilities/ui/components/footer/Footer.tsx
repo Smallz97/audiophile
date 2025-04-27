@@ -1,10 +1,11 @@
-import { AudiophileLogo, SocialLinks } from "@/app/utilities/ui/icons"
 import Link from "next/link"
+import { AudiophileLogo, SocialLinks } from "@/app/utilities/ui/icons"
+
 export default function Footer() {
     return (
         <footer className="flex flex-col gap-12 items-center bg-justblack pb-9 px-6">
             <div className="w-24 h-1 bg-orange-400" />
-            <Link href={`/`}><div id="brand-logo" className="flex w-36 h-6 justify-center items-center"><AudiophileLogo /></div></Link>
+            <Link href={`/`}><div id="brand-logo" className="flex w-36 h-6"><AudiophileLogo /></div></Link>
             <div id="footer-links" className="flex flex-col gap-4 text-sm font-bold leading-normal tracking-widest text-white text-center uppercase">
                 <Link href={`/`}><div id="home-link">Home</div></Link>
                 <Link href={`/headphones`}><div id="headphones-link">Headphones</div></Link>

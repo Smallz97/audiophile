@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { categoryPages } from "@/app/utilities/library/data";
 import Button from "@/app/utilities/ui/components/buttons/Button";
@@ -15,11 +14,7 @@ export default function NavbarWithHeader() {
     const isCategoryPage = Boolean(category);
     const categoryTitle = category?.name ?? "";
 
-    const { openModal, cart, fetchCart } = useCartModal();
-
-    useEffect(() => {
-        fetchCart()
-    }, [fetchCart])
+    const { openModal, cart } = useCartModal();
 
     return (
         <div className="bg-black">

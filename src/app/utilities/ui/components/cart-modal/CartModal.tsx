@@ -7,13 +7,7 @@ import { useCartModal } from "@/app/utilities/contexts/ModalContexts"
 import { formatPrice } from "@/app/utilities/library/price-utilities"
 
 export default function CartModal() {
-    const { isOpen, closeModal, cart, fetchCart } = useCartModal()
-
-    useEffect(() => {
-        if (isOpen) {
-            fetchCart()
-        }
-    }, [isOpen, fetchCart])
+    const { isOpen, closeModal, cart } = useCartModal()
 
     useEffect(() => {
         const handleEscapeKey = (event: KeyboardEvent) => {
@@ -30,7 +24,6 @@ export default function CartModal() {
     }, [isOpen, closeModal])
 
     if (!isOpen) return null
-    // if (loading) return null
 
     const items = cart.items
     const total = cart.formattedTotalPrice
@@ -50,9 +43,12 @@ export default function CartModal() {
                         <div className="text-lg font-bold tracking-wider uppercase text-black">
                             cart ({items.length})
                         </div>
-                        <button className="text-base font-normal leading-normal opacity-50 text-black underline">
-                            Remove all
-                        </button>
+
+                        {items.length > 0 && (
+                            <button className="text-base font-normal leading-normal opacity-50 text-black underline">
+                                Remove all
+                            </button>
+                        )}
                     </div>
 
                     <div
@@ -106,14 +102,25 @@ export default function CartModal() {
                         )}
                     </div>
 
-                    <div className="flex justify-between font-medium uppercase">
-                        <p>Total</p>
-                        <p>{total}</p>
-                    </div>
+                    {items.length > 0 && (
+                        <div className="flex justify-between font-medium uppercase">
+                            <p>Total</p>
+                            <p>{total}</p>
+                        </div>
+                    )}
 
-                    <button className="w-full bg-darkorange py-3 text-sm font-medium text-white uppercase">
-                        Checkout
-                    </button>
+                    {items.length > 0 ? (
+                        <button className="w-full bg-darkorange py-3 text-sm font-medium text-white uppercase">
+                            checkout
+                        </button>
+                    ) :
+                        <button
+                            onClick={closeModal}
+                            className="w-full bg-darkorange py-3 text-sm font-medium text-white uppercase"
+                        >
+                            start shopping
+                        </button>
+                    }
                 </div>
             </div>
         </div>
