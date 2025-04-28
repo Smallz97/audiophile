@@ -2,7 +2,6 @@ import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import type { ServerCart, ServerCartItem } from '@/app/utilities/library/definitions'
 
-
 export async function POST(request: Request) {
   const { productId } = await request.json()
 
@@ -29,7 +28,7 @@ export async function POST(request: Request) {
     cart.items.push(newItem)
   }
 
-  const response = NextResponse.json({ success: true })
+  const response = NextResponse.json(cart)
 
   response.cookies.set('cart', JSON.stringify(cart), {
     path: '/',

@@ -15,8 +15,8 @@ export function CartModalProvider({ children }: { children: ReactNode }) {
 
     const fetchCart = useCallback(async () => {
         try {
-            const res = await fetch("/api/cart", { cache: "no-store" });
-            const data = await res.json();
+            const response = await fetch("/api/cart", { cache: "no-store" });
+            const data = await response.json();
             setCart(data);
         } catch (err) {
             console.error("Error fetching cart:", err);

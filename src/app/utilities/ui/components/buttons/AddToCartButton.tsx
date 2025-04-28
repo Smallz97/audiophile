@@ -10,11 +10,11 @@ export default function AddToCartButton({ productId }: AddToCartButtonProps) {
 
     async function handleAddToCart(productId: string) {
         try {
-            await fetch('/api/cart', {
+            await fetch('/api/add-to-cart', {
                 method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ productId }),
             });
-
             fetchCart();
         } catch (err) {
             console.error('Failed to add to cart:', err);

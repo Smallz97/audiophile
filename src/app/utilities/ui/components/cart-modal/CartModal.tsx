@@ -39,17 +39,17 @@ export default function CartModal() {
                     onClick={(e) => e.stopPropagation()}
                     className="relative z-10 max-w-md w-full rounded-lg bg-white px-6 py-8 shadow-lg flex flex-col gap-8"
                 >
-                    <div className="flex items-center justify-between">
-                        <div className="text-lg font-bold tracking-wider uppercase text-black">
-                            cart ({items.length})
-                        </div>
+                    {items.length > 0 && (
+                        <div className="flex items-center justify-between">
+                            <div className="text-lg font-bold tracking-wider uppercase text-black">
+                                cart ({items.length})
+                            </div>
 
-                        {items.length > 0 && (
                             <button className="text-base font-normal leading-normal opacity-50 text-black underline">
                                 Remove all
                             </button>
-                        )}
-                    </div>
+                        </div>
+                    )}
 
                     <div
                         className={`overflow-y-auto flex flex-1 flex-col gap-6 ${items.length === 0 ? "bg-zinc-100 justify-center items-center" : ""}`}

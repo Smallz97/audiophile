@@ -27,8 +27,8 @@ export default function RootLayout({
         <CartModalProvider>
           <NavbarWithHeader />
           <CartModal />
+          <main>{children}</main>
         </CartModalProvider>
-        <main>{children}</main>
         <Footer />
       </body>
     </html>
