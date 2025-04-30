@@ -6,6 +6,7 @@ import { ShoppingCartIcon } from "@/app/utilities/ui/icons"
 import { formatPrice } from "@/app/utilities/library/price-utilities"
 import { useCartModal } from "@/app/utilities/contexts/ModalContexts"
 import ClearCartButton from "@/app/utilities/ui/components/buttons/ClearCartButton"
+import CartModalCounterButton from "@/app/utilities/ui/components/buttons/CartModalCounterButton"
 
 export default function CartModal() {
     const { isOpen, closeModal, cart } = useCartModal()
@@ -28,11 +29,11 @@ export default function CartModal() {
 
     const items = cart.items
     const total = cart.formattedTotalPrice
+    const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
 
     return (
         <div className="fixed inset-0 z-50 flex items-start justify-center">
             <div
-                aria-hidden="true"
                 onClick={closeModal}
                 className="absolute inset-0 bg-black/50 px-6 pt-28 pb-6 flex md:justify-end"
             >
@@ -43,12 +44,11 @@ export default function CartModal() {
                     {items.length > 0 && (
                         <div className="flex items-center justify-between">
                             <div className="text-lg font-bold tracking-wider uppercase text-black">
-                                cart ({items.length})
+                                cart ({totalItems})
                             </div>
                             <ClearCartButton />
                         </div>
                     )}
-
                     <div
                         className={`overflow-y-auto flex flex-1 flex-col gap-6 ${items.length === 0 ? "bg-zinc-100 justify-center items-center" : ""}`}
                     >
@@ -62,7 +62,7 @@ export default function CartModal() {
                                         {item.product.image && (
                                             <Image
                                                 src={item.product.image}
-                                                alt={item.product.name}
+                                                alt={`img`}
                                                 width={36}
                                                 height={40}
                                             />
@@ -70,7 +70,10 @@ export default function CartModal() {
                                     </div>
                                     <div className="flex justify-between w-full">
                                         <div className="flex flex-col">
-                                            <div className="text-black text-base font-bold leading-normal">
+                                            <div
+                                                className="text-black text-base font-bold leading-normal max-w-[80px] truncate whitespace-nowrap min-[390px]:max-w-none min-[390px]:whitespace-normal"
+                                                title={item.product.name}
+                                            >
                                                 {item.product.name}
                                             </div>
                                             <div className="opacity-50 text-black text-sm font-bold leading-normal">
@@ -80,13 +83,7 @@ export default function CartModal() {
                                                 })}
                                             </div>
                                         </div>
-                                        <div className="flex items-center">
-                                            <div className="flex items-center border bg-zinc-100">
-                                                <button className="py-1 px-2">-</button>
-                                                <span className="px-2">{item.quantity}</span>
-                                                <button className="py-1 px-2">+</button>
-                                            </div>
-                                        </div>
+                                        <CartModalCounterButton item={item} />
                                     </div>
                                 </div>
                             ))
@@ -116,7 +113,7 @@ export default function CartModal() {
                             onClick={closeModal}
                             className="w-full bg-darkorange py-3 text-sm font-medium text-white uppercase"
                         >
-                            start shopping
+                            add items
                         </button>
                     }
                 </div>

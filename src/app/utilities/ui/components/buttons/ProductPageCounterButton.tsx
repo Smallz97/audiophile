@@ -1,10 +1,6 @@
-'use client'
+import type { ProductPageCounterButtonProps } from "@/app/utilities/library/definitions";
 
-import { useState } from "react";
-import { CounterProps } from "@/app/utilities/library/definitions";
-
-export default function CounterButton({ initialValue = 1, min = 0, max = 10 }: CounterProps) {
-    const [count, setCount] = useState(initialValue);
+export default function ProductPageCounterButton({ count, setCount, min = 0, max = 20 }: ProductPageCounterButtonProps) {
 
     const decrement = () => {
         if (count > min) setCount(count - 1);

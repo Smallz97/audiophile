@@ -9,7 +9,7 @@ export type ContextProviderProps = {
 // Defining the breakpoints for media responsiveness context
 export type Breakpoint = "sm" | "md" | "lg" | "xl" | "2xl"
 
-// Defining the type for the cart modal context provider values
+// Defining the type for the cart modal context values
 export type CartModalContextValues = {
     isOpen: boolean;
     cart: ModalCart;
@@ -40,11 +40,18 @@ export type ButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 // Defining the props for the add-to-cart button component
 export type AddToCartButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
     productId: string;
+    quantity: number;
+}
+
+// Defiing the props for the cart-modal-quantity-control button component
+export type CartModalCounterButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    item: ModalCartItem
 }
 
 // Defining the props type for the counter button component
-export type CounterProps = {
-    initialValue?: number;
+export type ProductPageCounterButtonProps = {
+    count: number;
+    setCount: (val: number) => void;
     min?: number;
     max?: number;
 };

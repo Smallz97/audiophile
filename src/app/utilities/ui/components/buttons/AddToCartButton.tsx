@@ -4,7 +4,7 @@ import { useTransition } from "react";
 import { useCartModal } from "@/app/utilities/contexts/ModalContexts";
 import type { AddToCartButtonProps } from "@/app/utilities/library/definitions";
 
-export default function AddToCartButton({ productId }: AddToCartButtonProps) {
+export default function AddToCartButton({ productId, quantity }: AddToCartButtonProps) {
     const { fetchCart } = useCartModal();
     const [isPending, startTransition] = useTransition();
 
@@ -13,7 +13,7 @@ export default function AddToCartButton({ productId }: AddToCartButtonProps) {
             await fetch('/api/add-to-cart', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ productId }),
+                body: JSON.stringify({ productId, quantity }),
             });
             fetchCart();
         } catch (err) {

@@ -3,7 +3,7 @@ import { NextResponse, NextRequest } from 'next/server'
 import type { ServerCart, ServerCartItem } from '@/app/utilities/library/definitions'
 
 export async function POST(request: NextRequest) {
-  const { productId } = await request.json()
+  const { productId, quantity = 1 } = await request.json();
 
   const cookieStore = await cookies()
   const cartCookie = cookieStore.get('cart')
@@ -22,9 +22,9 @@ export async function POST(request: NextRequest) {
   const existingItem = cart.items.find(item => item.productId === productId)
 
   if (existingItem) {
-    existingItem.quantity += 1
+    existingItem.quantity += quantity;
   } else {
-    const newItem: ServerCartItem = { productId, quantity: 1 }
+    const newItem: ServerCartItem = { productId, quantity }
     cart.items.push(newItem)
   }
 

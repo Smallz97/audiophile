@@ -15,6 +15,8 @@ export default function NavbarWithHeader() {
     const categoryTitle = category?.name ?? "";
 
     const { openModal, cart } = useCartModal();
+    const items = cart.items
+    const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
 
     return (
         <div className="bg-black">
@@ -28,9 +30,11 @@ export default function NavbarWithHeader() {
                     <div className="flex h-[1.25rem] w-[1.4375rem]">
                         <ShoppingCartIcon />
                     </div>
-                    <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-black text-xs text-white">
-                        {cart.items.reduce((sum, item) => sum + item.quantity, 0)}
-                    </span>
+                    {items.length > 0 && (
+                        <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-darkorange text-xs text-white">
+                            {totalItems}
+                        </span>
+                    )}
                 </button>
             </nav>
             {(isHomePage || isCategoryPage) && (
