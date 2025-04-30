@@ -8,7 +8,7 @@ export async function PATCH(request: NextRequest) {
   const cookieStore = await cookies()
   const cartCookie = cookieStore.get('cart')
 
-  let updatedCart: ServerCart = { items: [] }
+  const updatedCart: ServerCart = { items: [] }
 
   if (cartCookie?.value) {
     try {
