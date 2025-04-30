@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers'
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
 import type { ServerCart, ServerCartItem } from '@/app/utilities/library/definitions'
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const { productId } = await request.json()
 
   const cookieStore = await cookies()

@@ -3,8 +3,9 @@
 import Image from "next/image"
 import { useEffect } from "react"
 import { ShoppingCartIcon } from "@/app/utilities/ui/icons"
-import { useCartModal } from "@/app/utilities/contexts/ModalContexts"
 import { formatPrice } from "@/app/utilities/library/price-utilities"
+import { useCartModal } from "@/app/utilities/contexts/ModalContexts"
+import ClearCartButton from "@/app/utilities/ui/components/buttons/ClearCartButton"
 
 export default function CartModal() {
     const { isOpen, closeModal, cart } = useCartModal()
@@ -44,10 +45,7 @@ export default function CartModal() {
                             <div className="text-lg font-bold tracking-wider uppercase text-black">
                                 cart ({items.length})
                             </div>
-
-                            <button className="text-base font-normal leading-normal opacity-50 text-black underline">
-                                Remove all
-                            </button>
+                            <ClearCartButton />
                         </div>
                     )}
 

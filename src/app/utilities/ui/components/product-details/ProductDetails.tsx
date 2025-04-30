@@ -15,7 +15,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     return (
         <BreakpointProvider>
             <div className="flex flex-col gap-20">
-                <div id="image-description-container" className="flex flex-col gap-8">
+                <div id="image-description-container" className="flex flex-col gap-8 md:flex-row">
                     <div id="product-image-container" className="px-12 pt-10 pb-16 rounded-lg bg-zinc-100">
                         <Image src={product.productDetailImage} alt="product image" className="w-full" />
                     </div>

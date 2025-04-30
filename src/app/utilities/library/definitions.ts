@@ -1,16 +1,21 @@
 import type { ReactNode } from "react";
 import { StaticImageData } from "next/image";
 
+// Defining the props for all context providers
+export type ContextProviderProps = {
+    children: ReactNode
+}
+
 // Defining the breakpoints for media responsiveness context
 export type Breakpoint = "sm" | "md" | "lg" | "xl" | "2xl"
 
-// Defining the type for the cart modal context
-export type CartModalContextType = {
+// Defining the type for the cart modal context provider values
+export type CartModalContextValues = {
     isOpen: boolean;
     cart: ModalCart;
     openModal: () => void;
     closeModal: () => void;
-  fetchCart: () => Promise<void>;
+    fetchCart: () => Promise<void>;
 };
 
 // Defining the props for a products category page
@@ -21,11 +26,6 @@ export type ProductsCategoryPagesProps = {
     metaDescription: string;
     keywords: string[];
 };
-
-// Defining the props for the provider component
-export type BreakpointProviderProps = {
-    children: ReactNode
-}
 
 // Defining the props for the header component
 export type HeaderProps = {

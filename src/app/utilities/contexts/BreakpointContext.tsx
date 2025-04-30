@@ -1,11 +1,11 @@
 "use client"
 
 import { createContext, useState, useEffect, useContext } from "react"
-import type { Breakpoint, BreakpointProviderProps } from "@/app/utilities/library/definitions"
+import type { Breakpoint, ContextProviderProps } from "@/app/utilities/library/definitions"
 
 const BreakpointContext = createContext<Breakpoint>("sm")
 
-export function BreakpointProvider({ children }: BreakpointProviderProps) {
+export function BreakpointProvider({ children }: ContextProviderProps) {
     const [breakpoint, setBreakpoint] = useState<Breakpoint>("sm")
 
     useEffect(() => {
@@ -35,5 +35,7 @@ export function BreakpointProvider({ children }: BreakpointProviderProps) {
 }
 
 export function useBreakpoint() {
-    return useContext(BreakpointContext)
+    const context = useContext(BreakpointContext);
+    if (!context) throw new Error("useBreakpoint must be used within a BreakpointProvider");
+    return context;
 }
