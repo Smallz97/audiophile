@@ -43,6 +43,11 @@ export type AddToCartButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement>
     quantity: number;
 }
 
+// Defining the props for the remove-from-cart button component
+export type RemovefromCartButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & { 
+    productId: string 
+}
+
 // Defiing the props for the cart-modal-quantity-control button component
 export type CartModalCounterButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
     item: ModalCartItem
@@ -51,9 +56,12 @@ export type CartModalCounterButtonProps = React.AnchorHTMLAttributes<HTMLAnchorE
 // Defining the props type for the counter button component
 export type ProductPageCounterButtonProps = {
     count: number;
-    setCount: (val: number) => void;
     min?: number;
     max?: number;
+    isPending?: boolean;
+    onIncrement?: () => void;
+    onDecrement?: () => void;
+    setCount?: (value: number) => void;
 };
 
 // Defining the props for the product description component
