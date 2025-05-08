@@ -20,7 +20,7 @@ import ZX7SPI from "../../../../public/images/suggested-products-card/mobile/ZX7
 
 // Image imports for product's overview cards images
 import YX1POI from "../../../../public/images/product-images/earphones/YX1/overview-images/YX1-mobile.png"
-import XX992POI from "../../../../public/images/product-images/headphones/XX99M2/overview-images/XX99-M2-mobile.png"
+import XX992POIM from "../../../../public/images/product-images/headphones/XX99M2/overview-images/XX99-M2-mobile.png"
 import XX991POI from "../../../../public/images/product-images/headphones/XX99M1/overview-images/XX99-M1-mobile.png"
 import XX59POI from "../../../../public/images/product-images/headphones/XX59/overview-images/XX59-mobile.png"
 import ZX9POI from "../../../../public/images/product-images/speakers/ZX9/overview-images/ZX9-mobile.png"
@@ -167,7 +167,7 @@ export const productData: Record<string, Product[]> = {
     headphones: [
         {
             productId: generateProductId("headphones", "XX99 Mark II"),
-            overviewImage: XX992POI,
+            overviewImage: XX992POIM,
             newProduct: true,
             name: "XX99 Mark II",
             productType: "headphones",
@@ -406,13 +406,13 @@ export const categoryPages: ProductsCategoryPagesProps[] = [
 const categoryMap = Object.fromEntries(categoryPages.map((category) => [category.slug, category]));
 
 export const productCategories: ProductsCategory[] = Object.values(categoryMap).map((category) => ({
-    category: category.slug,
+    categoryName: category.slug,
     products: getCategoryProducts(category.slug),
     categoryImage: getCategoryImages(category.slug),
 }));
 
 export const getProductsListOfSingleCategory = cache((slug: string) => {
-    return productCategories.find(p => p.category === slug)!.products;
+    return productCategories.find(p => p.categoryName === slug)!.products;
 });
 
 export const getAllProducts = () => {

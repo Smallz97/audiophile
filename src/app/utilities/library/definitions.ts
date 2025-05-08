@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { StaticImageData } from "next/image";
+import { StaticImageData, ImageProps } from "next/image";
 
 // Defining the props for all context providers
 export type ContextProviderProps = {
@@ -64,6 +64,15 @@ export type ProductPageCounterButtonProps = {
     setCount?: (value: number) => void;
 };
 
+// Defining the props for the responsive images component
+export type ResponsiveImageProps = Omit<ImageProps, "src"> & {
+    srcSet: {
+      mobile: StaticImageData,
+      tablet: StaticImageData,
+      desktop?: StaticImageData
+    }
+}
+
 // Defining the props for the product description component
 export type ProductDescriptionProps = {
     name: string;
@@ -89,18 +98,18 @@ export type FeaturedImages = {
     third: StaticImageData;
 }
 
-// Defining the images object for the Responsive featured images component
-export type BreakpointDetectedFeaturedImages = {
+// Defining the images set for different screen sizes
+export type ImageSet = {
     mobile: FeaturedImages;
     tablet: FeaturedImages;
     desktops: FeaturedImages;
 }
 
-// Defining the props for the responsive images component
-export type ResponsiveFeaturedImagesProps = {
+// Defining the props for the responsive featured-images component
+export type ProductFeaturedImagesProps = {
     className?: string;
     containerClassName?: string;
-    images: BreakpointDetectedFeaturedImages;
+    images: ImageSet;
 }
 
 // Defining a price object
@@ -127,7 +136,7 @@ export type Product = {
     price: Price;
     features: string[];
     boxContent: BoxContents[];
-    featuredImages: BreakpointDetectedFeaturedImages;
+    featuredImages: ImageSet;
     suggestedProductCardImages: StaticImageData;
     cartImage: string;
 }
@@ -149,14 +158,19 @@ export type ProductsListProps = {
 
 // Defining a products category object
 export type ProductsCategory = {
-    category: string;
+    categoryName: string;
     products: Product[];
     categoryImage: StaticImageData;
 }
 
+// Defining the props for the product-category-card component
+export type ProductsCategoryCardProps = {
+    category: ProductsCategory;
+}
+
 // Defining the props for the categories-list component
 export type CategoriesListProps = {
-    categories: ProductsCategory[];
+    path: string | undefined;
 }
 
 // Defining a lightweight cart item object with only productId and quantity for cookie storage

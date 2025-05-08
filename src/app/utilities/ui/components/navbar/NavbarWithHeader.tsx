@@ -39,21 +39,26 @@ export default function NavbarWithHeader() {
             </nav>
             {(isHomePage || isCategoryPage) && (
                 isHomePage ? (
-                    <div id="homepage-header" className="bg-[url('/images/hero-images/mobile.png')] bg-bottom min-[390px]:bg-center min-[390px]:bg-cover bg-no-repeat py-28 px-6">
-                        <div className="flex flex-col gap-4 items-center">
-                            <div className="text-sm font-normal tracking-widest text-white opacity-50 text-center uppercase">
+                    <div
+                        id="homepage-header"
+                        className="bg-[url('/images/hero-images/mobile.png')] bg-bottom min-[390px]:bg-center min-[390px]:bg-cover md:bg-[url('/images/hero-images/tablet.png')] bg-no-repeat py-28 md:py-0 md:pb-48 md:pt-36 px-6 md:px-48"
+                    >
+                        <div className="flex flex-col gap-4 md:gap-6 items-center">
+                            <div className="text-sm font-normal tracking-[10px] text-white opacity-50 text-center uppercase">
                                 new product
                             </div>
-                            <div className="flex flex-col justify-center items-center gap-6">
-                                <div className="text-4xl font-bold leading-10 tracking-wider text-white text-center uppercase">
-                                    XX99 Mark II<br />headphones
-                                </div>
-                                <div className="text-base font-normal leading-normal text-white opacity-75 text-center">
-                                    Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
+                            <div className="flex flex-col justify-center items-center gap-7 md:gap-10">
+                                <div className="flex flex-col gap-6 items-center">
+                                    <div className="text-4xl md:text-5xl font-bold leading-10 md:leading-[58px] tracking-wider md:tracking-widest text-white text-center uppercase">
+                                        XX99 Mark II<br />headphones
+                                    </div>
+                                    <div className="text-base font-normal leading-normal text-white opacity-75 text-center">
+                                        Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
+                                    </div>
                                 </div>
                                 <Button
                                     href={`/headphones/XX99 Mark II`}
-                                    className={`text-xs font-bold tracking-wide bg-darkorange text-white`}
+                                    className={`text-xs font-bold tracking-wider bg-darkorange text-white`}
                                 >
                                     see product
                                 </Button>
@@ -63,7 +68,7 @@ export default function NavbarWithHeader() {
                 ) : (
                     <div
                         id="categorypages-header"
-                        className="py-8 text-2xl font-bold tracking-widest text-white text-center uppercase"
+                        className="py-8 text-2xl md:text-4xl font-bold tracking-widest text-white text-center uppercase"
                     >
                         {categoryTitle}
                     </div>

@@ -1,5 +1,5 @@
 import PromotionCard from "@/app/utilities/ui/components/promotion-card/PromotionCard"
-import ProductCategoriesList from "@/app/utilities/ui/components/product-categories/ProductCategoriesList";
+import ProductCategoriesList from "@/app/utilities/ui/components/product-category-list/ProductCategoriesList";
 
 export default async function CategoryPagesLayout({
     children,
