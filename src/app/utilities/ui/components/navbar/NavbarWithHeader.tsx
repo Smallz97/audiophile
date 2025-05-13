@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { categoryPages } from "@/app/utilities/library/data";
-import Button from "@/app/utilities/ui/components/buttons/Button";
-import { useCartModal } from "@/app/utilities/contexts/ModalContexts";
+import Button from "@/app/utilities/ui/components/buttons/cta-buttons/Button";
+import { useCartModal } from "@/app/utilities/contexts/CartContext";
 import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
 
 export default function NavbarWithHeader() {
@@ -68,7 +68,7 @@ export default function NavbarWithHeader() {
                 ) : (
                     <div
                         id="categorypages-header"
-                        className="py-8 text-2xl md:text-4xl font-bold tracking-widest text-white text-center uppercase"
+                        className="py-8 md:py-24 text-2xl md:text-4xl font-bold tracking-widest text-white text-center uppercase"
                     >
                         {categoryTitle}
                     </div>

@@ -10,7 +10,7 @@ export default async function CategoryPagesLayout({
 }) {
     const { slug } = await params;
     return (
-        <div className="flex flex-col px-6 pt-16 pb-[7.5rem] gap-[7.5rem]">
+        <div className="flex flex-col px-6 md:px-[2.44rem] pt-16 md:pt-[7.5rem] pb-[7.5rem] gap-[7.5rem]">
             {children}
             <ProductCategoriesList path={slug} />
             <PromotionCard />

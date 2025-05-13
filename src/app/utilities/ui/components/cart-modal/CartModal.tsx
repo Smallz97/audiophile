@@ -4,9 +4,9 @@ import Image from "next/image"
 import { useEffect } from "react"
 import { ShoppingCartIcon } from "@/app/utilities/ui/icons"
 import { formatPrice } from "@/app/utilities/library/price-utilities"
-import { useCartModal } from "@/app/utilities/contexts/ModalContexts"
-import ClearCartButton from "@/app/utilities/ui/components/buttons/ClearCartButton"
-import CartModalCounterButton from "@/app/utilities/ui/components/buttons/CartModalCounterButton"
+import { useCartModal } from "@/app/utilities/contexts/CartContext"
+import ClearCartButton from "@/app/utilities/ui/components/cart-modal/buttons/ClearCartButton"
+import CartModalCounterButton from "@/app/utilities/ui/components/cart-modal/buttons/CartModalCounterButton"
 
 export default function CartModal() {
     const { isOpen, closeModal, cart } = useCartModal()
@@ -61,18 +61,18 @@ export default function CartModal() {
                                     <div className="h-16 w-16 p-2 border flex justify-center items-center bg-zinc-100 rounded-lg">
                                         {item.product.image && (
                                             <Image
-                                                src={item.product.image}
-                                                alt={`img`}
                                                 width={36}
                                                 height={40}
+                                                alt={`img`}
+                                                src={item.product.image}
                                             />
                                         )}
                                     </div>
                                     <div className="flex justify-between w-full">
                                         <div className="flex flex-col">
                                             <div
-                                                className="text-black text-base font-bold leading-normal max-w-[80px] truncate whitespace-nowrap min-[390px]:max-w-none min-[390px]:whitespace-normal"
                                                 title={item.product.name}
+                                                className="text-black text-base font-bold leading-normal max-w-[80px] truncate whitespace-nowrap min-[390px]:max-w-none min-[390px]:whitespace-normal"
                                             >
                                                 {item.product.name}
                                             </div>

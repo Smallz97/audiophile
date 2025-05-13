@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { findMatchingCategory, } from "@/app/utilities/library/functions"
 import { getProductsListOfSingleCategory, categoryPages } from "@/app/utilities/library/data"
-import ProductsList from "@/app/utilities/ui/components/products-list/ProductsList"
+import ProductsCategoryList from "@/app/utilities/ui/components/products-category-list/ProductsCategoryList"
 
 export async function generateStaticParams() {
     return categoryPages.map((category) => ({
@@ -61,6 +61,6 @@ export default async function CategoryPage({ params, }: { params: Promise<{ slug
     const productsList = getProductsListOfSingleCategory(slug);
 
     return (
-        <ProductsList productsList={productsList} />
+        <ProductsCategoryList productsList={productsList} />
     );
 }

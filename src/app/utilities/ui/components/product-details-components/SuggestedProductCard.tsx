@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Button from "@/app/utilities/ui/components/buttons/Button"
+import Button from "@/app/utilities/ui/components/buttons/cta-buttons/Button"
 import { SuggestedProductCardProps } from "@/app/utilities/library/definitions"
 
 export default function SuggestedProductCard({ products }: SuggestedProductCardProps) {

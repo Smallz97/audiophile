@@ -1,7 +1,7 @@
-import Button from "@/app/utilities/ui/components/buttons/Button";
+import Button from "@/app/utilities/ui/components/buttons/cta-buttons/Button";
+import ResponsiveImage from "@/app/utilities/ui/components/utility-components/ResponsiveImage";
 import mobileImg from "../../../../../../public/images/featured-products-images/YX1/mobile-yx1.png"
 import tabletImg from "../../../../../../public/images/featured-products-images/YX1/tablet-yx1.png"
-import ResponsiveImage from "@/app/utilities/ui/components/utility-components/ResponsiveImage";
 
 
 export default function YX1() {

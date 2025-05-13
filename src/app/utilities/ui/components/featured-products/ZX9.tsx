@@ -1,4 +1,4 @@
-import Button from "@/app/utilities/ui/components/buttons/Button";
+import Button from "@/app/utilities/ui/components/buttons/cta-buttons/Button";
 import tabletImg from "../../../../../../public/images/featured-products-images/ZX9/tablet-zx9.png"
 import mobileImg from "../../../../../../public/images/featured-products-images/ZX9/mobile-zx9.png"
 import ResponsiveImage from "@/app/utilities/ui/components/utility-components/ResponsiveImage";

@@ -1,5 +1,5 @@
 import { useTransition } from "react";
-import { useCartModal } from "@/app/utilities/contexts/ModalContexts";
+import { useCartModal } from "@/app/utilities/contexts/CartContext";
 import type { CartModalCounterButtonProps } from "@/app/utilities/library/definitions";
 
 export default function CartModalCounterButton({ item }: CartModalCounterButtonProps) {

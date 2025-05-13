@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import Footer from "@/app/utilities/ui/components/footer/Footer";
-import { CartModalProvider } from "@/app/utilities/contexts/ModalContexts";
+import { CartContextProvider } from "@/app/utilities/contexts/CartContext";
 import CartModal from "@/app/utilities/ui/components/cart-modal/CartModal";
 import { BreakpointProvider } from "@/app/utilities/contexts/BreakpointContext";
 import NavbarWithHeader from "@/app/utilities/ui/components/navbar/NavbarWithHeader";
@@ -26,13 +26,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${manrope.variable} antialiased`}>
         <BreakpointProvider>
-          <CartModalProvider>
+          <CartContextProvider>
             <NavbarWithHeader />
             <CartModal />
-            <main>
-              {children}
-            </main>
-          </CartModalProvider>
+            <main>{children}</main>
+          </CartContextProvider>
         </BreakpointProvider>
         <Footer />
       </body>

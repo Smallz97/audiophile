@@ -4,9 +4,9 @@ import type { CartModalContextValues } from "@/app/utilities/library/definitions
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import type { ContextProviderProps, ModalCart } from "@/app/utilities/library/definitions"
 
-export const CartModalContext = createContext<CartModalContextValues | undefined>(undefined);
+export const CartContext = createContext<CartModalContextValues | undefined>(undefined);
 
-export function CartModalProvider({ children }: ContextProviderProps) {
+export function CartContextProvider({ children }: ContextProviderProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [cart, setCart] = useState<ModalCart>({ items: [], formattedTotalPrice: "" })
 
@@ -35,14 +35,14 @@ export function CartModalProvider({ children }: ContextProviderProps) {
     }, [fetchCart]);
 
     return (
-        <CartModalContext.Provider value={{ isOpen, openModal, closeModal, fetchCart, cart }}>
+        <CartContext.Provider value={{ isOpen, openModal, closeModal, fetchCart, cart }}>
             {children}
-        </CartModalContext.Provider>
+        </CartContext.Provider>
     );
 }
 
 export const useCartModal = () => {
-    const context = useContext(CartModalContext);
+    const context = useContext(CartContext);
     if (!context) throw new Error("useCartModal must be used within a CartModalProvider");
     return context;
 };

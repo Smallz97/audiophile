@@ -1,5 +1,5 @@
 import { useTransition } from "react";
-import { useCartModal } from "@/app/utilities/contexts/ModalContexts";
+import { useCartModal } from "@/app/utilities/contexts/CartContext";
 
 export default function ClearCartButton() {
     const { fetchCart } = useCartModal();

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProductsListOfSingleCategory } from "@/app/utilities/library/data";
 import { findMatchingCategory } from "@/app/utilities/library/functions";
-import ProductDetails from "@/app/utilities/ui/components/product-details/ProductDetails";
+import { getProductsListOfSingleCategory } from "@/app/utilities/library/data";
+import ProductDetails from "@/app/utilities/ui/components/product-details-components/ProductDetails";
 
 export default async function ProductOverviewPage({ params }: { params: Promise<{ slug: string, product: string }> }) {
     const { slug, product } = await params;

@@ -18,24 +18,6 @@ import ZX9SPI from "../../../../public/images/suggested-products-card/mobile/ZX9
 import ZX7SPI from "../../../../public/images/suggested-products-card/mobile/ZX7.png"
 
 
-// Image imports for product's overview cards images
-import YX1POI from "../../../../public/images/product-images/earphones/YX1/overview-images/YX1-mobile.png"
-import XX992POIM from "../../../../public/images/product-images/headphones/XX99M2/overview-images/XX99-M2-mobile.png"
-import XX991POI from "../../../../public/images/product-images/headphones/XX99M1/overview-images/XX99-M1-mobile.png"
-import XX59POI from "../../../../public/images/product-images/headphones/XX59/overview-images/XX59-mobile.png"
-import ZX9POI from "../../../../public/images/product-images/speakers/ZX9/overview-images/ZX9-mobile.png"
-import ZX7POI from "../../../../public/images/product-images/speakers/ZX7/overview-images/ZX7-mobile.png"
-
-
-// Image imports for product's details card images
-import YX1PDI from "../../../../public/images/product-images/earphones/YX1/product-details-images/YX1-mobile.png"
-import XX992PDI from "../../../../public/images/product-images/headphones/XX99M2/product-details-images/XX99-M2-mobile.png"
-import XX991PDI from "../../../../public/images/product-images/headphones/XX99M1/product-details-images/XX99-M1-mobile.png"
-import XX59PDI from "../../../../public/images/product-images/headphones/XX59/product-details-images/XX59-mobile.png"
-import ZX9PDI from "../../../../public/images/product-images/speakers/ZX9/product-details-images/ZX9-mobile.png"
-import ZX7PDI from "../../../../public/images/product-images/speakers/ZX7/product-details-images/ZX7-mobile.png"
-
-
 // Image imports for product's featured images
 // YX1 Earphones
 import YX1FFM from "../../../../public/images/product-images/earphones/YX1/featured-images/mobile/first.png"
@@ -124,13 +106,13 @@ export const productData: Record<string, Product[]> = {
     earphones: [
         {
             productId: generateProductId("earphones", "YX1 Wireless"),
-            overviewImage: YX1POI,
+            overviewImage: "/images/product-images/earphones/YX1/overview-images/YX1-mobile.png",
             newProduct: true,
             name: "YX1 Wireless",
             productType: "earphones",
             description:
                 "Tailor your listening experience with bespoke dynamic drivers from the new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even in noisy environments with its active noise cancellation feature.",
-            productDetailImage: YX1PDI,
+            productDetailImage: "/images/product-images/earphones/YX1/product-details-images/YX1-mobile.png",
             price: createPrice(59900),
             features: [
                 "Experience unrivalled stereo sound thanks to innovative acoustic technology. With improved ergonomics designed for full day wearing, these revolutionary earphones have been finely crafted to provide you with the perfect fit, delivering complete comfort all day long while enjoying exceptional noise isolation and truly immersive sound.",
@@ -167,13 +149,13 @@ export const productData: Record<string, Product[]> = {
     headphones: [
         {
             productId: generateProductId("headphones", "XX99 Mark II"),
-            overviewImage: XX992POIM,
+            overviewImage: "/images/product-images/headphones/XX99M2/overview-images/XX99-M2-mobile.png",
             newProduct: true,
             name: "XX99 Mark II",
             productType: "headphones",
             description:
                 "The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.",
-            productDetailImage: XX992PDI,
+            productDetailImage: "/images/product-images/headphones/XX99M2/product-details-images/XX99-M2-mobile.png",
             price: createPrice(299900),
             features: [
                 "Featuring a genuine leather head strap and premium earcups, these headphones deliver superior comfort for those who like to enjoy endless listening. It includes intuitive controls designed for any situation. Whether you're taking a business call or just in your own personal space, the auto on/off and pause features ensure that you'll never miss a beat.",
@@ -208,13 +190,13 @@ export const productData: Record<string, Product[]> = {
         },
         {
             productId: generateProductId("headphones", "XX99 Mark I"),
-            overviewImage: XX991POI,
+            overviewImage: "/images/product-images/headphones/XX99M1/overview-images/XX99-M1-mobile.png",
             newProduct: false,
             name: "XX99 Mark I",
             productType: "headphones",
             description:
                 "As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate audio reproduction for audiophiles, mixing engineers, and music aficionados alike in studios and on the go.",
-            productDetailImage: XX991PDI,
+            productDetailImage: "/images/product-images/headphones/XX99M1/product-details-images/XX99-M1-mobile.png",
             price: createPrice(175000),
             features: [
                 "As the headphones all others are measured against, the XX99 Mark I demonstrates over five decades of audio expertise, redefining the critical listening experience. This pair of closed-back headphones are made of industrial, aerospace-grade materials to emphasize durability at a relatively light weight of 11 oz.",
@@ -248,13 +230,13 @@ export const productData: Record<string, Product[]> = {
         },
         {
             productId: generateProductId("headphones", "XX59"),
-            overviewImage: XX59POI,
+            overviewImage: "/images/product-images/headphones/XX59/overview-images/XX59-mobile.png",
             newProduct: false,
             name: "XX59",
             productType: "headphones",
             description:
                 "Enjoy your audio almost anywhere and customize it to your specific tastes with the XX59 headphones. The stylish yet durable versatile wireless headset is a brilliant companion at home or on the move.",
-            productDetailImage: XX59PDI,
+            productDetailImage: "/images/product-images/headphones/XX59/product-details-images/XX59-mobile.png",
             price: createPrice(89900),
             features: [
                 "These headphones have been created from durable, high-quality materials tough enough to take anywhere. Its compact folding design fuses comfort and minimalist style making it perfect for travel. Flawless transmission is assured by the latest wireless technology engineered for audio synchronization with videos.",
@@ -290,13 +272,13 @@ export const productData: Record<string, Product[]> = {
     speakers: [
         {
             productId: generateProductId("speakers", "ZX9"),
-            overviewImage: ZX9POI,
+            overviewImage: "/images/product-images/speakers/ZX9/overview-images/ZX9-mobile.png",
             newProduct: true,
             name: "ZX9",
             productType: "speakers",
             description:
                 "Upgrade your sound system with the all new ZX9 active speaker. It's a bookshelf speaker system that offers truly wireless connectivity -- creating new possibilities for more pleasing and practical audio setups.",
-            productDetailImage: ZX9PDI,
+            productDetailImage: "/images/product-images/speakers/ZX9/product-details-images/ZX9-mobile.png",
             price: createPrice(450000),
             features: [
                 "Connect via Bluetooth or nearly any wired source. This speaker features optical, digital coaxial, USB Type-B, stereo RCA, and stereo XLR inputs, allowing you to have up to five wired source devices connected for easy switching. Improved bluetooth technology offers near lossless audio quality at up to 328ft (100m).",
@@ -331,13 +313,13 @@ export const productData: Record<string, Product[]> = {
         },
         {
             productId: generateProductId("speakers", "ZX7"),
-            overviewImage: ZX7POI,
+            overviewImage: "/images/product-images/speakers/ZX7/overview-images/ZX7-mobile.png",
             newProduct: false,
             name: "ZX7",
             productType: "speakers",
             description:
                 "Stream high-quality sound wirelessly with minimal loss. The ZX7 bookshelf speaker uses high-end audiophile components that represent the top-of-the-line powered speakers for home or studio use.",
-            productDetailImage: ZX7PDI,
+            productDetailImage: "/images/product-images/speakers/ZX7/product-details-images/ZX7-mobile.png",
             price: createPrice(350000),
             features: [
                 "Reap the advantages of a flat diaphragm tweeter cone. This provides a fast response rate and excellent high frequencies that lower tiered bookshelf speakers cannot provide. The woofers are made from aluminum that produces a unique and clear sound. XLR inputs allow you to connect to a mixer for more advanced usage.",
@@ -418,11 +400,3 @@ export const getProductsListOfSingleCategory = cache((slug: string) => {
 export const getAllProducts = () => {
     return Object.values(productData).flat();
 }
-
-export const mockCartItems = [
-    { id: 1, name: "XX99 MK II", price: 129.99, quantity: 1 },
-    { id: 2, name: "XX59", price: 89.99, quantity: 2 },
-    { id: 3, name: "YX1", price: 199.99, quantity: 1 },
-    { id: 4, name: "ZX9", price: 199.99, quantity: 1 },
-    { id: 5, name: "ZX7", price: 199.99, quantity: 1 },
-]

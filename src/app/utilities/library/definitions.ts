@@ -6,10 +6,10 @@ export type ContextProviderProps = {
     children: ReactNode
 }
 
-// Defining the breakpoints for media responsiveness context
+// Defining the breakpoints for the media responsiveness context
 export type Breakpoint = "sm" | "md" | "lg" | "xl" | "2xl"
 
-// Defining the type for the cart modal context values
+// Defining the cart modal context values
 export type CartModalContextValues = {
     isOpen: boolean;
     cart: ModalCart;
@@ -22,9 +22,9 @@ export type CartModalContextValues = {
 export type ProductsCategoryPagesProps = {
     name: string;
     slug: string;
+    keywords: string[];
     description: string;
     metaDescription: string;
-    keywords: string[];
 };
 
 // Defining the props for the header component
@@ -55,9 +55,9 @@ export type CartModalCounterButtonProps = React.AnchorHTMLAttributes<HTMLAnchorE
 
 // Defining the props type for the counter button component
 export type ProductPageCounterButtonProps = {
-    count: number;
     min?: number;
     max?: number;
+    count: number;
     isPending?: boolean;
     onIncrement?: () => void;
     onDecrement?: () => void;
@@ -127,18 +127,18 @@ export type PriceComponentProps = {
 // Defining a product object
 export type Product = {
     productId: string;
-    overviewImage: StaticImageData;
+    cartImage: string;
+    overviewImage: string;
     newProduct: boolean;
     name: string;
     productType: string;
     description: string;
-    productDetailImage: StaticImageData;
+    productDetailImage: string;
     price: Price;
     features: string[];
     boxContent: BoxContents[];
     featuredImages: ImageSet;
     suggestedProductCardImages: StaticImageData;
-    cartImage: string;
 }
 
 // Defining the props for the suggested products card component
@@ -163,11 +163,6 @@ export type ProductsCategory = {
     categoryImage: StaticImageData;
 }
 
-// Defining the props for the product-category-card component
-export type ProductsCategoryCardProps = {
-    category: ProductsCategory;
-}
-
 // Defining the props for the categories-list component
 export type CategoriesListProps = {
     path: string | undefined;
@@ -179,7 +174,7 @@ export type ServerCartItem = {
     quantity: number;
 };
 
-// Defining a lightweight cart object containing cart items for cookie storage and retrieval
+// Defining a lightweight cart object containing server cart items for cookie storage and retrieval
 export type ServerCart = {
     items: ServerCartItem[];
 };
@@ -195,7 +190,7 @@ export type ModalCartItem = {
     }
 }
 
-// Defining the modal cart object with product details for display in the cart modal
+// Defining the modal cart object with full product details and price for display in the cart modal
 export type ModalCart = {
     items: ModalCartItem[];
     formattedTotalPrice: string
