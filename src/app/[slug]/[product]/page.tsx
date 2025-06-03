@@ -21,9 +21,12 @@ export default async function ProductOverviewPage({ params }: { params: Promise<
 
     return (
         <div className="flex flex-col">
-            <Link href={`/${slug}`} className="mb-6">
+            {/* <Link
+                className="mb-6"
+                href={`/${slug}`}
+            >
                 <div className="opacity-50 text-black text-base font-normal leading-normal">Go back</div>
-            </Link>
+            </Link> */}
             <ProductDetails product={displayedProduct} />
         </div>
     )

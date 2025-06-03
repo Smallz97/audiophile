@@ -15,8 +15,8 @@ export default function ProductCategoriesList({ path }: CategoriesListProps) {
             {displayedCategories.map((category, index) => (
                 <div key={index} className="relative w-full">
                     <Image
-                        src={category.categoryImage}
                         alt="category image"
+                        src={category.categoryImage}
                         className="drop-shadow-2xl absolute -top-1/4 left-1/2 -translate-x-1/2"
                     />
                     <div className="w-full bg-zinc-100 rounded-lg flex flex-col items-center pt-24 pb-5">

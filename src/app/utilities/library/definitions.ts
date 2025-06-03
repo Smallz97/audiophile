@@ -73,6 +73,11 @@ export type ResponsiveImageProps = Omit<ImageProps, "src"> & {
     }
 }
 
+// Defining the props for the product details Image component
+export type ProductImageProps = {
+    image: string;
+}
+
 // Defining the props for the product description component
 export type ProductDescriptionProps = {
     name: string;

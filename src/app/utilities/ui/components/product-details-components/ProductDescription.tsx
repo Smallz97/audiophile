@@ -7,7 +7,7 @@ export default function ProductDescription({ name, productType, description }: P
                 <br />
                 {productType}
             </div>
-            <p className="text-base font-normal leading-normal text-black opacity-50">{description}</p>
+            <p className="text-base font-normal leading-normal md:leading-relaxed text-black opacity-50">{description}</p>
         </>
     )
 }

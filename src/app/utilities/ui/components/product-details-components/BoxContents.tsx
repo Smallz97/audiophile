@@ -2,8 +2,14 @@ import { BoxContents } from "@/app/utilities/library/definitions";
 
 export default function BoxContent({ items }: { items: BoxContents[] }) {
     return (
-        <div id="in-the-box-container" className="flex flex-col gap-6">
-            <div id="container-title" className="text-2xl font-bold leading-9 tracking-wide text-black uppercase">
+        <div
+            id="in-the-box-container"
+            className="flex flex-col md:flex-row gap-6 md:gap-16 md:w-4/5 md:justify-between"
+        >
+            <div
+                id="container-title"
+                className="text-2xl md:text-3xl font-bold leading-9 tracking-wide md:tracking-wider text-black uppercase"
+            >
                 In the box
             </div>
             <ul id="box-contents-container" className="flex flex-col gap-2 list-none">
