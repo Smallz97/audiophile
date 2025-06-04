@@ -41,7 +41,7 @@ export default function CartModal() {
             >
                 <div
                     onClick={(e) => e.stopPropagation()}
-                    className="relative z-10 md:w-96 w-full rounded-lg bg-white px-[1.75rem] md:px-[2.06rem] py-8 shadow-lg flex flex-col gap-8"
+                    className={`relative z-10 md:w-96 w-full rounded-lg bg-white px-[1.75rem] md:px-[2.06rem] py-8 shadow-lg flex flex-col gap-8 max-h-[calc(100vh-8rem)]`}
                 >
                     {items.length > 0 && (
                         <div className="flex items-center justify-between">
@@ -52,7 +52,7 @@ export default function CartModal() {
                         </div>
                     )}
                     <div
-                        className={`overflow-y-auto flex flex-col gap-6 ${items.length === 0 ? "bg-zinc-100 justify-center items-center h-56 md:h-96" : ""}`}
+                        className={`overflow-y-auto flex flex-1 flex-col gap-6 ${items.length === 0 ? "bg-zinc-100 justify-center items-center" : ""}`}
                     >
                         {items.length > 0 ? (
                             items.map((item) => (
