@@ -24,7 +24,6 @@ export default function NavbarWithHeader() {
             <nav className="flex justify-between items-center py-8 px-4 md:px-[2.44rem] lg:px-[10.32rem] border-b border-white/10">
                 <div className="flex w-4 h-3.5 md:hidden"><HamburgerIcon /></div>
                 <Link href={"/"} className="flex w-36 h-6"><AudiophileLogo /></Link>
-                <div></div>
                 <button
                     onClick={openModal}
                     className="relative p-1"
