@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findMatchingCategory } from "@/app/utilities/library/functions";
 import { getProductsListOfSingleCategory } from "@/app/utilities/library/data";
