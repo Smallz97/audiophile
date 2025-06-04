@@ -32,14 +32,16 @@ export default function CartModal() {
     const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
 
     return (
-        <div className="fixed inset-0 z-50 flex items-start justify-center">
+        <div
+            onClick={closeModal}
+            className="fixed inset-0 z-50 bg-black/60"
+        >
             <div
-                onClick={closeModal}
-                className="absolute inset-0 bg-black/50 px-6 pt-28 pb-6 flex md:justify-end"
+                className="px-6 pt-28 pb-6 flex md:justify-end"
             >
                 <div
                     onClick={(e) => e.stopPropagation()}
-                    className="relative z-10 max-w-md w-full rounded-lg bg-white px-6 py-8 shadow-lg flex flex-col gap-8"
+                    className="relative z-10 md:w-96 w-full rounded-lg bg-white px-[1.75rem] md:px-[2.06rem] py-8 shadow-lg flex flex-col gap-8"
                 >
                     {items.length > 0 && (
                         <div className="flex items-center justify-between">
@@ -50,7 +52,7 @@ export default function CartModal() {
                         </div>
                     )}
                     <div
-                        className={`overflow-y-auto flex flex-1 flex-col gap-6 ${items.length === 0 ? "bg-zinc-100 justify-center items-center" : ""}`}
+                        className={`overflow-y-auto flex flex-col gap-6 ${items.length === 0 ? "bg-zinc-100 justify-center items-center h-56 md:h-96" : ""}`}
                     >
                         {items.length > 0 ? (
                             items.map((item) => (
@@ -76,7 +78,7 @@ export default function CartModal() {
                                             >
                                                 {item.product.name}
                                             </div>
-                                            <div className="opacity-50 text-black text-sm font-bold leading-normal">
+                                            <div className="opacity-50 text-black text-sm md:text-lg font-bold leading-normal">
                                                 {formatPrice({
                                                     amount: item.product.price.amount,
                                                     currency: item.product.price.currency,
@@ -99,7 +101,7 @@ export default function CartModal() {
 
                     {items.length > 0 && (
                         <div className="flex justify-between font-medium uppercase">
-                            <p>Total</p>
+                            <p className="opacity-50">Total</p>
                             <p>{total}</p>
                         </div>
                     )}
