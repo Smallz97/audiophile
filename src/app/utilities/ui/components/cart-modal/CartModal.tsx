@@ -41,7 +41,7 @@ export default function CartModal() {
             >
                 <div
                     onClick={(e) => e.stopPropagation()}
-                    className={`relative z-10 md:w-96 w-full rounded-lg bg-white px-[1.75rem] md:px-[2.06rem] py-8 shadow-lg flex flex-col gap-8 max-h-[calc(100vh-6rem)] md:max-h-[calc(100vh-19rem)]`}
+                    className={`relative z-10 md:w-96 w-full rounded-lg bg-white px-[1.75rem] md:px-[2.06rem] py-8 shadow-lg flex flex-col gap-8 max-h-[calc(100vh-8rem)] md:max-h-[calc(100vh-19rem)]`}
                 >
                     {items.length > 0 && (
                         <div className="flex items-center justify-between">
