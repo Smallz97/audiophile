@@ -1,8 +1,8 @@
 import { useTransition } from "react";
-import { useCartModal } from "@/app/utilities/contexts/CartContext";
+import { useCartContext } from "@/app/utilities/contexts/CartContext";
 
 export default function ClearCartButton() {
-    const { fetchCart } = useCartModal();
+    const { fetchCart } = useCartContext();
     const [isPending, startTransition] = useTransition();
 
     async function handleClearCart() {

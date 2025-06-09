@@ -12,7 +12,7 @@ export type Breakpoint = "sm" | "md" | "lg" | "xl" | "2xl"
 // Defining the cart modal context values
 export type CartModalContextValues = {
     isOpen: boolean;
-    cart: ModalCart;
+    cart: CartObject;
     openModal: () => void;
     closeModal: () => void;
     fetchCart: () => Promise<void>;
@@ -50,7 +50,7 @@ export type RemovefromCartButtonProps = React.AnchorHTMLAttributes<HTMLAnchorEle
 
 // Defiing the props for the cart-modal-quantity-control button component
 export type CartModalCounterButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-    item: ModalCartItem
+    item: CartItem
 }
 
 // Defining the props type for the counter button component
@@ -146,6 +146,11 @@ export type Product = {
     suggestedProductCardImages: StaticImageData;
 }
 
+// Defining the enriched product type
+export type EnrichedProduct = Product & {
+  formattedPrice: string;
+};
+
 // Defining the props for the suggested products card component
 export type SuggestedProductCardProps = {
     products: Product[];
@@ -173,35 +178,57 @@ export type CategoriesListProps = {
     path: string | undefined;
 }
 
-// Defining a lightweight cart item object with only productId and quantity for cookie storage
+// Defining a lightweight cart-item object with only productId and quantity for cookie storage
 export type ServerCartItem = {
     productId: string;
     quantity: number;
 };
 
-// Defining a lightweight cart object containing server cart items for cookie storage and retrieval
+// Defining a lightweight cart object containing server cart-items for cookie storage and retrieval
 export type ServerCart = {
     items: ServerCartItem[];
 };
 
-// Defining the full cart item object with product details for display in the cart modal
-export type ModalCartItem = {
+// Defining the full cart-item object with full product details for display in the cart modal
+export type CartItem = {
     productId: string
     quantity: number
     product: {
       name: string
       price: Price
       image: string
+      formattedPrice: string
     }
 }
 
-// Defining the modal cart object with full product details and price for display in the cart modal
-export type ModalCart = {
-    items: ModalCartItem[];
+// Defining the cart object with items and total price for display in the cart modal
+export type CartObject = {
+    items: CartItem[];
     formattedTotalPrice: string
 }
 
 // Defining the props for the cart modal component
 export type CartModalProps = {
-    cart: ModalCart;
+    cart: CartObject;
+}
+
+// Defining the props for the checkout form input component
+export type InputFieldProps = {
+  id: string
+  label: string
+  type?: string
+  placeholder?: string
+}
+
+// Defining the props for the radio input component
+export type RadioOptions = {
+  id: string
+  label: string
+  value: string
+}
+
+// Defiing the props for the radio groups
+export type RadioGroupProps = {
+  name: string
+  options: RadioOptions[]
 }

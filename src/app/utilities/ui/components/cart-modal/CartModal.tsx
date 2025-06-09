@@ -3,13 +3,13 @@
 import Image from "next/image"
 import { useEffect } from "react"
 import { ShoppingCartIcon } from "@/app/utilities/ui/icons"
-import { formatPrice } from "@/app/utilities/library/price-utilities"
-import { useCartModal } from "@/app/utilities/contexts/CartContext"
+import { useCartContext } from "@/app/utilities/contexts/CartContext"
+import Button from "@/app/utilities/ui/components/buttons/cta-buttons/Button"
 import ClearCartButton from "@/app/utilities/ui/components/cart-modal/buttons/ClearCartButton"
 import CartModalCounterButton from "@/app/utilities/ui/components/cart-modal/buttons/CartModalCounterButton"
 
 export default function CartModal() {
-    const { isOpen, closeModal, cart } = useCartModal()
+    const { isOpen, closeModal, cart } = useCartContext()
 
     useEffect(() => {
         const handleEscapeKey = (event: KeyboardEvent) => {
@@ -34,7 +34,7 @@ export default function CartModal() {
     return (
         <div
             onClick={closeModal}
-            className="fixed inset-0 z-50 bg-black/60"
+            className="fixed inset-0 z-50 bg-black/50"
         >
             <div
                 className="px-6 pt-28 pb-6 flex md:justify-end"
@@ -79,10 +79,7 @@ export default function CartModal() {
                                                 {item.product.name}
                                             </div>
                                             <div className="opacity-50 text-black text-sm md:text-lg font-bold leading-normal">
-                                                {formatPrice({
-                                                    amount: item.product.price.amount,
-                                                    currency: item.product.price.currency,
-                                                })}
+                                                {item.product.formattedPrice}
                                             </div>
                                         </div>
                                         <CartModalCounterButton item={item} />
@@ -107,9 +104,12 @@ export default function CartModal() {
                     )}
 
                     {items.length > 0 ? (
-                        <button className="w-full bg-darkorange py-3 text-sm font-medium text-white uppercase">
+                        <Button
+                            href={`/checkout`}
+                            onClick={closeModal}
+                            className="w-full bg-darkorange py-3 text-sm font-medium text-white uppercase">
                             checkout
-                        </button>
+                        </Button>
                     ) :
                         <button
                             onClick={closeModal}

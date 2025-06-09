@@ -1,11 +1,11 @@
 'use client'
 
 import { useTransition } from "react";
-import { useCartModal } from "@/app/utilities/contexts/CartContext";
+import { useCartContext } from "@/app/utilities/contexts/CartContext";
 import type { AddToCartButtonProps } from "@/app/utilities/library/definitions";
 
 export default function AddToCartButton({ productId, quantity }: AddToCartButtonProps) {
-    const { fetchCart } = useCartModal();
+    const { fetchCart } = useCartContext();
     const [isPending, startTransition] = useTransition();
 
     async function handleAddToCart(productId: string) {

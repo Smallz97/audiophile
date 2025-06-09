@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { categoryPages } from "@/app/utilities/library/data";
-import { useCartModal } from "@/app/utilities/contexts/CartContext";
+import { useCartContext } from "@/app/utilities/contexts/CartContext";
 import Button from "@/app/utilities/ui/components/buttons/cta-buttons/Button";
 import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
 
@@ -15,7 +15,7 @@ export default function NavbarWithHeader() {
     const isCategoryPage = Boolean(category);
     const categoryTitle = category?.name ?? "";
 
-    const { openModal, cart } = useCartModal();
+    const { openModal, cart } = useCartContext();
     const items = cart.items
     const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
 

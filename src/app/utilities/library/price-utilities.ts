@@ -1,4 +1,4 @@
-import { Price } from "@/app/utilities/library/definitions";
+import type { Price, Product, EnrichedProduct } from "@/app/utilities/library/definitions";
 
 export function createPrice(amount: number, currency = 'USD'): Price {
   return {
@@ -13,4 +13,14 @@ export function formatPrice(price: Price, locale = 'en-US'): string {
     currency: price.currency,
     minimumFractionDigits: 2
   }).format(price.amount / 100);
+}
+
+export function enrichProductWithFormattedPrice(
+  product: Product,
+  locale = 'en-US'
+): EnrichedProduct {
+  return {
+    ...product,
+    formattedPrice: formatPrice(product.price, locale),
+  };
 }

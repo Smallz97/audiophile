@@ -1,9 +1,9 @@
 import { useTransition } from "react";
-import { useCartModal } from "@/app/utilities/contexts/CartContext";
+import { useCartContext } from "@/app/utilities/contexts/CartContext";
 import type { CartModalCounterButtonProps } from "@/app/utilities/library/definitions";
 
 export default function CartModalCounterButton({ item }: CartModalCounterButtonProps) {
-    const { fetchCart } = useCartModal();
+    const { fetchCart } = useCartContext();
     const [isPending, startTransition] = useTransition();
 
     async function updateItemQuantity(productId: string, change: number) {

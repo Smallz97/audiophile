@@ -1,15 +1,15 @@
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { getAllProducts } from '@/app/utilities/library/data'
-import { formatPrice } from '@/app/utilities/library/price-utilities'
-import type { ServerCart, ModalCart, ModalCartItem } from '@/app/utilities/library/definitions'
+import { enrichProductWithFormattedPrice, formatPrice } from '@/app/utilities/library/price-utilities'
+import type { ServerCart, CartObject, CartItem } from '@/app/utilities/library/definitions'
 
 export async function GET() {
   const allProducts = getAllProducts()
   const cookieStore = await cookies()
   const cartCookie = cookieStore.get('cart')
 
-  const modalCart: ModalCart = {
+  const cart: CartObject = {
     items: [],
     formattedTotalPrice: ''
   }
@@ -21,32 +21,35 @@ export async function GET() {
     try {
       const parsedCart: ServerCart = JSON.parse(cartCookie.value)
 
-      modalCart.items = parsedCart.items.map(item => {
+      cart.items = parsedCart.items.map(item => {
         const product = allProducts.find(p => p.productId === item.productId)
         if (!product) return null
 
         totalPrice += product.price.amount * item.quantity
         currency = product.price.currency
 
-        const enrichedItem: ModalCartItem = {
+        const enrichedProduct = enrichProductWithFormattedPrice(product)
+
+        const enrichedItem: CartItem = {
           productId: item.productId,
           quantity: item.quantity,
           product: {
             name: product.name,
             price: product.price,
             image: product.cartImage,
+            formattedPrice: enrichedProduct.formattedPrice,
           }
         }
 
         return enrichedItem
-      }).filter(Boolean) as ModalCartItem[]
+      }).filter(Boolean) as CartItem[]
     } catch (err) {
       console.error('Failed to parse or enrich cart cookie:', err)
     }
   }
 
   return NextResponse.json({
-    ...modalCart,
+    ...cart,
     formattedTotalPrice: formatPrice({
       amount: totalPrice,
       currency,

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useTransition } from "react";
-import { useCartModal } from "@/app/utilities/contexts/CartContext"
+import { useCartContext } from "@/app/utilities/contexts/CartContext"
 import { formatPrice } from "@/app/utilities/library/price-utilities"
 import { PriceComponentProps } from "@/app/utilities/library/definitions"
 import AddToCartButton from '@/app/utilities/ui/components/buttons/product-page-buttons/AddToCartButton'
@@ -9,7 +9,7 @@ import RemoveFromCartButton from "@/app/utilities/ui/components/buttons/product-
 import ProductPageCounterButton from "@/app/utilities/ui/components/buttons/product-page-buttons/ProductPageCounterButton"
 
 export default function PriceComponent({ price, productId }: PriceComponentProps) {
-    const { cart, fetchCart } = useCartModal()
+    const { cart, fetchCart } = useCartContext()
     const item = cart.items.find(item => item.productId === productId);
     const itemInCart = item !== undefined;
 
