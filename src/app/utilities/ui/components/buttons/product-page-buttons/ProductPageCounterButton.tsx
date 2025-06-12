@@ -32,13 +32,21 @@ export default function ProductPageCounterButton({
 
     const decrement = () => {
         if (quantity > min) {
-            isInCart ? updateItemQuantity(-1) : setQuantity(quantity - 1);
+            if (isInCart) {
+                updateItemQuantity(-1);
+            } else {
+                setQuantity(quantity - 1);
+            }
         }
     };
 
     const increment = () => {
         if (quantity < quantityInStock) {
-            isInCart ? updateItemQuantity(1) : setQuantity(quantity + 1);
+            if (isInCart) {
+                updateItemQuantity(1);
+            } else {
+                setQuantity(quantity + 1);
+            }
         }
     };
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useTransition } from "react";
+import { useState, useEffect } from "react";
 import { useCartContext } from "@/app/utilities/contexts/CartContext"
 import { formatPrice } from "@/app/utilities/library/price-utilities"
 import { PriceComponentProps } from "@/app/utilities/library/definitions"

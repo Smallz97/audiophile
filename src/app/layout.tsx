@@ -13,6 +13,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://audiophile-v1.vercel.app'),
   title: "Audiophile",
   description: "Next Generation Audio Devices",
 };

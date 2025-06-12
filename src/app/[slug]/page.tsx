@@ -10,7 +10,7 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({params}: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const category = categoryPages.find((cat) => cat.slug === slug);
 
@@ -29,10 +29,10 @@ export async function generateMetadata({params}: { params: Promise<{ slug: strin
             title: `${category.name} | Audiophile`,
             description: category.metaDescription,
             type: 'website',
-            url: `https://yourwebsite.com/${slug}`,
+            url: `https://audiophile-v1.vercel.app/${slug}`,
             images: [
                 {
-                    url: `/images/product-category-images/${slug}-og.jpg`,
+                    url: `/images/category-link-images/${slug}-mobile.png`,
                     width: 1200,
                     height: 630,
                     alt: category.name,
