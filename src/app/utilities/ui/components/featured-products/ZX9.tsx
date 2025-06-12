@@ -1,7 +1,7 @@
-import Button from "@/app/utilities/ui/components/buttons/cta-buttons/Button";
+import LinkButton from "@/app/utilities/ui/components/buttons/link-buttons/LinkButton";
+import ResponsiveImage from "@/app/utilities/ui/components/utility-components/ResponsiveImage";
 import tabletImg from "../../../../../../public/images/featured-products-images/ZX9/tablet-zx9.png"
 import mobileImg from "../../../../../../public/images/featured-products-images/ZX9/mobile-zx9.png"
-import ResponsiveImage from "@/app/utilities/ui/components/utility-components/ResponsiveImage";
 
 export default function ZX9() {
     return (
@@ -25,12 +25,12 @@ export default function ZX9() {
                     </div>
 
                 </div>
-                <Button
+                <LinkButton
                     href={`/speakers/ZX9`}
                     className={`text-xs font-bold tracking-wider text-white bg-black border border-black z-10`}
                 >
                     see product
-                </Button>
+                </LinkButton>
             </div>
         </div>
     )

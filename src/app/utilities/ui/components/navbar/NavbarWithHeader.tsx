@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { categoryPages } from "@/app/utilities/library/data";
 import { useCartContext } from "@/app/utilities/contexts/CartContext";
-import Button from "@/app/utilities/ui/components/buttons/cta-buttons/Button";
+import LinkButton from "@/app/utilities/ui/components/buttons/link-buttons/LinkButton";
 import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
 
 export default function NavbarWithHeader() {
@@ -26,7 +26,7 @@ export default function NavbarWithHeader() {
                 <Link href={"/"} className="flex w-36 h-6"><AudiophileLogo /></Link>
                 <button
                     onClick={openModal}
-                    className="relative p-1"
+                    className="relative p-0.5"
                 >
                     <div className="flex h-[1.25rem] w-[1.4375rem]">
                         <ShoppingCartIcon />
@@ -58,12 +58,12 @@ export default function NavbarWithHeader() {
                                             Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
                                         </div>
                                     </div>
-                                    <Button
+                                    <LinkButton
                                         href={`/headphones/XX99 Mark II`}
                                         className={`text-xs font-bold tracking-wider bg-darkorange text-white`}
                                     >
                                         see product
-                                    </Button>
+                                    </LinkButton>
                                 </div>
                             </div>
                             <div className="hidden lg:block">

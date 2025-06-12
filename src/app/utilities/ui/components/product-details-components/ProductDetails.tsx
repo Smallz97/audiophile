@@ -30,6 +30,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     <PriceComponent
                         price={product.price}
                         productId={product.productId}
+                        quantityInStock={product.numberInStock}
                     />
                 </div>
             </div>

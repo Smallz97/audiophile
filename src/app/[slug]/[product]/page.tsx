@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { findMatchingCategory } from "@/app/utilities/library/functions";
-import { getProductsListOfSingleCategory } from "@/app/utilities/library/data";
+import { getProductsInASingleCategory } from "@/app/utilities/library/data";
 import ProductDetails from "@/app/utilities/ui/components/product-details-components/ProductDetails";
 
 export default async function ProductOverviewPage({ params }: { params: Promise<{ slug: string, product: string }> }) {
@@ -11,7 +11,7 @@ export default async function ProductOverviewPage({ params }: { params: Promise<
         return notFound();
     }
 
-    const productsList = getProductsListOfSingleCategory(slug);
+    const productsList = getProductsInASingleCategory(slug);
     const displayedProduct = productsList.find(p => p.name === decodedProduct)
 
     if (!displayedProduct) {

@@ -4,28 +4,28 @@ import Image from "next/image"
 import { useEffect } from "react"
 import { ShoppingCartIcon } from "@/app/utilities/ui/icons"
 import { useCartContext } from "@/app/utilities/contexts/CartContext"
-import Button from "@/app/utilities/ui/components/buttons/cta-buttons/Button"
+import LinkButton from "@/app/utilities/ui/components/buttons/link-buttons/LinkButton"
 import ClearCartButton from "@/app/utilities/ui/components/cart-modal/buttons/ClearCartButton"
 import CartModalCounterButton from "@/app/utilities/ui/components/cart-modal/buttons/CartModalCounterButton"
 
 export default function CartModal() {
-    const { isOpen, closeModal, cart } = useCartContext()
+    const { isModalOpen, closeModal, cart } = useCartContext()
 
     useEffect(() => {
         const handleEscapeKey = (event: KeyboardEvent) => {
             if (event.key === "Escape") closeModal()
         }
 
-        if (isOpen) {
+        if (isModalOpen) {
             document.addEventListener("keydown", handleEscapeKey)
         }
 
         return () => {
             document.removeEventListener("keydown", handleEscapeKey)
         }
-    }, [isOpen, closeModal])
+    }, [isModalOpen, closeModal])
 
-    if (!isOpen) return null
+    if (!isModalOpen) return null
 
     const items = cart.items
     const total = cart.formattedTotalPrice
@@ -104,12 +104,12 @@ export default function CartModal() {
                     )}
 
                     {items.length > 0 ? (
-                        <Button
+                        <LinkButton
                             href={`/checkout`}
                             onClick={closeModal}
                             className="w-full bg-darkorange py-3 text-sm font-medium text-white uppercase">
                             checkout
-                        </Button>
+                        </LinkButton>
                     ) :
                         <button
                             onClick={closeModal}

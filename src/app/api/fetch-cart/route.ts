@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { getAllProducts } from '@/app/utilities/library/data'
-import { enrichProductWithFormattedPrice, formatPrice } from '@/app/utilities/library/price-utilities'
 import type { ServerCart, CartObject, CartItem } from '@/app/utilities/library/definitions'
+import { enrichProductWithFormattedPrice, formatPrice } from '@/app/utilities/library/price-utilities'
 
 export async function GET() {
   const allProducts = getAllProducts()
@@ -37,6 +37,7 @@ export async function GET() {
             name: product.name,
             price: product.price,
             image: product.cartImage,
+            numberInStock: product.numberInStock,
             formattedPrice: enrichedProduct.formattedPrice,
           }
         }

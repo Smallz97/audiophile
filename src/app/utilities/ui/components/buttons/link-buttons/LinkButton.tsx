@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import Link from "next/link";
-import { ButtonProps } from "@/app/utilities/library/definitions";
+import { LinkButtonProps } from "@/app/utilities/library/definitions";
 
-export default function Button({ href, children, className, ...props }: ButtonProps) {
+export default function LinkButton({ href, children, className, ...props }: LinkButtonProps) {
     return (
         <Link
             href={href}

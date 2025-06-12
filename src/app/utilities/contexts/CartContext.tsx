@@ -1,17 +1,16 @@
 "use client"
 
-import type { CartModalContextValues } from "@/app/utilities/library/definitions";
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
-import type { ContextProviderProps, CartObject } from "@/app/utilities/library/definitions"
+import type { CartContextValues, ContextProviderProps, CartObject } from "@/app/utilities/library/definitions"
 
-export const CartContext = createContext<CartModalContextValues | undefined>(undefined);
+export const CartContext = createContext<CartContextValues | undefined>(undefined);
 
 export function CartContextProvider({ children }: ContextProviderProps) {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [cart, setCart] = useState<CartObject>({ items: [], formattedTotalPrice: "" })
 
-    const openModal = () => setIsOpen(true);
-    const closeModal = () => setIsOpen(false);
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
 
     const fetchCart = useCallback(async () => {
         try {
@@ -24,18 +23,18 @@ export function CartContextProvider({ children }: ContextProviderProps) {
     }, []);
 
     useEffect(() => {
-        document.body.style.overflow = isOpen ? "hidden" : "auto";
+        document.body.style.overflow = isModalOpen ? "hidden" : "auto";
         return () => {
             document.body.style.overflow = "auto";
         };
-    }, [isOpen]);
+    }, [isModalOpen]);
 
     useEffect(() => {
         fetchCart();
     }, [fetchCart]);
 
     return (
-        <CartContext.Provider value={{ isOpen, openModal, closeModal, fetchCart, cart }}>
+        <CartContext.Provider value={{ isModalOpen, openModal, closeModal, fetchCart, cart }}>
             {children}
         </CartContext.Provider>
     );

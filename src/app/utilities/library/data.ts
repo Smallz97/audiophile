@@ -2,7 +2,7 @@ import { cache } from "react";
 import { StaticImageData } from "next/image"
 import { createPrice } from "@/app/utilities/library/price-utilities";
 import { getCategoryProducts, getCategoryImages, generateProductId } from "@/app/utilities/library/functions";
-import type { ProductsCategory, ProductsCategoryPagesProps, Product } from "@/app/utilities/library/definitions"
+import type { ProductsCategoryPagesProps, ProductsCategory, Product } from "@/app/utilities/library/definitions"
 
 // Image imports for product category cards
 import Earphones from "../../../../public/images/category-link-images/earphones-mobile.png"
@@ -102,6 +102,38 @@ import ZX7FFD from "../../../../public/images/product-images/speakers/ZX7/featur
 import ZX7SFD from "../../../../public/images/product-images/speakers/ZX7/featured-images/desktops/second.png"
 import ZX7TFD from "../../../../public/images/product-images/speakers/ZX7/featured-images/desktops/third.png"
 
+export const images: Record<string, StaticImageData> = {
+    earphones: Earphones,
+    headphones: Headphones,
+    speakers: Speakers,
+};
+
+export const categoryPages: ProductsCategoryPagesProps[] = [
+    {
+        name: 'Earphones',
+        slug: 'earphones',
+        description: 'Compact and high-performance wireless earbuds',
+        metaDescription: 'Wireless earphones and earbuds with exceptional sound quality and comfort',
+        keywords: ['earphones', 'earbuds', 'wireless', 'bluetooth', 'audio']
+    },
+    {
+        name: 'Headphones',
+        slug: 'headphones',
+        description: 'Explore our premium headphone collection',
+        metaDescription: 'Discover high-quality headphones for every audio experience',
+        keywords: ['headphones', 'audio', 'music', 'sound']
+    },
+    {
+        name: 'Speakers',
+        slug: 'speakers',
+        description: 'Powerful speakers for home and professional use',
+        metaDescription: 'Find the perfect speakers for your home, party, or professional setup',
+        keywords: ['speakers', 'audio', 'sound system', 'home theater']
+    },
+]
+
+const categoryMap = Object.fromEntries(categoryPages.map((category) => [category.slug, category]));
+
 export const productData: Record<string, Product[]> = {
     earphones: [
         {
@@ -143,7 +175,8 @@ export const productData: Record<string, Product[]> = {
                 }
             },
             suggestedProductCardImages: Earphones,
-            cartImage: "/images/product-images/earphones/YX1/overview-images/YX1-mobile.png"
+            cartImage: "/images/product-images/earphones/YX1/overview-images/YX1-mobile.png",
+            numberInStock: 34,
         },
     ],
     headphones: [
@@ -187,6 +220,7 @@ export const productData: Record<string, Product[]> = {
             },
             suggestedProductCardImages: XX99M2SPI,
             cartImage: "/images/product-images/headphones/XX99M2/overview-images/XX99-M2-mobile.png",
+            numberInStock: 12,
         },
         {
             productId: generateProductId("headphones", "XX99 Mark I"),
@@ -227,6 +261,7 @@ export const productData: Record<string, Product[]> = {
             },
             suggestedProductCardImages: XX99M1SPI,
             cartImage: "/images/product-images/headphones/XX99M1/overview-images/XX99-M1-mobile.png",
+            numberInStock: 67,
         },
         {
             productId: generateProductId("headphones", "XX59"),
@@ -267,6 +302,7 @@ export const productData: Record<string, Product[]> = {
             },
             suggestedProductCardImages: XX59SPI,
             cartImage: "/images/product-images/headphones/XX59/overview-images/XX59-mobile.png",
+            numberInStock: 38,
         },
     ],
     speakers: [
@@ -309,7 +345,8 @@ export const productData: Record<string, Product[]> = {
                 }
             },
             suggestedProductCardImages: ZX9SPI,
-            cartImage: "/images/product-images/speakers/ZX9/overview-images/ZX9-mobile.png"
+            cartImage: "/images/product-images/speakers/ZX9/overview-images/ZX9-mobile.png",
+            numberInStock: 86,
         },
         {
             productId: generateProductId("speakers", "ZX7"),
@@ -350,42 +387,11 @@ export const productData: Record<string, Product[]> = {
                 }
             },
             suggestedProductCardImages: ZX7SPI,
-            cartImage: "/images/product-images/speakers/ZX7/overview-images/ZX7-mobile.png"
+            cartImage: "/images/product-images/speakers/ZX7/overview-images/ZX7-mobile.png",
+            numberInStock: 50,
         },
     ],
 };
-
-export const images: Record<string, StaticImageData> = {
-    earphones: Earphones,
-    headphones: Headphones,
-    speakers: Speakers,
-};
-
-export const categoryPages: ProductsCategoryPagesProps[] = [
-    {
-        name: 'Earphones',
-        slug: 'earphones',
-        description: 'Compact and high-performance wireless earbuds',
-        metaDescription: 'Wireless earphones and earbuds with exceptional sound quality and comfort',
-        keywords: ['earphones', 'earbuds', 'wireless', 'bluetooth', 'audio']
-    },
-    {
-        name: 'Headphones',
-        slug: 'headphones',
-        description: 'Explore our premium headphone collection',
-        metaDescription: 'Discover high-quality headphones for every audio experience',
-        keywords: ['headphones', 'audio', 'music', 'sound']
-    },
-    {
-        name: 'Speakers',
-        slug: 'speakers',
-        description: 'Powerful speakers for home and professional use',
-        metaDescription: 'Find the perfect speakers for your home, party, or professional setup',
-        keywords: ['speakers', 'audio', 'sound system', 'home theater']
-    },
-]
-
-const categoryMap = Object.fromEntries(categoryPages.map((category) => [category.slug, category]));
 
 export const productCategories: ProductsCategory[] = Object.values(categoryMap).map((category) => ({
     categoryName: category.slug,
@@ -393,7 +399,7 @@ export const productCategories: ProductsCategory[] = Object.values(categoryMap).
     categoryImage: getCategoryImages(category.slug),
 }));
 
-export const getProductsListOfSingleCategory = cache((slug: string) => {
+export const getProductsInASingleCategory = cache((slug: string) => {
     return productCategories.find(p => p.categoryName === slug)!.products;
 });
 

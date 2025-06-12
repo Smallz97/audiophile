@@ -1,6 +1,6 @@
 import Image from "next/image"
-import Button from "@/app/utilities/ui/components/buttons/cta-buttons/Button"
 import { SuggestedProductCardProps } from "@/app/utilities/library/definitions"
+import LinkButton from "@/app/utilities/ui/components/buttons/link-buttons/LinkButton"
 
 export default function SuggestedProductCard({ products }: SuggestedProductCardProps) {
     return (
@@ -25,12 +25,12 @@ export default function SuggestedProductCard({ products }: SuggestedProductCardP
                             <div className="text-xl font-bold uppercase tracking-widest text-center text-black">
                                 {product.name}
                             </div>
-                            <Button
+                            <LinkButton
                                 href={`/${product.productType}/${product.name}`}
                                 className={`text-xs font-bold tracking-wider text-white bg-darkorange`}
                             >
                                 see product
-                            </Button>
+                            </LinkButton>
                         </div>
                     </div>
                 ))}

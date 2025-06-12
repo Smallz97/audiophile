@@ -1,9 +1,9 @@
 'use client'
 
 import Image from "next/image"
-import type { InputFieldProps, RadioGroupProps } from "@/app/utilities/library/definitions"
 import { useCartContext } from "@/app/utilities/contexts/CartContext"
-import Button from "../buttons/cta-buttons/Button"
+import LinkButton from "@/app/utilities/ui/components/buttons/link-buttons/LinkButton"
+import type { InputFieldProps, RadioGroupProps } from "@/app/utilities/library/definitions"
 
 function InputField({ id, label, placeholder, type = 'text' }: InputFieldProps) {
     return (
@@ -84,9 +84,7 @@ export default function CheckoutForm() {
 
             <div className="p-6 bg-white rounded-lg space-y-8">
                 <div className="text-lg font-bold uppercase tracking-wider">summary</div>
-                <fieldset
-                    className={`flex flex-col gap-6`}
-                >
+                <fieldset className={`flex flex-col gap-6`}>
                     {items.map((item) => (
                         <div
                             key={item.productId}
@@ -141,11 +139,12 @@ export default function CheckoutForm() {
                         <p className="text-lg font-bold text-darkorange">$5,446</p>
                     </div>
                 </fieldset>
-                <Button
+                <LinkButton
                     href={`/`}
-                    className="w-full bg-darkorange py-3 text-sm font-medium text-white uppercase">
+                    className="w-full bg-darkorange py-3 text-sm font-medium text-white uppercase"
+                >
                     continue & pay
-                </Button>
+                </LinkButton>
             </div>
         </form>
     )

@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { findMatchingCategory, } from "@/app/utilities/library/functions"
-import { getProductsListOfSingleCategory, categoryPages } from "@/app/utilities/library/data"
-import ProductsCategoryList from "@/app/utilities/ui/components/products-category-list/ProductsCategoryList"
+import { getProductsInASingleCategory, categoryPages } from "@/app/utilities/library/data"
+import ProductsInTheCategory from "@/app/utilities/ui/components/products-in-the-category/ProductsInTheCategory"
 
 export async function generateStaticParams() {
     return categoryPages.map((category) => ({
@@ -10,11 +10,7 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({
-    params
-}: {
-    params: Promise<{ slug: string }>
-}): Promise<Metadata> {
+export async function generateMetadata({params}: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const category = categoryPages.find((cat) => cat.slug === slug);
 
@@ -58,9 +54,9 @@ export default async function CategoryPage({ params, }: { params: Promise<{ slug
         return notFound();
     }
 
-    const productsList = getProductsListOfSingleCategory(slug);
+    const products = getProductsInASingleCategory(slug);
 
     return (
-        <ProductsCategoryList productsList={productsList} />
+        <ProductsInTheCategory products={products} />
     );
 }
