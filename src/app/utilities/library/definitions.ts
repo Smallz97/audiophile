@@ -87,17 +87,21 @@ export type ImageSet = {
     desktops: FeaturedImages;
 }
 
-// Defining a price object
-export type Price = {
-    amount: number;
-    currency: string;
-};
-
 // Defining the props for the box-contents component
 export type BoxContents = {
     quantity: number;
     item: string;
 }
+
+// Defining a price type
+export type Price = number;
+
+// Defining the props for the price functions
+export type PriceFunctionProps = {
+  amount: Price;
+  currency?: string;
+  userLocale?: string;
+};
 
 // Defining a product object
 export type Product = {
@@ -190,17 +194,12 @@ export type ServerCartItem = {
     quantity: number;
 };
 
-// Defining an object of server cart-items
+// Defining an object of server-cart items
 export type ServerCart = {
     items: ServerCartItem[];
 };
 
-// Defining an enriched product object
-export type EnrichedProduct = Product & {
-  formattedPrice: string;
-};
-
-// Defining a cart-item with full product details for display in the cart modal
+// Defining a cart-item with product details for display in the cart modal
 export type CartItem = {
     productId: string
     quantity: number
@@ -208,15 +207,17 @@ export type CartItem = {
       name: string
       price: Price
       image: string
-      numberInStock: number
-      formattedPrice: string
+      numberInStock: number;
     }
 }
 
 // Defining a cart object with items and formatted total price for display in the cart modal
 export type CartObject = {
     items: CartItem[];
-    formattedTotalPrice: string
+    shipping: Price;
+    totalPrice: Price;
+    totalVAT: Price;
+    grandTotal: Price;
 }
 
 // Defining the props for the cart modal component
@@ -239,8 +240,13 @@ export type RadioOptions = {
   value: string
 }
 
-// Defiing the props for the radio groups
+// Defining the props for the radio groups
 export type RadioGroupProps = {
   name: string
   options: RadioOptions[]
+}
+
+// Defining the props for the checkout-form component
+export type CheckoutFormProps = {
+  action: (formData: FormData) => void
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import CheckoutForm from "../utilities/ui/components/checkout-form/CheckoutForm";
+import CheckoutFormWrapper from "@/app/utilities/ui/components/checkout-form/CheckoutFormWrapper";
 
 export default function Checkout() {
     return (
@@ -12,7 +12,7 @@ export default function Checkout() {
             >
                 <div className="opacity-50 text-black text-base font-normal leading-normal">Go back</div>
             </Link>
-            <CheckoutForm />
+            <CheckoutFormWrapper />
         </div>
     )
 }

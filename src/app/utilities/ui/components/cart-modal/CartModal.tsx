@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useEffect } from "react"
 import { ShoppingCartIcon } from "@/app/utilities/ui/icons"
 import { useCartContext } from "@/app/utilities/contexts/CartContext"
+import { formatPrice } from "@/app/utilities/library/price-utilities"
 import LinkButton from "@/app/utilities/ui/components/buttons/link-buttons/LinkButton"
 import ClearCartButton from "@/app/utilities/ui/components/cart-modal/buttons/ClearCartButton"
 import CartModalCounterButton from "@/app/utilities/ui/components/cart-modal/buttons/CartModalCounterButton"
@@ -28,7 +29,7 @@ export default function CartModal() {
     if (!isModalOpen) return null
 
     const items = cart.items
-    const total = cart.formattedTotalPrice
+    const total = formatPrice({ amount: cart.totalPrice })
     const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
 
     return (
@@ -79,7 +80,7 @@ export default function CartModal() {
                                                 {item.product.name}
                                             </div>
                                             <div className="opacity-50 text-black text-sm md:text-lg font-bold leading-normal">
-                                                {item.product.formattedPrice}
+                                                {formatPrice({ amount: item.product.price })}
                                             </div>
                                         </div>
                                         <CartModalCounterButton item={item} />

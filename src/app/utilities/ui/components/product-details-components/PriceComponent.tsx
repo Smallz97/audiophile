@@ -14,7 +14,7 @@ export default function PriceComponent({ price, productId, quantityInStock }: Pr
 
     const min = 1;
     const numberInStock = quantityInStock;
-    const formattedPrice = formatPrice(price);
+    const formattedPrice = formatPrice({ amount: price });
     const [quantity, setQuantity] = useState(min);
 
     useEffect(() => {

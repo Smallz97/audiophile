@@ -2,8 +2,8 @@
 
 import Image from "next/image"
 import { useCartContext } from "@/app/utilities/contexts/CartContext"
-import LinkButton from "@/app/utilities/ui/components/buttons/link-buttons/LinkButton"
-import type { InputFieldProps, RadioGroupProps } from "@/app/utilities/library/definitions"
+import { formatPrice } from "@/app/utilities/library/price-utilities"
+import type { InputFieldProps, RadioGroupProps, CheckoutFormProps } from "@/app/utilities/library/definitions"
 
 function InputField({ id, label, placeholder, type = 'text' }: InputFieldProps) {
     return (
@@ -44,13 +44,16 @@ function RadioGroup({ name, options }: RadioGroupProps) {
     )
 }
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ action }: CheckoutFormProps) {
     const { cart } = useCartContext()
     const items = cart.items;
-    const total = cart.formattedTotalPrice
+    const total = formatPrice({ amount: cart.totalPrice })
+    const shipping = formatPrice({ amount: cart.shipping })
+    const totalVAT = formatPrice({ amount: cart.totalVAT })
+    const grandTotal = formatPrice({ amount: cart.grandTotal })
 
     return (
-        <form className="space-y-8">
+        <form className="space-y-8" action={action}>
             <div className="p-6 bg-white rounded-lg space-y-8">
                 <div className="text-3xl font-bold tracking-wide uppercase">Checkout</div>
                 <fieldset className="space-y-4">
@@ -109,7 +112,7 @@ export default function CheckoutForm() {
                                         {item.product.name}
                                     </div>
                                     <div className="opacity-50 text-black text-sm md:text-lg font-bold leading-normal">
-                                        {item.product.formattedPrice}
+                                        {formatPrice({ amount: item.product.price })}
                                     </div>
                                 </div>
                                 <div className="text-base font-bold opacity-50 leading-normal">
@@ -127,24 +130,24 @@ export default function CheckoutForm() {
                         </div>
                         <div className="flex justify-between uppercase">
                             <p className="opacity-50 text-base font-normal leading-normal">shipping</p>
-                            <p className="text-lg font-bold">$50</p>
+                            <p className="text-lg font-bold">{shipping}</p>
                         </div>
                         <div className="flex justify-between uppercase">
                             <p className="opacity-50 text-base font-normal leading-normal">vat (included)</p>
-                            <p className="text-lg font-bold">$1,079</p>
+                            <p className="text-lg font-bold">{totalVAT}</p>
                         </div>
                     </div>
                     <div className="flex justify-between uppercase">
                         <p className="opacity-50 text-base font-normal leading-normal">grand total</p>
-                        <p className="text-lg font-bold text-darkorange">$5,446</p>
+                        <p className="text-lg font-bold text-darkorange">{grandTotal}</p>
                     </div>
                 </fieldset>
-                <LinkButton
-                    href={`/`}
-                    className="w-full bg-darkorange py-3 text-sm font-medium text-white uppercase"
+                <button
+                    type="submit"
+                    className="w-full bg-darkorange py-3 w-40 h-12 text-sm font-medium text-white uppercase"
                 >
                     continue & pay
-                </LinkButton>
+                </button>
             </div>
         </form>
     )

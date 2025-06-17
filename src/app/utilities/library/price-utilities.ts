@@ -1,26 +1,17 @@
-import type { Price, Product, EnrichedProduct } from "@/app/utilities/library/definitions";
+import type { Price, PriceFunctionProps } from "@/app/utilities/library/definitions";
 
-export function createPrice(amount: number, currency = 'USD'): Price {
-  return {
-    amount,
-    currency
-  };
+export function createPrice(amount: Price): Price {
+  return amount;
 }
 
-export function formatPrice(price: Price, locale = 'en-US'): string {
-  return new Intl.NumberFormat(locale, {
+export function formatPrice({  amount, currency, userLocale }: PriceFunctionProps): string {
+  const detectedCurrency = currency || 'USD';
+  const detectedLocale = userLocale || (typeof navigator !== 'undefined' ? navigator.language : 'en-US');
+
+  return new Intl.NumberFormat(detectedLocale, {
     style: 'currency',
-    currency: price.currency,
-    minimumFractionDigits: 2
-  }).format(price.amount / 100);
+    currency: detectedCurrency,
+    minimumFractionDigits: 2,
+  }).format(amount / 100);
 }
 
-export function enrichProductWithFormattedPrice(
-  product: Product,
-  locale = 'en-US'
-): EnrichedProduct {
-  return {
-    ...product,
-    formattedPrice: formatPrice(product.price, locale),
-  };
-}

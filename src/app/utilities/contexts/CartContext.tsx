@@ -7,7 +7,13 @@ export const CartContext = createContext<CartContextValues | undefined>(undefine
 
 export function CartContextProvider({ children }: ContextProviderProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [cart, setCart] = useState<CartObject>({ items: [], formattedTotalPrice: "" })
+    const [cart, setCart] = useState<CartObject>({
+        items: [],
+        totalPrice: 0,
+        shipping: 0,
+        totalVAT: 0,
+        grandTotal: 0,
+    })
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
