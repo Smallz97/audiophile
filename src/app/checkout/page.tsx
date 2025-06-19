@@ -1,17 +1,12 @@
-import Link from "next/link";
+import GoBackButton from "@/app/utilities/ui/components/buttons/navigation-buttons/GoBack";
 import CheckoutFormWrapper from "@/app/utilities/ui/components/checkout-form/CheckoutFormWrapper";
 
 export default function Checkout() {
     return (
         <div
-            className="flex flex-col px-6 md:px-[2.44rem] lg:px-[10.31rem] pt-12 md:pt-24 lg:pt-32 pb-[6.6rem] md:pb-24 lg:pb-[12.5rem] gap-8"
+            className="flex flex-col px-6 md:px-[2.44rem] lg:px-[10.31rem] pt-4 md:pt-8 lg:pt-[4.94rem] pb-24 md:pb-[7.25rem] lg:pb-[9.56rem] gap-6 md:gap-[2.37rem] lg:gap-[3.5rem]"
         >
-            <Link
-                href={`/`}
-                className="mb-6"
-            >
-                <div className="opacity-50 text-black text-base font-normal leading-normal">Go back</div>
-            </Link>
+            <GoBackButton />
             <CheckoutFormWrapper />
         </div>
     )

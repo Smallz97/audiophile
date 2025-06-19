@@ -5,9 +5,9 @@ import { useEffect } from "react"
 import { ShoppingCartIcon } from "@/app/utilities/ui/icons"
 import { useCartContext } from "@/app/utilities/contexts/CartContext"
 import { formatPrice } from "@/app/utilities/library/price-utilities"
+import ClearCart from "@/app/utilities/ui/components/buttons/action-buttons/ClearCart"
 import LinkButton from "@/app/utilities/ui/components/buttons/link-buttons/LinkButton"
-import ClearCartButton from "@/app/utilities/ui/components/cart-modal/buttons/ClearCartButton"
-import CartModalCounterButton from "@/app/utilities/ui/components/cart-modal/buttons/CartModalCounterButton"
+import CartModalCounterButton from "@/app/utilities/ui/components/buttons/counter-buttons/CartModalCounterButton"
 
 export default function CartModal() {
     const { isModalOpen, closeModal, cart } = useCartContext()
@@ -49,7 +49,7 @@ export default function CartModal() {
                             <div className="text-lg font-bold tracking-wider uppercase text-black">
                                 cart ({totalItems})
                             </div>
-                            <ClearCartButton />
+                            <ClearCart />
                         </div>
                     )}
                     <div
