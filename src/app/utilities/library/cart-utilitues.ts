@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { getAllProducts } from '@/app/utilities/library/data'
-import type { CartItem, CartObject, ServerCart, Price, PriceFunctionProps } from '@/app/utilities/library/definitions'
+import type { CartItem, CartObject, ServerCartItem, ServerCart, Price, PriceFunctionProps } from '@/app/utilities/library/definitions'
 
 export function getVAT({ amount }: PriceFunctionProps): Price {
   return Math.round(amount * 0.125);
@@ -28,26 +28,25 @@ export async function getCartAndPriceTotals(){
   }
 
   let totalPrice = 0
-  let totalVAT = 0
   let shipping = 0
+  let totalVAT = 0
   let grandTotal = 0
 
-  if (cartCookie?.value) 
-    try {
-    const parsedCart: ServerCart = JSON.parse(cartCookie?.value)
+  if (cartCookie?.value) try {
+    const parsedCart: ServerCart = JSON.parse(cartCookie.value)
 
-    cart.items = parsedCart.items.map((item) => {
-      const product = allProducts.find(p => p.productId === item.productId)
+    cart.items = parsedCart.items.map((ServerCartItem: ServerCartItem) => {
+      const product = allProducts.find(product => product.productId === ServerCartItem.productId)
       if (!product) return null
 
-      totalPrice += product.price * item.quantity
+      totalPrice += product.price * ServerCartItem.quantity
       totalVAT = getVAT({ amount: totalPrice })
       shipping = getShipping({ amount: totalPrice })
       grandTotal = getGrandTotal({ amount: totalPrice })
 
       const cartItem: CartItem = {
-        productId: item.productId,
-        quantity: item.quantity,
+        productId: ServerCartItem.productId,
+        quantity: ServerCartItem.quantity,
         product: {
           name: product.name,
           price: product.price,

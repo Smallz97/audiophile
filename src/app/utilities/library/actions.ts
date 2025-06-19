@@ -12,6 +12,10 @@ export async function handleCheckoutAction(formData: FormData) {
     const country = formData.get('country')
     const payment = formData.get('payment')
 
+    if (!name || !email || !phone || !address || !zip || !city || !country || !payment) {
+        return { success: false, message: 'All fields are required.' }
+    }
+
     const cart = await getCartAndPriceTotals()
 
     if (cart.items.length === 0) {
@@ -24,9 +28,39 @@ export async function handleCheckoutAction(formData: FormData) {
         return { success: false, message: 'Some items are out of stock.' }
     }
 
+    const order = {
+        customer: {
+            name,
+            email,
+            phone,
+        },
+        shippingAddress: {
+            address,
+            zip,
+            city,
+            country,
+        },
+        items: cart.items.map(CartItem => ({
+            productId: CartItem.productId,
+            quantity: CartItem.quantity,
+            unitPrice: CartItem.product.price,
+            total: CartItem.product.price * CartItem.quantity,
+        })),
+        totals: {
+            vat: cart.totalVAT,
+            shipping: cart.shipping,
+            subtotal: cart.totalPrice,
+            grandTotal: cart.grandTotal,
+        },
+        status: 'pending',
+        paymentMethod: payment,
+        createdAt: new Date().toISOString(),
+    }
+
     return {
+        order,
         success: true,
-        grandTotal: cart.grandTotal,
+        total: order.totals.grandTotal,
         message: 'Validation passed. Ready for payment.',
     }
 }
