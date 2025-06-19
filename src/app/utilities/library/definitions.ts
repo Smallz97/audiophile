@@ -244,6 +244,7 @@ export type RadioOptions = {
 export type RadioGroupProps = {
   name: string
   options: RadioOptions[]
+  onChange?: (value: string) => void
 }
 
 // Defining the props for the checkout-form component

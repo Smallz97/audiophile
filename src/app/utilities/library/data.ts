@@ -393,6 +393,19 @@ export const productData: Record<string, Product[]> = {
     ],
 };
 
+export const paymentOptions = [
+    { 
+        id: 'cod',
+        value: 'cash', 
+        label: 'Cash on Delivery', 
+    },
+    { 
+        id: 'paystack', 
+        value: 'paystack',
+        label: 'Pay with Paystack', 
+    },
+]
+
 export const productCategories: ProductsCategory[] = Object.values(categoryMap).map((category) => ({
     categoryName: category.slug,
     products: getCategoryProducts(category.slug),
