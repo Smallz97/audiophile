@@ -1,8 +1,12 @@
-import { handleCheckoutAction } from "@/app/utilities/library/actions";
 import CheckoutForm from "@/app/utilities/ui/components/checkout-form/CheckoutForm";
+import { CheckoutFormContextProvider } from "@/app/utilities/contexts/CheckoutFormContext";
+import ClientCartRedirect from "@/app/utilities/ui/components/checkout-form/ClientCartRedirect";
 
 export default function CheckoutFormWrapper() {
     return (
-        <CheckoutForm action={handleCheckoutAction} />
+        <CheckoutFormContextProvider>
+            <ClientCartRedirect />
+            <CheckoutForm />
+        </CheckoutFormContextProvider>
     );
 }

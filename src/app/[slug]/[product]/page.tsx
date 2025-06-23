@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { findMatchingCategory } from "@/app/utilities/library/functions";
+import { findMatchingCategory } from "@/app/utilities/functions-and-utilities/functions";
 import { getProductsInASingleCategory } from "@/app/utilities/library/data";
 import ProductDetails from "@/app/utilities/ui/components/product-details-components/ProductDetails";
 

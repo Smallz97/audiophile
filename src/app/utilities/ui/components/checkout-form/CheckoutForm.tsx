@@ -1,57 +1,16 @@
 'use client'
 
 import Image from "next/image"
-import { useState } from "react"
 import { PayOnDeliveryIcon } from "@/app/utilities/ui/icons"
-import { paymentOptions } from "@/app/utilities/library/data"
 import { useCartContext } from "@/app/utilities/contexts/CartContext"
-import { formatPrice } from "@/app/utilities/library/price-utilities"
-import type { InputFieldProps, RadioGroupProps, CheckoutFormProps } from "@/app/utilities/library/definitions"
+import { useCheckoutFormContext } from "@/app/utilities/contexts/CheckoutFormContext"
+import { formatPrice } from "@/app/utilities/functions-and-utilities/price-utilities"
+import InputField from "@/app/utilities/ui/components/custom-form-components/InputField"
+import RadioGroup from "@/app/utilities/ui/components/custom-form-components/RadioGroup"
+import { createHandleSubmit } from "@/app/utilities/functions-and-utilities/checkoutForm-handlers"
 
-function InputField({ id, label, placeholder, type = 'text' }: InputFieldProps) {
-    return (
-        <div className="flex flex-col gap-[0.56rem]">
-            <label htmlFor={id} className="text-xs font-bold capitalise">{label}</label>
-            <input
-                id={id}
-                required
-                name={id}
-                type={type}
-                placeholder={placeholder}
-                className="border border-stone-300 rounded-lg pl-6 py-[1.12rem] focus:outline-none focus:ring-2 focus:ring-blue-300"
-            />
-        </div>
-    )
-}
 
-function RadioGroup({ name, options, onChange }: RadioGroupProps) {
-    return (
-        <div className="flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-x-4 md:gap-y-4">
-            <label className="text-xs font-bold capitalise">Payment Method</label>
-            <div className="flex flex-col gap-4">
-                {options.map(({ id, label, value }) => (
-                    <div
-                        key={id}
-                        className="flex gap-4 border border-gray-300 rounded-lg pl-6 py-[1.12rem] cursor-pointer"
-                    >
-                        <input
-                            id={id}
-                            required
-                            name={name}
-                            type="radio"
-                            value={value}
-                            className="accent-darkorange"
-                            onChange={() => onChange?.(value)}
-                        />
-                        <label htmlFor={id} className="text-sm font-bold">{label}</label>
-                    </div>
-                ))}
-            </div>
-        </div>
-    )
-}
-
-export default function CheckoutForm({ action }: CheckoutFormProps) {
+export default function CheckoutForm() {
     const { cart } = useCartContext()
     const items = cart.items;
     const total = formatPrice({ amount: cart.totalPrice })
@@ -59,17 +18,19 @@ export default function CheckoutForm({ action }: CheckoutFormProps) {
     const totalVAT = formatPrice({ amount: cart.totalVAT })
     const grandTotal = formatPrice({ amount: cart.grandTotal })
 
-    const totals = [
+    const cartTotals = [
         { label: "total", value: total },
         { label: "shipping", value: shipping },
         { label: "vat (included)", value: totalVAT },
     ]
 
-    const [selectedPayment, setSelectedPayment] = useState("")
+    const { formData, setErrors, validateField } = useCheckoutFormContext()
+    const handleSubmit = createHandleSubmit({ formData, validateField, setErrors })
 
     return (
         <form
-            action={action}
+            noValidate
+            onSubmit={handleSubmit}
             className="flex flex-col gap-8 lg:flex-row lg:items-start"
         >
             <div className="flex flex-col p-6 md:p-0 md:px-[1.69rem] md:py-[1.87rem] bg-white rounded-lg gap-8 lg:w-2/3">
@@ -78,7 +39,7 @@ export default function CheckoutForm({ action }: CheckoutFormProps) {
                     <legend className="text-xs font-bold text-darkorange uppercase mb-4">Billing Details</legend>
                     <div className="flex flex-col gap-6 md:grid md:grid-cols-2 md:gap-x-4 md:gap-y-6">
                         <InputField id="name" label="Name" placeholder="Alexei Ward" />
-                        <InputField id="email" label="Email" type="email" placeholder="alexei@mail.com" />
+                        <InputField id="email" label="Email" type="email" placeholder="alexei@gmail.com" />
                         <InputField id="phone" label="Phone Number" type="tel" placeholder="+1 202-555-0136" />
                     </div>
                 </fieldset>
@@ -93,14 +54,10 @@ export default function CheckoutForm({ action }: CheckoutFormProps) {
                 </fieldset>
                 <fieldset>
                     <legend className="text-xs font-bold text-darkorange uppercase mb-4">Payment Details</legend>
-                    <RadioGroup
-                        name="payment"
-                        options={paymentOptions}
-                        onChange={(value) => setSelectedPayment(value)}
-                    />
+                    <RadioGroup />
                 </fieldset>
-                {selectedPayment === "cash" && (
-                    <div className="hidden lg:flex flex-col gap-8 lg:flex-row lg:items-center">
+                {formData.payment === "cash" && (
+                    <div className="hidden md:flex flex-col gap-8 md:flex-row md:items-center">
                         <div className="flex h-9 w-9">
                             <PayOnDeliveryIcon />
                         </div>
@@ -111,9 +68,9 @@ export default function CheckoutForm({ action }: CheckoutFormProps) {
                 )}
             </div>
 
-            <div className="flex flex-col p-6 md:p-8 bg-white rounded-lg gap-8 lg:w-1/3">
+            <div className="flex flex-col p-6 md:p-8 bg-white rounded-lg gap-8 lg:w-1/3 lg:h-[calc(100vh-13rem)]">
                 <div className="text-lg font-bold uppercase tracking-wider">summary</div>
-                <fieldset className={`flex flex-col gap-6`}>
+                <fieldset className={`flex flex-col gap-6 overflow-y-auto lg:flex-1`}>
                     {items.map((item) => (
                         <div
                             key={item.productId}
@@ -150,9 +107,9 @@ export default function CheckoutForm({ action }: CheckoutFormProps) {
                         </div>
                     ))}
                 </fieldset>
-                <fieldset className="flex flex-col gap-6">
+                <fieldset className="flex flex-col gap-6 lg:flex-1">
                     <div className="flex flex-col gap-2">
-                        {totals.map(({ label, value }) => (
+                        {cartTotals.map(({ label, value }) => (
                             <div key={label} className="flex justify-between uppercase">
                                 <p className="opacity-50 text-base font-normal leading-normal">{label}</p>
                                 <p className="text-lg font-bold">{value}</p>

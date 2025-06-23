@@ -4,7 +4,7 @@ import Image from "next/image"
 import { useEffect } from "react"
 import { ShoppingCartIcon } from "@/app/utilities/ui/icons"
 import { useCartContext } from "@/app/utilities/contexts/CartContext"
-import { formatPrice } from "@/app/utilities/library/price-utilities"
+import { formatPrice } from "@/app/utilities/functions-and-utilities/price-utilities"
 import ClearCart from "@/app/utilities/ui/components/buttons/action-buttons/ClearCart"
 import LinkButton from "@/app/utilities/ui/components/buttons/link-buttons/LinkButton"
 import CartModalCounterButton from "@/app/utilities/ui/components/buttons/counter-buttons/CartModalCounterButton"
@@ -42,7 +42,7 @@ export default function CartModal() {
             >
                 <div
                     onClick={(e) => e.stopPropagation()}
-                    className={`relative z-10 md:w-96 w-full rounded-lg bg-white px-[1.75rem] md:px-[2.06rem] py-8 shadow-lg flex flex-col gap-8 max-h-[calc(100dvh-8rem)] md:max-h-[calc(100vh-19rem)]`}
+                    className={`relative z-10 md:w-96 w-full rounded-lg bg-white px-[1.75rem] md:px-[2.06rem] py-8 shadow-lg flex flex-col gap-8 h-[calc(100dvh-8rem)] md:h-[calc(100dvh-18rem)]`}
                 >
                     {items.length > 0 && (
                         <div className="flex items-center justify-between">
@@ -53,7 +53,7 @@ export default function CartModal() {
                         </div>
                     )}
                     <div
-                        className={`overflow-y-auto flex flex-col gap-6 ${items.length === 0 ? "bg-zinc-100 justify-center items-center h-[calc(50vh-3rem)] md:h-96" : ""}`}
+                        className={`overflow-y-auto flex flex-col gap-6 flex-1 ${items.length === 0 ? "bg-zinc-100 justify-center items-center h-[calc(50vh-3rem)] md:h-96" : ""}`}
                     >
                         {items.length > 0 ? (
                             items.map((item) => (

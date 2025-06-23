@@ -1,6 +1,6 @@
 'use server'
 
-import { getCartAndPriceTotals } from '@/app/utilities/library/cart-utilitues'
+import { getCartAndPriceTotals } from '@/app/utilities/functions-and-utilities/cart-functions'
 
 export async function handleCheckoutAction(formData: FormData) {
     const name = formData.get('name')

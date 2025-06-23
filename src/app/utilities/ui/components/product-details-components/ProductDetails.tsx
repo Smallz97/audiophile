@@ -1,5 +1,5 @@
 import type { ProductDetailsProps } from "@/app/utilities/library/definitions"
-import { getRandomSuggestedProducts } from "@/app/utilities/library/functions"
+import { getRandomSuggestedProducts } from "@/app/utilities/functions-and-utilities/functions"
 import BoxContent from "@/app/utilities/ui/components/product-details-components/BoxContents"
 import ProductImage from "@/app/utilities/ui/components/product-details-components/ProductImage"
 import PriceComponent from "@/app/utilities/ui/components/product-details-components/PriceComponent"

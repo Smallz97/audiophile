@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useCartContext } from "@/app/utilities/contexts/CartContext"
-import { formatPrice } from "@/app/utilities/library/price-utilities"
+import { formatPrice } from "@/app/utilities/functions-and-utilities/price-utilities"
 import { PriceComponentProps } from "@/app/utilities/library/definitions"
 import CartActionButton from "@/app/utilities/ui/components/buttons/action-buttons/CartActionButton"
 import ProductPageCounterButton from "@/app/utilities/ui/components/buttons/counter-buttons/ProductPageCounterButton"

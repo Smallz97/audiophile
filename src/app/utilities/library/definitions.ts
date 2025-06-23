@@ -2,14 +2,12 @@ import type { ReactNode } from "react";
 import { StaticImageData, ImageProps } from "next/image";
 
 // Defining the props for all context providers
-export type ContextProviderProps = {
-    children: ReactNode
-}
+export type ContextProviderProps = { children: ReactNode }
 
 // Defining the breakpoints for the media responsiveness context
 export type Breakpoint = "sm" | "md" | "lg" | "xl" | "2xl"
 
-// Defining the cart modal context values
+// Defining the cart context values
 export type CartContextValues = {
     cart: CartObject;
     isModalOpen: boolean;
@@ -17,6 +15,15 @@ export type CartContextValues = {
     closeModal: () => void;
     fetchCart: () => Promise<void>;
 };
+
+// Defining the checkout form context values
+export type CheckoutFormContextValues = {
+    formData: FormData
+    setFormData: React.Dispatch<React.SetStateAction<FormData>>
+    errors: Record<string, string>
+    setErrors: React.Dispatch<React.SetStateAction<Record<string, string>>>
+    validateField: (name: string, value: string) => string
+}
 
 // Defining the props for the header component
 export type HeaderProps = {
@@ -227,7 +234,7 @@ export type CartModalProps = {
 
 // Defining the props for the checkout-form input components
 export type InputFieldProps = {
-  id: string
+  id: keyof FormData
   label: string
   type?: string
   placeholder?: string
@@ -240,14 +247,14 @@ export type RadioOptions = {
   value: string
 }
 
-// Defining the props for the radio groups
-export type RadioGroupProps = {
-  name: string
-  options: RadioOptions[]
-  onChange?: (value: string) => void
-}
-
-// Defining the props for the checkout-form component
-export type CheckoutFormProps = {
-  action: (formData: FormData) => void
+// Defining the form data type for the checkout form
+export type FormData = {
+    name: string
+    email: string
+    phone: string
+    address: string
+    zip: string
+    city: string
+    country: string
+    payment: string
 }

@@ -18,7 +18,7 @@ function ProductOverviewCard({ product, index }: ProductOverviewCardProps) {
                 />
             </div>
             <div
-                className="flex flex-col gap-6 w-full lg:gap-10 md:max-lg:w-3/5 max-lg:items-center max-lg:text-center lg:flex-1"
+                className="flex flex-col gap-6 w-full lg:gap-10 md:max-lg:w-3/5 items-center lg:items-start text-center lg:text-left lg:flex-1"
             >
                 <div id="product-name-description" className="flex flex-col gap-6 md:gap-4">
                     {product.newProduct && (

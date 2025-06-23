@@ -1,8 +1,8 @@
 import { cache } from "react";
 import { StaticImageData } from "next/image"
-import { createPrice } from "@/app/utilities/library/price-utilities";
-import { getCategoryProducts, getCategoryImages, generateProductId } from "@/app/utilities/library/functions";
+import { createPrice } from "@/app/utilities/functions-and-utilities/price-utilities";
 import type { ProductsCategoryPagesProps, ProductsCategory, Product } from "@/app/utilities/library/definitions"
+import { getCategoryProducts, getCategoryImages, generateProductId } from "@/app/utilities/functions-and-utilities/functions";
 
 // Image imports for product category cards
 import Earphones from "../../../../public/images/category-link-images/earphones-mobile.png"
