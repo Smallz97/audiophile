@@ -1,7 +1,7 @@
 import { cache } from "react";
 import { StaticImageData } from "next/image"
 import { createPrice } from "@/app/utilities/functions-and-utilities/price-utilities";
-import type { ProductsCategoryPagesProps, ProductsCategory, Product } from "@/app/utilities/library/definitions"
+import type { ProductsCategoryPagesProps, ProductsCategory, Product, InputFieldProps } from "@/app/utilities/library/definitions"
 import { getCategoryProducts, getCategoryImages, generateProductId } from "@/app/utilities/functions-and-utilities/functions";
 
 // Image imports for product category cards
@@ -101,6 +101,19 @@ import ZX7TFT from "../../../../public/images/product-images/speakers/ZX7/featur
 import ZX7FFD from "../../../../public/images/product-images/speakers/ZX7/featured-images/desktops/first.png"
 import ZX7SFD from "../../../../public/images/product-images/speakers/ZX7/featured-images/desktops/second.png"
 import ZX7TFD from "../../../../public/images/product-images/speakers/ZX7/featured-images/desktops/third.png"
+
+export const billingFields: InputFieldProps[] = [
+  { id: "name", label: "Name", placeholder: "Alexei Ward" },
+  { id: "email", label: "Email", type: "email", placeholder: "alexei@gmail.com" },
+  { id: "phone", label: "Phone Number", type: "tel", placeholder: "+1 202-555-0136" },
+]
+
+export const shippingFields: InputFieldProps[] = [
+  { id: "address", label: "Address", placeholder: "1137 Williams Avenue" },
+  { id: "zip", label: "ZIP Code", placeholder: "10001" },
+  { id: "city", label: "City", placeholder: "New York" },
+  { id: "country", label: "Country", placeholder: "United States" },
+]
 
 export const images: Record<string, StaticImageData> = {
     earphones: Earphones,

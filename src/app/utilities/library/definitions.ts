@@ -232,6 +232,18 @@ export type CartModalProps = {
     cart: CartObject;
 }
 
+// Defining the form data type for the checkout form
+export type FormData = {
+    name: string
+    email: string
+    phone: string
+    address: string
+    zip: string
+    city: string
+    country: string
+    payment: string
+}
+
 // Defining the props for the checkout-form input components
 export type InputFieldProps = {
   id: keyof FormData
@@ -247,17 +259,7 @@ export type RadioOptions = {
   value: string
 }
 
-// Defining the form data type for the checkout form
-export type FormData = {
-    name: string
-    email: string
-    phone: string
-    address: string
-    zip: string
-    city: string
-    country: string
-    payment: string
-}
+
 
 export type InvalidCartResult = {
   valid: false

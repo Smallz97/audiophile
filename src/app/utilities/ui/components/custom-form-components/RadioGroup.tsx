@@ -12,7 +12,7 @@ export default function RadioGroup() {
 
     return (
         <div className="flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-x-4 md:gap-y-4">
-            <label className="text-xs font-bold capitalise">Payment Method</label>
+            <div className="text-xs font-bold capitalise">Payment Method</div>
             <div className="flex flex-col gap-4">
                 {paymentOptions.map(({ id, label, value }) => (
                     <div
