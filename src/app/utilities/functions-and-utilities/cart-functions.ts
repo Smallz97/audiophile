@@ -14,7 +14,7 @@ export function getGrandTotal({ amount }: PriceFunctionProps): Price {
   return amount + getVAT({ amount }) + getShipping({ amount });
 }
 
-export async function getCartAndPriceTotals(){
+export async function getCartAndPriceTotals(): Promise<CartObject> {
   const allProducts = getAllProducts()
   const cookieStore = await cookies()
   const cartCookie = cookieStore.get('cart')

@@ -40,7 +40,22 @@ export function createHandleSubmit({
         data.append(key, value)
       })
 
-      return await handleCheckoutAction(data)
+      const result = await handleCheckoutAction(data)
+
+      if (result?.success) {
+        if (result.paymentType === 'online' && result.authorizationUrl) {
+          window.location.href = result.authorizationUrl
+        } else if (result.paymentType === 'offline') {
+          alert(result.message || 'Order placed successfully. Pay on delivery.')
+          window.location.href = '/'
+        } else {
+          alert(result.message || 'Something went wrong. Invalid payment type.')
+          window.location.href = '/'
+        }
+      } else {
+        alert(result?.message || 'Payment failed. Please try again.')
+        window.location.href = '/'
+      }
     }
   }
 }

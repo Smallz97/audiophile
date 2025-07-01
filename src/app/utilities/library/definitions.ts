@@ -258,3 +258,15 @@ export type FormData = {
     country: string
     payment: string
 }
+
+export type InvalidCartResult = {
+  valid: false
+  message: string
+}
+
+export type ValidCartResult = {
+  valid: true
+  cart: CartObject
+}
+
+export type ValidateCartResult = InvalidCartResult | ValidCartResult

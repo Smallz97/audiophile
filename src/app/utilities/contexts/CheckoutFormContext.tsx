@@ -64,6 +64,6 @@ export function CheckoutFormContextProvider({ children }: ContextProviderProps) 
 
 export function useCheckoutFormContext() {
     const context = useContext(CheckoutFormContext)
-    if (!context) throw new Error('useCheckoutFormContext must be used within a CheckoutFormCOntextProvider')
+    if (!context) throw new Error('useCheckoutFormContext must be used within a CheckoutFormContextProvider')
     return context
 }

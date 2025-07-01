@@ -1,6 +1,7 @@
 'use client'
 
 import Image from "next/image"
+import { useState } from "react"
 import { PayOnDeliveryIcon } from "@/app/utilities/ui/icons"
 import { useCartContext } from "@/app/utilities/contexts/CartContext"
 import { useCheckoutFormContext } from "@/app/utilities/contexts/CheckoutFormContext"
@@ -11,6 +12,8 @@ import { createHandleSubmit } from "@/app/utilities/functions-and-utilities/chec
 
 
 export default function CheckoutForm() {
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
     const { cart } = useCartContext()
     const items = cart.items;
     const total = formatPrice({ amount: cart.totalPrice })
@@ -25,7 +28,17 @@ export default function CheckoutForm() {
     ]
 
     const { formData, setErrors, validateField } = useCheckoutFormContext()
-    const handleSubmit = createHandleSubmit({ formData, validateField, setErrors })
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        setIsSubmitting(true)
+
+        try {
+            const customHandler = createHandleSubmit({ formData, validateField, setErrors })
+            await customHandler(e)
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
 
     return (
         <form
@@ -123,9 +136,10 @@ export default function CheckoutForm() {
                 </fieldset>
                 <button
                     type="submit"
+                    disabled={isSubmitting}
                     className="w-full bg-darkorange py-3 w-40 h-12 text-sm font-medium text-white uppercase"
                 >
-                    continue & pay
+                    {isSubmitting ? "Submitting..." : "Continue & Pay"}
                 </button>
             </div>
         </form>

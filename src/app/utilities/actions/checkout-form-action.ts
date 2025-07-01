@@ -1,66 +1,44 @@
 'use server'
 
-import { getCartAndPriceTotals } from '@/app/utilities/functions-and-utilities/cart-functions'
+import { validateCart } from "@/app/utilities/functions-and-utilities/checkout-functions/validate-cart"
+import { createOrderObject } from "@/app/utilities/functions-and-utilities/checkout-functions/create-order-object"
+import { initializePaystackTransaction } from "@/app/utilities/functions-and-utilities/checkout-functions/initialize-paystack"
 
 export async function handleCheckoutAction(formData: FormData) {
-    const name = formData.get('name')
-    const email = formData.get('email')
-    const phone = formData.get('phone')
-    const address = formData.get('address')
-    const zip = formData.get('zip')
-    const city = formData.get('city')
-    const country = formData.get('country')
-    const payment = formData.get('payment')
+    const result = await validateCart()
 
-    if (!name || !email || !phone || !address || !zip || !city || !country || !payment) {
-        return { success: false, message: 'All fields are required.' }
+    if (!result.valid) { 
+        return 
     }
 
-    const cart = await getCartAndPriceTotals()
-
-    if (cart.items.length === 0) {
-        return { success: false, message: 'Your cart is empty or invalid.' }
-    }
-
-    const itemsValid = cart.items.every(item => item.quantity <= item.product.numberInStock)
-
-    if (!itemsValid) {
-        return { success: false, message: 'Some items are out of stock.' }
-    }
-
-    const order = {
-        customer: {
-            name,
-            email,
-            phone,
-        },
-        shippingAddress: {
-            address,
-            zip,
-            city,
-            country,
-        },
-        items: cart.items.map(CartItem => ({
-            productId: CartItem.productId,
-            quantity: CartItem.quantity,
-            unitPrice: CartItem.product.price,
-            total: CartItem.product.price * CartItem.quantity,
-        })),
-        totals: {
-            vat: cart.totalVAT,
-            shipping: cart.shipping,
-            subtotal: cart.totalPrice,
-            grandTotal: cart.grandTotal,
-        },
-        status: 'pending',
-        paymentMethod: payment,
-        createdAt: new Date().toISOString(),
-    }
-
-    return {
-        order,
-        success: true,
-        total: order.totals.grandTotal,
-        message: 'Validation passed. Ready for payment.',
+    const { order, email, amount } = await createOrderObject(formData, result.cart)
+    
+    if (order.paymentMethod === 'paystack') {
+        try {
+            const paystack = await initializePaystackTransaction(email, amount)
+            return {
+                success: true,
+                paymentType: 'online',
+                authorizationUrl: paystack.authorizationUrl,
+                reference: paystack.reference,
+            }
+        } catch (error) {
+            console.error('Paystack error:', error)
+            return {
+                success: false,
+                message: 'Payment initialization failed. Please try again.',
+            }
+        }
+    } else if (order.paymentMethod === 'cash') {
+        return {
+            success: true,
+            paymentType: 'offline',
+            message: 'Order placed successfully. Please pay on delivery.',
+        }
+    } else {
+        return {
+            success: false,
+            message: 'Invalid payment method.',
+        }
     }
 }

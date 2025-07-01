@@ -12,7 +12,7 @@ export default function ClientCartRedirect() {
         if (cart.items.length === 0) {
             router.push("/");
         }
-    }, [cart.items.length]);
+    }, [cart.items.length, router]);
 
     return null;
 }
