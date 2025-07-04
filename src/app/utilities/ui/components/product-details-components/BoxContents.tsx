@@ -4,7 +4,7 @@ export default function BoxContent({ items }: { items: BoxContents[] }) {
     return (
         <div
             id="in-the-box-container"
-            className="flex flex-col md:flex-row gap-6 md:gap-16 md:w-4/5 md:justify-between"
+            className="flex flex-col md:max-lg:flex-row gap-6 md:gap-16 md:max-lg:w-4/5 md:max-lg:justify-between lg:gap-8 lg:w-2/5"
         >
             <div
                 id="container-title"

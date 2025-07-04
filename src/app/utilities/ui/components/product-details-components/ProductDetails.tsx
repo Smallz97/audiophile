@@ -20,7 +20,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                 <ProductImage image={product.productDetailImage} />
                 <div
                     id="product-description-price-container"
-                    className="flex flex-col gap-6 md:justify-center w-full lg:w-2/5"
+                    className="flex flex-col gap-6 md:justify-center w-full"
                 >
                     <ProductDescription
                         name={product.name}
@@ -34,7 +34,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     />
                 </div>
             </div>
-            <div className="flex flex-col gap-20 md:gap-[7.5rem]">
+            <div className="flex flex-col gap-20 md:gap-[7.5rem] lg:flex-row lg:gap-fluid">
                 <ProductFeatures features={product.features} />
                 <BoxContent items={product.boxContent} />
             </div>
