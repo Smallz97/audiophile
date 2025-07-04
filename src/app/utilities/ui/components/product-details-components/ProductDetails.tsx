@@ -6,7 +6,7 @@ import PriceComponent from "@/app/utilities/ui/components/product-details-compon
 import ProductFeatures from "@/app/utilities/ui/components/product-details-components/ProductFeatures"
 import ProductDescription from "@/app/utilities/ui/components/product-details-components/ProductDescription"
 import SuggestedProductCard from "@/app/utilities/ui/components/product-details-components/SuggestedProductCard"
-import ProductFeaturedImages from "@/app/utilities/ui/components/product-details-components/ProductFeaturedImages"
+import ProductFeaturedImagesComponent from "@/app/utilities/ui/components/product-details-components/ProductFeaturedImagesComponent"
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
     const suggestedProducts = getRandomSuggestedProducts(product);
@@ -38,7 +38,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                 <ProductFeatures features={product.features} />
                 <BoxContent items={product.boxContent} />
             </div>
-            <ProductFeaturedImages images={product.featuredImages} />
+            <ProductFeaturedImagesComponent featuredImages={product.featuredImages} />
             <SuggestedProductCard products={suggestedProducts} />
         </div>
     )

@@ -2,22 +2,22 @@
 
 import Image from "next/image"
 import { useBreakpoint } from "@/app/utilities/contexts/BreakpointContext"
-import type { ProductFeaturedImagesProps } from "@/app/utilities/library/definitions"
+import type { ProductFeaturedImagesComponentProps } from "@/app/utilities/library/definitions"
 
-export default function ProductFeaturedImages({
-    images,
+export default function ProductFeaturedImagesComponent({
+    featuredImages,
     containerClassName = "flex flex-col gap-5 md:grid md:grid-cols-2 md:grid-rows-2",
     className = "w-full rounded-lg",
-}: ProductFeaturedImagesProps) {
+}: ProductFeaturedImagesComponentProps) {
     const breakpoint = useBreakpoint()
 
     let imageSet
     if (breakpoint === "sm") {
-        imageSet = images.mobile
+        imageSet = featuredImages.mobile
     } else if (breakpoint === "md") {
-        imageSet = images.tablet
+        imageSet = featuredImages.tablet
     } else {
-        imageSet = images.desktops
+        imageSet = featuredImages.desktops
     }
 
     return (

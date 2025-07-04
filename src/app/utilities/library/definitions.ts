@@ -71,8 +71,8 @@ export type ProductPageCounterButtonProps = {
     setQuantity: (value: number) => void;
 };
 
-// Defining the props for the responsive images component
-export type ResponsiveImageProps = Omit<ImageProps, "src"> & {
+// Defining the props for the featured-product-component's responsive-image component
+export type FeaturedProductResponsiveImageProps = Omit<ImageProps, "src"> & {
     srcSet: {
       mobile: StaticImageData,
       tablet: StaticImageData,
@@ -80,15 +80,15 @@ export type ResponsiveImageProps = Omit<ImageProps, "src"> & {
     }
 }
 
-// Defining the featured images object
+// Defining the product's featured images object
 export type FeaturedImages = {
     first: StaticImageData;
     second: StaticImageData;
     third: StaticImageData;
 }
 
-// Defining the images set for different screen sizes
-export type ImageSet = {
+// Defining an object of featured-product-images, grouped based on screen sizes
+export type SetOfFeaturedImages = {
     mobile: FeaturedImages;
     tablet: FeaturedImages;
     desktops: FeaturedImages;
@@ -123,7 +123,7 @@ export type Product = {
     price: Price;
     features: string[];
     boxContent: BoxContents[];
-    featuredImages: ImageSet;
+    featuredImages: SetOfFeaturedImages;
     suggestedProductCardImages: StaticImageData;
     numberInStock: number;
 }
@@ -183,11 +183,11 @@ export type ProductFeaturesProps = {
     features: string[]
 }
 
-// Defining the props for the responsive featured-images component
-export type ProductFeaturedImagesProps = {
+// Defining the props for the responsive product-featured-images component
+export type ProductFeaturedImagesComponentProps = {
     className?: string;
     containerClassName?: string;
-    images: ImageSet;
+    featuredImages: SetOfFeaturedImages;
 }
 
 // Defining the props for the suggested-products-card component

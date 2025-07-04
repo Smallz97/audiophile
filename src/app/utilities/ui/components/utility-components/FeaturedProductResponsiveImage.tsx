@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useBreakpoint } from "@/app/utilities/contexts/BreakpointContext";
-import { ResponsiveImageProps } from "@/app/utilities/library/definitions";
+import { FeaturedProductResponsiveImageProps } from "@/app/utilities/library/definitions";
 
-export default function ResponsiveImage({ srcSet, ...rest }: ResponsiveImageProps) {
+export default function FeaturedProductResponsiveImage({ srcSet, ...rest }: FeaturedProductResponsiveImageProps) {
   const breakpoint = useBreakpoint()
 
   let src;

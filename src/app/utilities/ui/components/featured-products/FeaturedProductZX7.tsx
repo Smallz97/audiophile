@@ -1,10 +1,10 @@
 import LinkButton from "@/app/utilities/ui/components/buttons/link-buttons/LinkButton";
-import ResponsiveImage from "@/app/utilities/ui/components/utility-components/ResponsiveImage";
 import mobileImg from "../../../../../../public/images/featured-products-images/ZX7/mobile-zx7.png"
 import tabletImg from "../../../../../../public/images/featured-products-images/ZX7/tablet-zx7.png"
 import desktopImg from "../../../../../../public/images/featured-products-images/ZX7/desktop-zx7.png"
+import FeaturedProductResponsiveImage from "@/app/utilities/ui/components/utility-components/FeaturedProductResponsiveImage";
 
-export default function ZX7() {
+export default function FeaturedProductZX7() {
     return (
         <div className="relative">
             <div className="flex flex-col gap-8 absolute top-1/2 left-6 md:left-16 -translate-y-1/2">
@@ -16,7 +16,7 @@ export default function ZX7() {
                     see product
                 </LinkButton>
             </div>
-            <ResponsiveImage
+            <FeaturedProductResponsiveImage
                 alt="ZX7 Speaker"
                 className="w-full rounded-lg"
                 srcSet={{ mobile: mobileImg, tablet: tabletImg, desktop: desktopImg }}

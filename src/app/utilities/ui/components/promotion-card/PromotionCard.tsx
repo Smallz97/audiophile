@@ -1,6 +1,6 @@
 import mobileImg from "../../../../../../public/images/promotion-card-images/copyright-mobile.png"
 import tabletImg from "../../../../../../public/images/promotion-card-images/copyright-tablet.png"
-import ResponsiveImage from "@/app/utilities/ui/components/utility-components/ResponsiveImage";
+import ResponsiveImage from "@/app/utilities/ui/components/utility-components/FeaturedProductResponsiveImage";
 
 export default function PromotionCard() {
     return (
