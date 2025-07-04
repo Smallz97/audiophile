@@ -8,17 +8,22 @@ function ProductOverviewCard({ product, index }: ProductOverviewCardProps) {
     const isReversed = index % 2 !== 0;
 
     return (
-        <div className={`flex flex-col items-center ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 md:gap-12 lg:gap-[7.81rem]`}>
-            <div className="flex justify-center max-md:px-12 w-full pt-10 lg:pt-20 pb-16 md:pb-20 rounded-lg bg-zinc-100 lg:flex-1">
-                <Image
-                    width={250}
-                    height={250}
-                    alt="overview image"
-                    src={product.overviewImage}
-                />
+        <div className={`flex flex-col items-center ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 md:gap-12 lg:gap-fluid`}>
+            <div className="w-full lg:w-3/5">
+                <div
+                    className="h-[22rem] min-[390px]:h-[28rem] px-[2rem] py-[3rem] md:max-lg:px-60 md:max-lg:py-12 lg:h-[35rem] lg:p-32 rounded-lg bg-zinc-100"
+                >
+                    <div className="relative w-full h-full">
+                        <Image
+                            fill={true}
+                            alt="overview image"
+                            src={product.overviewImage}
+                        />
+                    </div>
+                </div>
             </div>
             <div
-                className="flex flex-col gap-6 w-full lg:gap-10 md:max-lg:w-3/5 items-center lg:items-start text-center lg:text-left lg:flex-1"
+                className="flex flex-col gap-6 w-full lg:gap-10 md:max-lg:w-3/5 items-center lg:items-start text-center lg:text-left lg:w-2/5"
             >
                 <div id="product-name-description" className="flex flex-col gap-6 md:gap-4">
                     {product.newProduct && (

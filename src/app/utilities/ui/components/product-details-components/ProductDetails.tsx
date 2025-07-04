@@ -15,12 +15,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         <div className="flex flex-col gap-20 md:gap-[7.5rem]">
             <div
                 id="image-description-price-container"
-                className="flex flex-col md:flex-row gap-8 md:gap-[4.34rem]"
+                className="flex flex-col md:flex-row gap-8 md:gap-[4.34rem] lg:gap-fluid"
             >
                 <ProductImage image={product.productDetailImage} />
                 <div
                     id="product-description-price-container"
-                    className="flex flex-col gap-6 md:w-3/5 md:pt-[4.88rem] md:pb-[2.81rem]"
+                    className="flex flex-col gap-6 md:justify-center w-full lg:w-2/5"
                 >
                     <ProductDescription
                         name={product.name}
@@ -34,8 +34,10 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     />
                 </div>
             </div>
-            <ProductFeatures features={product.features} />
-            <BoxContent items={product.boxContent} />
+            <div className="flex flex-col gap-20 md:gap-[7.5rem]">
+                <ProductFeatures features={product.features} />
+                <BoxContent items={product.boxContent} />
+            </div>
             <ProductFeaturedImages images={product.featuredImages} />
             <SuggestedProductCard products={suggestedProducts} />
         </div>

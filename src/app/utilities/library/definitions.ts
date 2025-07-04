@@ -259,8 +259,6 @@ export type RadioOptions = {
   value: string
 }
 
-
-
 export type InvalidCartResult = {
   valid: false
   message: string

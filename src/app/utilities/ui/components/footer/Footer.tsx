@@ -3,7 +3,7 @@ import { AudiophileLogo, SocialLinks } from "@/app/utilities/ui/icons"
 
 export default function Footer() {
     return (
-        <footer className="flex flex-col gap-12 items-center md:items-start bg-justblack pb-9 md:pb-12 px-6 md:px-10 lg:px-[10.31rem]">
+        <footer className="flex flex-col gap-12 items-center md:items-start bg-justblack pb-9 md:pb-12 px-fluid md:px-fluid lg:px-fluid">
             <div className="w-24 h-1 bg-orange-400" />
             <Link href={`/`}><div id="brand-logo" className="flex w-36 h-6"><AudiophileLogo /></div></Link>
             <div id="footer-links" className="flex flex-col md:flex-row gap-4 md:gap-8 text-sm md:text-base font-bold leading-normal tracking-widest text-white text-center uppercase">

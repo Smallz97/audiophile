@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} antialiased`}>
+      <body className={`${manrope.variable} antialiased overscroll-none`}>
         <BreakpointProvider>
           <CartContextProvider>
             <NavbarWithHeader />

@@ -21,7 +21,7 @@ export default function NavbarWithHeader() {
 
     return (
         <div className="bg-black">
-            <nav className="flex justify-between items-center py-8 px-4 md:px-[2.44rem] lg:px-[10.32rem] border-b border-white/10">
+            <nav className="flex justify-between items-center py-8 px-fluid md:px-fluid lg:px-fluid border-b border-white/10">
                 <div className="flex w-4 h-3.5 md:hidden"><HamburgerIcon /></div>
                 <Link href={"/"} className="flex w-36 h-6"><AudiophileLogo /></Link>
                 <button
@@ -42,10 +42,10 @@ export default function NavbarWithHeader() {
                 isHomePage ? (
                     <div
                         id="homepage-header"
-                        className="bg-[url('/images/hero-images/mobile.png')] bg-bottom min-[390px]:bg-center min-[390px]:bg-cover md:bg-[url('/images/hero-images/tablet.png')] lg:bg-none bg-no-repeat py-28 md:py-0 md:pb-48 md:pt-36 px-6 md:px-48 lg:px-0 lg:py-24 lg:pl-[10.32rem] lg:pr-[7.6rem]"
+                        className="bg-[url('/images/hero-images/mobile.png')] bg-bottom min-[390px]:bg-center min-[390px]:bg-cover md:bg-[url('/images/hero-images/tablet.png')] lg:bg-none bg-no-repeat py-28 md:py-0 lg:py-24 md:pt-36 md:pb-48 max-md:px-6 md:max-lg:px-48 flex max-md:items-center lg:pl-fluid lg:pr-fluid"
                     >
-                        <div className="flex gap-[4.1rem] items-center">
-                            <div className="flex flex-col gap-4 md:gap-6 items-center lg:items-start">
+                        <div className="flex gap-[4.1rem]">
+                            <div className="flex flex-col gap-4 md:gap-6 items-center lg:items-start justify-center">
                                 <div className="text-sm font-normal tracking-[10px] text-white opacity-50 text-center uppercase">
                                     new product
                                 </div>

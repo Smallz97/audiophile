@@ -11,7 +11,7 @@ export default async function CategoryPagesLayout({
     const { slug } = await params;
     return (
         <div
-            className="flex flex-col px-6 md:px-[2.44rem] lg:px-[10.31rem] pt-16 md:pt-[7.5rem] pb-[7.5rem] lg:pb-[10rem] gap-[7.5rem] lg:gap-[10rem]"
+            className="flex flex-col px-fluid md:px-fluid lg:px-fluid pt-16 md:pt-[7.5rem] pb-[7.5rem] lg:pb-[10rem] gap-[7.5rem] lg:gap-[10rem]"
         >
             {children}
             <ProductCategoriesList path={slug} />

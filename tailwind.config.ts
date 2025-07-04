@@ -1,3 +1,4 @@
+import plugin from "tailwindcss/plugin";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,5 +19,61 @@ export default {
       }
     }
   },
-  plugins: [],
+  plugins: [plugin(function ({ matchUtilities }) {
+    matchUtilities(
+      {
+        'px-fluid': (value) => ({
+          paddingLeft: value,
+          paddingRight: value,
+        }),
+      },
+      {
+        values: {
+          DEFAULT: '6.4vw',
+          md: '5.08vw',
+          lg: '11.46vw',
+        },
+      }
+    );
+    matchUtilities(
+      {
+        'pl-fluid': (value) => ({
+          paddingLeft: value,
+        }),
+      },
+      {
+        values: {
+          DEFAULT: '6.4vw',
+          md: '5.08vw',
+          lg: '11.46vw',
+        },
+      }
+    );
+    matchUtilities(
+      {
+        'pr-fluid': (value) => ({
+          paddingRight: value,
+        }),
+      },
+      {
+        values: {
+          DEFAULT: '6.4vw',
+          md: '5.08vw',
+          lg: '8.44vw',
+        },
+      }
+    );
+    matchUtilities(
+      {
+        'gap-fluid': (value) => ({
+          gap: value,
+        }),
+      },
+      {
+        values: {
+          DEFAULT: '8.68vw',
+        },
+      }
+    );
+  },)],
 } satisfies Config;
