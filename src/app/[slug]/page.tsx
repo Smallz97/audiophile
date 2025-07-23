@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { findMatchingCategory, } from "@/app/utilities/functions-and-utilities/functions"
+import { findMatchingCategory, } from "@/app/utilities/functions-and-utilities/utility-functions"
 import { getProductsInASingleCategory, categoryPages } from "@/app/utilities/library/data"
 import ProductsInTheCategory from "@/app/utilities/ui/components/products-in-the-category/ProductsInTheCategory"
 

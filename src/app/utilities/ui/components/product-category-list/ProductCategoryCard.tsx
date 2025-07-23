@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Arrow } from "@/app/utilities/ui/icons";
 import type { ProductCategoryCardProps } from "@/app/utilities/library/definitions";
 
-function CategoryCard({ category }: ProductCategoryCardProps) {
+function ProductCategoryCard({ category }: ProductCategoryCardProps) {
     return (
         <div className="relative w-full">
             <Image
@@ -34,4 +34,4 @@ function CategoryCard({ category }: ProductCategoryCardProps) {
     );
 };
 
-export default React.memo(CategoryCard);
+export default React.memo(ProductCategoryCard);

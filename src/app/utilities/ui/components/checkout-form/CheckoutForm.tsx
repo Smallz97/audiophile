@@ -9,7 +9,7 @@ import { useCheckoutFormContext } from "@/app/utilities/contexts/CheckoutFormCon
 import { formatPrice } from "@/app/utilities/functions-and-utilities/price-utilities"
 import InputField from "@/app/utilities/ui/components/custom-form-components/InputField"
 import RadioGroup from "@/app/utilities/ui/components/custom-form-components/RadioGroup"
-import { createHandleSubmit } from "@/app/utilities/functions-and-utilities/checkoutForm-handlers"
+import { createHandleSubmit } from "@/app/utilities/functions-and-utilities/checkout-form-handlers"
 
 
 export default function CheckoutForm() {
@@ -95,9 +95,19 @@ export default function CheckoutForm() {
                             </div>
                         </div>
                     )}
+                    {formData.payment === "paystack" && (
+                        <div className="hidden md:flex flex-col gap-8 md:flex-row md:items-center">
+                            <div className="flex h-9 w-9">
+                                <PayOnDeliveryIcon />
+                            </div>
+                            <div className="hidden md:block opacity-50 text-black text-base font-normal leading-normal">
+                                You&apos;ll be redirected to paystack to complete your purchase. Ensure you have a valid card and sufficient amount for this transaction including transaction fees to complete purchase.
+                            </div>
+                        </div>
+                    )}
                 </div>
 
-                <div className="flex flex-col p-6 md:p-8 bg-white rounded-lg gap-8 lg:w-1/3 lg:h-[calc(100vh-13rem)]">
+                <div className="flex flex-col p-6 md:p-8 bg-white rounded-lg gap-8 lg:w-1/3 lg:h-[calc(100dvh-13rem)]">
                     <div className="text-lg font-bold uppercase tracking-wider">summary</div>
                     <fieldset className={`flex flex-col gap-6 overflow-y-auto lg:flex-1`}>
                         {items.map((item) => (

@@ -2,7 +2,7 @@ import { cache } from "react";
 import { StaticImageData } from "next/image"
 import { createPrice } from "@/app/utilities/functions-and-utilities/price-utilities";
 import type { ProductsCategoryPagesProps, ProductsCategory, Product, InputFieldProps } from "@/app/utilities/library/definitions"
-import { getCategoryProducts, getCategoryImages, generateProductId } from "@/app/utilities/functions-and-utilities/functions";
+import { getCategoryProducts, getCategoryImages, generateProductId } from "@/app/utilities/functions-and-utilities/utility-functions";
 
 // Image imports for product category cards
 import Earphones from "../../../../public/images/category-link-images/earphones-mobile.png"
@@ -115,6 +115,19 @@ export const shippingFields: InputFieldProps[] = [
   { id: "country", label: "Country", placeholder: "United States" },
 ]
 
+export const paymentOptions = [
+    { 
+        id: 'cod',
+        value: 'cash', 
+        label: 'Cash on Delivery', 
+    },
+    { 
+        id: 'paystack', 
+        value: 'paystack',
+        label: 'Pay with Paystack', 
+    },
+]
+
 export const images: Record<string, StaticImageData> = {
     earphones: Earphones,
     headphones: Headphones,
@@ -205,7 +218,7 @@ export const productData: Record<string, Product[]> = {
             price: createPrice(299900),
             features: [
                 "Featuring a genuine leather head strap and premium earcups, these headphones deliver superior comfort for those who like to enjoy endless listening. It includes intuitive controls designed for any situation. Whether you're taking a business call or just in your own personal space, the auto on/off and pause features ensure that you'll never miss a beat.",
-                "The advanced Active Noise Cancellation with built-in equalizer allow you to experience your audio world on your terms. It lets you enjoy your audio in peace, but quickly interact with your surroundings when you need to. Combined with Bluetooth 5. 0 compliant connectivity and 17 hour battery life, the XX99 Mark II headphones gives you superior sound, cutting-edge technology, and a modern design aesthetic."
+                "The advanced Active Noise Cancellation with built-in equalizer allow you to experience your audio world on your terms. It lets you enjoy your audio in peace, but quickly interact with your surroundings when you need to. Combined with Bluetooth 5.0 compliant connectivity and 17 hour battery life, the XX99 Mark II headphones gives you superior sound, cutting-edge technology, and a modern design aesthetic."
             ],
             boxContent: [
                 { quantity: 1, item: "headphone unit" },
@@ -405,19 +418,6 @@ export const productData: Record<string, Product[]> = {
         },
     ],
 };
-
-export const paymentOptions = [
-    { 
-        id: 'cod',
-        value: 'cash', 
-        label: 'Cash on Delivery', 
-    },
-    { 
-        id: 'paystack', 
-        value: 'paystack',
-        label: 'Pay with Paystack', 
-    },
-]
 
 export const productCategories: ProductsCategory[] = Object.values(categoryMap).map((category) => ({
     categoryName: category.slug,

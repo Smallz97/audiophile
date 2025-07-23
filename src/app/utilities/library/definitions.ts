@@ -1,8 +1,25 @@
 import type { ReactNode } from "react";
 import { StaticImageData, ImageProps } from "next/image";
 
+// Defining the props for an error class with a status code
+export type ErrorWithStatus = Error & {
+  status: number;
+};
+
 // Defining the props for all context providers
 export type ContextProviderProps = { children: ReactNode }
+
+// Defining the type for the custom modal content
+export type CustomModalContent = string;
+
+// Defining the custom modal context values
+export type CustomModalContextValues = {
+  isModalOpen: boolean;
+  content: CustomModalContent | undefined;
+  setContent: (content: CustomModalContent | undefined) => void;
+  openModal: () => void;
+  closeModal: () => void;
+}
 
 // Defining the breakpoints for the media responsiveness context
 export type Breakpoint = "sm" | "md" | "lg" | "xl" | "2xl"
@@ -195,6 +212,7 @@ export type SuggestedProductCardProps = {
     products: Product[];
 }
 
+
 // Defining a lightweight cart-item for cookie storage
 export type ServerCartItem = {
     productId: string;
@@ -227,10 +245,8 @@ export type CartObject = {
     grandTotal: Price;
 }
 
-// Defining the props for the cart modal component
-export type CartModalProps = {
-    cart: CartObject;
-}
+// Defining the cart object for cart-parsing helper function
+export type Cart = ServerCart | CartObject;
 
 // Defining the form data type for the checkout form
 export type FormData = {
@@ -259,14 +275,17 @@ export type RadioOptions = {
   value: string
 }
 
+// Defining the props for an invalid cart returned from the valiate-cart function
 export type InvalidCartResult = {
   valid: false
   message: string
 }
 
+// Defining the props for an valid cart returned from the valiate-cart function
 export type ValidCartResult = {
   valid: true
   cart: CartObject
 }
 
+// Defining the possible values returned from the valiate-cart function
 export type ValidateCartResult = InvalidCartResult | ValidCartResult

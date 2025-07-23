@@ -1,41 +1,28 @@
-import { cookies } from 'next/headers'
-import { NextResponse, NextRequest } from 'next/server'
-import type { ServerCart, ServerCartItem } from '@/app/utilities/library/definitions'
+import { NextRequest } from 'next/server'
+import type { ServerCartItem } from '@/app/utilities/library/definitions'
+import { setCartCookie } from '@/app/utilities/functions-and-utilities/cookie-utilities';
+import { parseCartCookie } from '@/app/utilities/functions-and-utilities/cookie-utilities';
+import handleAPIError from '@/app/utilities/functions-and-utilities/error-utilities/HandleAPIError';
+
 
 export async function POST(request: NextRequest) {
-  const { productId, quantity = 1 } = await request.json();
+  try {
+    const { productId, quantity = 1 } = await request.json();
 
-  const cookieStore = await cookies()
-  const cartCookie = cookieStore.get('cart')
+    const parsedCart = await parseCartCookie('server');
 
-  let cart: ServerCart = { items: [] }
+    const existingItem = parsedCart.items.find(item => item.productId === productId)
 
-  if (cartCookie?.value) {
-    try {
-      cart = JSON.parse(cartCookie.value)
-    } catch (err) {
-      console.error('Failed to parse cart cookie:', err)
-      cart = { items: [] }
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      const newItem: ServerCartItem = { productId, quantity }
+      parsedCart.items.push(newItem)
     }
+
+    return setCartCookie(parsedCart);
+
+  } catch (error: unknown) {
+    return handleAPIError(error);
   }
-
-  const existingItem = cart.items.find(item => item.productId === productId)
-
-  if (existingItem) {
-    existingItem.quantity += quantity;
-  } else {
-    const newItem: ServerCartItem = { productId, quantity }
-    cart.items.push(newItem)
-  }
-
-  const response = NextResponse.json(cart)
-
-  response.cookies.set('cart', JSON.stringify(cart), {
-    path: '/',
-    httpOnly: true,
-    maxAge: 60 * 60 * 24 * 7,
-    secure: process.env.NODE_ENV === 'production',
-  })
-
-  return response
 }

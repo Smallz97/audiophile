@@ -8,8 +8,8 @@ function ProductOverviewCard({ product, index }: ProductOverviewCardProps) {
     const isReversed = index % 2 !== 0;
 
     return (
-        <div className={`flex flex-col items-center ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 md:gap-12 lg:gap-fluid`}>
-            <div className="w-full">
+        <div className={`flex flex-col items-center ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 md:gap-12 lg:gap-0 lg:justify-between`}>
+            <div className="w-full lg:w-[48.64%]">
                 <div
                     className="h-[22rem] min-[390px]:h-[28rem] px-[2rem] py-[3rem] md:max-lg:px-60 md:max-lg:py-12 lg:h-[35rem] lg:p-32 rounded-lg bg-zinc-100"
                 >
@@ -23,7 +23,7 @@ function ProductOverviewCard({ product, index }: ProductOverviewCardProps) {
                 </div>
             </div>
             <div
-                className="flex flex-col gap-6 w-full lg:gap-10 md:max-lg:w-3/5 items-center lg:items-start text-center lg:text-left"
+                className="flex flex-col gap-6 max-md:w-full md:max-lg:w-3/5 lg:w-[40.09%] lg:gap-10 items-center lg:items-start text-center lg:text-left"
             >
                 <div id="product-name-description" className="flex flex-col gap-6 md:gap-4">
                     {product.newProduct && (

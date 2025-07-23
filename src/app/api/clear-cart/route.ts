@@ -1,17 +1,15 @@
-import { NextResponse } from 'next/server'
 import type { ServerCart } from '@/app/utilities/library/definitions'
+import { setCartCookie } from '@/app/utilities/functions-and-utilities/cookie-utilities';
+import handleAPIError from '@/app/utilities/functions-and-utilities/error-utilities/HandleAPIError';
+
 
 export async function POST() {
-  const emptyCart: ServerCart = { items: [] }
+  try {
+    const emptyCart: ServerCart = { items: [] }
 
-  const response = NextResponse.json(emptyCart)
-
-  response.cookies.set('cart', JSON.stringify(emptyCart), {
-    path: '/',
-    httpOnly: true,
-    maxAge: 60 * 60 * 24 * 7,
-    secure: process.env.NODE_ENV === 'production',
-  })
-
-  return response
+    return setCartCookie(emptyCart);
+    
+  } catch (error: unknown) {
+    return handleAPIError(error);
+  }
 }

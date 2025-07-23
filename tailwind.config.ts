@@ -15,7 +15,8 @@ export default {
         justblack: "var(--justblack)",
         firstwhite: "var(--firstwhite)",
         lightorange: "var(--lightorange)",
-        secondwhite: "var(--secondwhite)"
+        secondwhite: "var(--secondwhite)",
+        herobackground: "var(--herobackground)"
       }
     }
   },
@@ -60,18 +61,6 @@ export default {
           DEFAULT: '6.4vw',
           md: '5.08vw',
           lg: '8.44vw',
-        },
-      }
-    );
-    matchUtilities(
-      {
-        'gap-fluid': (value) => ({
-          gap: value,
-        }),
-      },
-      {
-        values: {
-          DEFAULT: '8.68vw',
         },
       }
     );

@@ -1,42 +1,29 @@
-import { cookies } from 'next/headers'
-import { NextResponse, NextRequest } from 'next/server'
-import type { ServerCart, ServerCartItem } from '@/app/utilities/library/definitions'
+import { NextRequest } from 'next/server';
+import type { ServerCart, ServerCartItem } from '@/app/utilities/library/definitions';
+import { setCartCookie } from '@/app/utilities/functions-and-utilities/cookie-utilities';
+import { parseCartCookie } from '@/app/utilities/functions-and-utilities/cookie-utilities';
+import handleAPIError from '@/app/utilities/functions-and-utilities/error-utilities/HandleAPIError';
 
 export async function PATCH(request: NextRequest) {
-  const { productId, change } = await request.json()
+  try {
+    const { productId, change } = await request.json();
 
-  const cookieStore = await cookies()
-  const cartCookie = cookieStore.get('cart')
+    const parsedCart = await parseCartCookie('server');
 
-  const updatedCart: ServerCart = { items: [] }
+    const updatedItems: ServerCartItem[] = parsedCart.items
+      .map(item => {
+        if (item.productId === productId) {
+          const newQuantity = item.quantity + change;
+          return newQuantity > 0 ? { ...item, quantity: newQuantity } : null;
+        }
+        return item;
+      })
+      .filter(Boolean) as ServerCartItem[];
+    const updatedCart: ServerCart = { items: updatedItems };
 
-  if (cartCookie?.value) {
-    try {
-      const parsedCart: ServerCart = JSON.parse(cartCookie.value)
+    return setCartCookie(updatedCart);
 
-      updatedCart.items = parsedCart.items
-        .map(item => {
-          if (item.productId === productId) {
-            const newQuantity = item.quantity + change
-            return newQuantity > 0 ? { ...item, quantity: newQuantity } : null
-          }
-          return item
-        })
-        .filter(Boolean) as ServerCartItem[]
-
-    } catch (err) {
-      console.error('Failed to parse cart cookie:', err)
-    }
+  } catch (error: unknown) {
+    return handleAPIError(error);
   }
-
-  const response = NextResponse.json(updatedCart)
-
-  response.cookies.set('cart', JSON.stringify(updatedCart), {
-    path: '/',
-    httpOnly: true,
-    maxAge: 60 * 60 * 24 * 7,
-    secure: process.env.NODE_ENV === 'production',
-  })
-
-  return response
 }

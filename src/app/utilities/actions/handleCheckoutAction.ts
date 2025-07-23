@@ -1,8 +1,8 @@
 'use server'
 
-import { validateCart } from "@/app/utilities/functions-and-utilities/checkout-functions/validate-cart"
-import { createOrderObject } from "@/app/utilities/functions-and-utilities/checkout-functions/create-order-object"
-import { initializePaystackTransaction } from "@/app/utilities/functions-and-utilities/checkout-functions/initialize-paystack"
+import { validateCart } from "@/app/utilities/functions-and-utilities/checkout-utilities/validate-cart"
+import { createOrderObject } from "@/app/utilities/functions-and-utilities/checkout-utilities/create-order-object"
+import { initializePaystackTransaction } from "@/app/utilities/functions-and-utilities/checkout-utilities/initialize-paystack"
 
 export async function handleCheckoutAction(formData: FormData) {
     const result = await validateCart()
@@ -18,12 +18,12 @@ export async function handleCheckoutAction(formData: FormData) {
             const paystack = await initializePaystackTransaction(email, amount)
             return {
                 success: true,
-                paymentType: 'online',
-                authorizationUrl: paystack.authorizationUrl,
+                paymentType: 'paystack',
                 reference: paystack.reference,
+                authorizationUrl: paystack.authorizationUrl,
             }
         } catch (error) {
-            console.error('Paystack error:', error)
+            console.error('Paystack initialization error:', error);
             return {
                 success: false,
                 message: 'Payment initialization failed. Please try again.',
@@ -32,7 +32,7 @@ export async function handleCheckoutAction(formData: FormData) {
     } else if (order.paymentMethod === 'cash') {
         return {
             success: true,
-            paymentType: 'offline',
+            paymentType: 'cash-on-delivery',
             message: 'Order placed successfully. Please pay on delivery.',
         }
     } else {

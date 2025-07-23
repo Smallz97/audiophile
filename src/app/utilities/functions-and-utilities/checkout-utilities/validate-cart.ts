@@ -1,7 +1,7 @@
 'use server'
 
 import type { ValidateCartResult } from '@/app/utilities/library/definitions'
-import { getCartAndPriceTotals } from '@/app/utilities/functions-and-utilities/cart-functions'
+import { getCartAndPriceTotals } from '@/app/utilities/functions-and-utilities/cart-utilities'
 
 export async function validateCart(): Promise<ValidateCartResult> {
   const cart = await getCartAndPriceTotals()

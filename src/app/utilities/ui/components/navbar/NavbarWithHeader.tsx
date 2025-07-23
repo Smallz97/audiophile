@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { categoryPages } from "@/app/utilities/library/data";
 import { useCartContext } from "@/app/utilities/contexts/CartContext";
+import { useCustomModalContext } from "@/app/utilities/contexts/CustomModalContext";
 import LinkButton from "@/app/utilities/ui/components/buttons/link-buttons/LinkButton";
 import { HamburgerIcon, AudiophileLogo, ShoppingCartIcon } from "@/app/utilities/ui/icons";
 
@@ -15,7 +16,9 @@ export default function NavbarWithHeader() {
     const isCategoryPage = Boolean(category);
     const categoryTitle = category?.name ?? "";
 
-    const { openModal, cart } = useCartContext();
+    const { openModal: openCartModal, cart } = useCartContext();
+    const { openModal: openAlertDialog, setContent } = useCustomModalContext();
+
     const items = cart.items
     const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
 
@@ -25,7 +28,14 @@ export default function NavbarWithHeader() {
                 <div className="flex w-4 h-3.5 md:hidden"><HamburgerIcon /></div>
                 <Link href={"/"} className="flex w-36 h-6"><AudiophileLogo /></Link>
                 <button
-                    onClick={openModal}
+                    onClick={() => {
+                        if (cart.items.length === 0) {
+                            setContent("Your cart is empty.");
+                            openAlertDialog();
+                        } else {
+                            openCartModal();
+                        }
+                    }}
                     className="relative p-0.5"
                 >
                     <div className="flex h-[1.25rem] w-[1.4375rem]">
@@ -44,8 +54,8 @@ export default function NavbarWithHeader() {
                         id="homepage-header"
                         className="bg-[url('/images/hero-images/mobile.png')] bg-bottom min-[390px]:bg-center min-[390px]:bg-cover md:bg-[url('/images/hero-images/tablet.png')] lg:bg-none bg-no-repeat py-28 md:py-0 lg:py-24 md:pt-36 md:pb-48 max-md:px-6 md:max-lg:px-48 flex max-md:items-center lg:pl-fluid lg:pr-fluid"
                     >
-                        <div className="flex gap-[4.1rem]">
-                            <div className="flex flex-col gap-4 md:gap-6 items-center lg:items-start justify-center">
+                        <div className="w-full">
+                            <div className="flex flex-col gap-4 md:gap-6 items-center lg:items-start justify-center lg:w-2/5">
                                 <div className="text-sm font-normal tracking-[10px] text-white opacity-50 text-center uppercase">
                                     new product
                                 </div>
@@ -54,7 +64,7 @@ export default function NavbarWithHeader() {
                                         <div className="text-4xl md:text-5xl font-bold leading-10 md:leading-[58px] tracking-wider md:tracking-widest text-white text-center uppercase">
                                             XX99 Mark II<br />headphones
                                         </div>
-                                        <div className="text-base font-normal leading-normal text-white opacity-75 text-center lg:text-left">
+                                        <div className="text-base font-normal leading-normal text-white opacity-75 text-center lg:text-left lg:w-4/5">
                                             Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
                                         </div>
                                     </div>
@@ -65,14 +75,6 @@ export default function NavbarWithHeader() {
                                         see product
                                     </LinkButton>
                                 </div>
-                            </div>
-                            <div className="hidden lg:block">
-                                <Image
-                                    width={500}
-                                    height={300}
-                                    alt="XX99 Mark II Headphones"
-                                    src="/images/hero-images/desktop.png"
-                                />
                             </div>
                         </div>
                     </div>

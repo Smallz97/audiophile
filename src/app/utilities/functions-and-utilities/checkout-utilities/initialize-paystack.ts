@@ -1,7 +1,7 @@
 'use server'
 
 export async function initializePaystackTransaction(email: string, amount: number) {
-  const callbackUrl = process.env.NEXT_PUBLIC_PAYSTACK_CALLBACK_URL
+  const callbackUrl ='http://localhost:3000/'
 
   const response = await fetch('https://api.paystack.co/transaction/initialize', {
     method: 'POST',
@@ -17,7 +17,6 @@ export async function initializePaystackTransaction(email: string, amount: numbe
   })
 
   const data = await response.json()
-  console.log(data)
 
   if (!response.ok || !data.status) {
     throw new Error('Failed to initialize Paystack transaction')

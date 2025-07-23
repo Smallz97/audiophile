@@ -1,6 +1,6 @@
 import type { InputFieldProps } from "@/app/utilities/library/definitions";
 import { useCheckoutFormContext } from '@/app/utilities/contexts/CheckoutFormContext'
-import { createHandleBlur } from "@/app/utilities/functions-and-utilities/checkoutForm-handlers"
+import { createHandleBlur } from "@/app/utilities/functions-and-utilities/checkout-form-handlers"
 
 
 export default function InputField({ id, label, placeholder, type = 'text' }: InputFieldProps) {

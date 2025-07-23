@@ -1,7 +1,7 @@
 'use client'
 
 import { CheckoutFormContextValues } from '@/app/utilities/library/definitions'
-import { handleCheckoutAction } from '@/app/utilities/actions/checkout-form-action'
+import { handleCheckoutAction } from '@/app/utilities/actions/handleCheckoutAction'
 
 export function createHandleBlur({
   validateField,
@@ -43,9 +43,9 @@ export function createHandleSubmit({
       const result = await handleCheckoutAction(data)
 
       if (result?.success) {
-        if (result.paymentType === 'online' && result.authorizationUrl) {
+        if (result.paymentType === 'paystack' && result.authorizationUrl) {
           window.location.href = result.authorizationUrl
-        } else if (result.paymentType === 'offline') {
+        } else if (result.paymentType === 'cash-on-delivery') {
           alert(result.message || 'Order placed successfully. Pay on delivery.')
           window.location.href = '/'
         } else {

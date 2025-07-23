@@ -1,6 +1,6 @@
 import { productCategories } from "@/app/utilities/library/data";
 import type { CurrentPath } from "@/app/utilities/library/definitions";
-import CategoryCard from "@/app/utilities/ui/components/product-category-list/ProductCategoryCard";
+import ProductCategoryCard from "@/app/utilities/ui/components/product-category-list/ProductCategoryCard";
 
 export default function ProductCategoriesList({ path }: CurrentPath) {
     const displayedCategories = productCategories.filter(p => p.categoryName !== path);
@@ -11,7 +11,7 @@ export default function ProductCategoriesList({ path }: CurrentPath) {
             className="flex flex-col gap-16 md:flex-row md:gap-2.5 lg:gap-[1.87rem]"
         >
             {displayedCategories.map((category, index) => (
-                <CategoryCard key={index} category={category} />
+                <ProductCategoryCard key={index} category={category} />
             ))}
         </section>
     );

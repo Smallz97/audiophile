@@ -1,5 +1,5 @@
 import type { ProductDetailsProps } from "@/app/utilities/library/definitions"
-import { getRandomSuggestedProducts } from "@/app/utilities/functions-and-utilities/functions"
+import { getRandomSuggestedProducts } from "@/app/utilities/functions-and-utilities/utility-functions"
 import BoxContent from "@/app/utilities/ui/components/product-details-components/BoxContents"
 import ProductImage from "@/app/utilities/ui/components/product-details-components/ProductImage"
 import PriceComponent from "@/app/utilities/ui/components/product-details-components/PriceComponent"
@@ -15,12 +15,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         <div className="flex flex-col gap-20 md:gap-[7.5rem]">
             <div
                 id="image-description-price-container"
-                className="flex flex-col md:flex-row gap-8 md:gap-[4.34rem] lg:gap-fluid"
+                className="flex flex-col md:flex-row gap-8 md:gap-[4.34rem] lg:gap-0 lg:justify-between"
             >
                 <ProductImage image={product.productDetailImage} />
                 <div
                     id="product-description-price-container"
-                    className="flex flex-col gap-6 md:justify-center w-full"
+                    className="flex flex-col gap-6 md:justify-center max-lg:w-full lg:w-[40.13%]"
                 >
                     <ProductDescription
                         name={product.name}
